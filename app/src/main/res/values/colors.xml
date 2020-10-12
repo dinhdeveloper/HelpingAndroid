@@ -39,6 +39,7 @@
 
     <!--admin-->
     <color name="color_orange">#FF5722</color>
+    <color name="color_green">#44C13C</color>
     <color name="color_text_admin">#10ABFE</color>
     <color name="color_bg_admin">#F2F2F2</color>
     <color name="color_text_one">#8E8E93</color>
