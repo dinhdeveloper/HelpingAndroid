@@ -51,7 +51,7 @@
                     android:layout_height="match_parent"
                     android:contentDescription="TODO"
                     android:scaleType="fitXY"
-                    android:src="@drawable/no_image_full"
+                    android:src="@drawable/imvslide"
                     android:visibility="visible"
                     tools:visibility="visible" />
 
@@ -114,6 +114,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"/>
                     <TextView
+                        android:id="@+id/tvLoadAllCategory"
                         android:textSize="13sp"
                         android:textStyle="normal"
                         android:textColor="@color/color_text_admin"
@@ -152,6 +153,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"/>
                     <TextView
+                        android:id="@+id/tvLoadAllProduct"
                         android:textSize="13sp"
                         android:textStyle="normal"
                         android:textColor="@color/color_text_admin"
@@ -165,6 +167,8 @@
                         android:layout_height="match_parent"/>
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcListProduct"
+                    android:nestedScrollingEnabled="false"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     tools:itemCount="5"

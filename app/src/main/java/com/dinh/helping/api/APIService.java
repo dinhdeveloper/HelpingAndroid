@@ -1,6 +1,7 @@
 package com.dinh.helping.api;
 
 import com.dinh.helping.model.CategoryModel;
+import com.dinh.helping.model.ProductModel;
 
 import java.util.List;
 
@@ -13,6 +14,9 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface APIService {
+
+    @GET("product/list")
+    Call<List<ProductModel>> getAllProduct();
 
     @GET("category/list")
     Call<List<CategoryModel>> getAllCategory();

@@ -6,38 +6,37 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.dinh.helping.api.APIService;
 import com.dinh.helping.api.APIUntil;
-import com.dinh.helping.model.CategoryModel;
+import com.dinh.helping.model.ProductModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CategoryRepository  {
-    public static CategoryRepository instance;
+public class ProductReprository  {
+    public static ProductReprository instance;
     APIService apiService = APIUntil.getServer();
 
-    public static CategoryRepository getInstance(){
+    public static ProductReprository getInstance(){
         if (instance==null){
-            instance = new CategoryRepository();
+            instance = new ProductReprository();
         }
         return instance;
     }
 
-    public MutableLiveData<List<CategoryModel>> getDataCategory() {
-        MutableLiveData<List<CategoryModel>> data = new MutableLiveData<List<CategoryModel>>();
-        apiService.getAllCategory().enqueue(new Callback<List<CategoryModel>>() {
+    public MutableLiveData<List<ProductModel>> getDataProduct() {
+        MutableLiveData<List<ProductModel>> data = new MutableLiveData<List<ProductModel>>();
+        apiService.getAllProduct().enqueue(new Callback<List<ProductModel>>() {
             @Override
-            public void onResponse(Call<List<CategoryModel>> call, Response<List<CategoryModel>> response) {
+            public void onResponse(Call<List<ProductModel>> call, Response<List<ProductModel>> response) {
                 if (response.isSuccessful()) {
                     data.setValue(response.body());
                 }
             }
 
             @Override
-            public void onFailure(Call<List<CategoryModel>> call, Throwable t) {
+            public void onFailure(Call<List<ProductModel>> call, Throwable t) {
                 Log.e("onFailure", t.getMessage());
             }
         });

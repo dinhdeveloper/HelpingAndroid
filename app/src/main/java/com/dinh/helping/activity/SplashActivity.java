@@ -3,10 +3,7 @@ package com.dinh.helping.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
@@ -16,11 +13,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.canhdinh.lib.alert.AlertError;
 import com.dinh.helping.R;
-import com.dinh.helping.adapter.ViewsSliderAdapter;
+import com.dinh.helping.adapter.slider.ViewsSliderAdapter;
 
 public class SplashActivity extends AppCompatActivity {
     private ViewPager2 viewPager;

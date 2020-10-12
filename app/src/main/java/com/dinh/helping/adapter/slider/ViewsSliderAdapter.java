@@ -1,4 +1,4 @@
-package com.dinh.helping.adapter;
+package com.dinh.helping.adapter.slider;
 
 import android.content.Context;
 import android.view.LayoutInflater;
