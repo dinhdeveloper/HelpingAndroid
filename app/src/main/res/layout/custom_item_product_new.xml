@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -7,68 +7,77 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginVertical="@dimen/dp10"
     android:layout_marginHorizontal="@dimen/dp5"
-    android:orientation="vertical">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="120dp">
-
-        <ImageView
-            android:id="@+id/imvCategory"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/no_image_full" />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_centerInParent="true" />
-
-
-    </RelativeLayout>
+    app:cardCornerRadius="@dimen/dp5"
+    android:orientation="vertical"
+    app:cardPreventCornerOverlap="false">
 
     <LinearLayout
-        android:layout_margin="@dimen/dp10"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/tvName"
-            android:maxLines="1"
-            android:ellipsize="end"
+        android:layout_height="match_parent">
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/dp5"
-            android:textColor="@color/color_text_admin"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:text="Nước hoa nồng nặc ơi là nồng nặc" />
+            android:layout_height="120dp">
 
-        <TextView
-            android:id="@+id/tvPrice"
-            android:drawableLeft="@drawable/ic_dinh_cash"
-            android:drawablePadding="@dimen/dp10"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/dp5"
-            android:textColor="@color/color_orange"
-            android:textSize="13sp"
-            android:textStyle="bold"
-            tools:text="520.000 VNĐ" />
+            <ImageView
+                android:id="@+id/imvCategory"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/no_image_full" />
 
-        <TextView
-            android:id="@+id/tvLocation"
-            android:drawableLeft="@drawable/ic_dinh_location"
-            android:drawablePadding="@dimen/dp10"
-            android:drawableTint="@color/color_green"
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_centerInParent="true" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_margin="@dimen/dp10"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/dp5"
-            android:textColor="@color/color_view"
-            android:textSize="14sp"
-            android:textStyle="normal"
-            tools:text="Hồ Chí Minh" />
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp5"
+                android:textColor="@color/color_text_admin"
+                android:textSize="13sp"
+                android:textStyle="normal"
+                tools:text="Nước hoa nồng nặc ơi là nồng nặc" />
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:drawableLeft="@drawable/ic_dinh_cash"
+                android:drawablePadding="@dimen/dp10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp5"
+                android:textColor="@color/color_orange"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="520.000 VNĐ" />
+
+            <TextView
+                android:id="@+id/tvLocation"
+                android:drawableLeft="@drawable/ic_dinh_location"
+                android:drawablePadding="@dimen/dp10"
+                android:drawableTint="@color/color_green"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp5"
+                android:textColor="@color/color_view"
+                android:textSize="13sp"
+                android:textStyle="normal"
+                tools:text="Hồ Chí Minh" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</androidx.cardview.widget.CardView>

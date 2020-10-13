@@ -93,86 +93,144 @@
             </RelativeLayout>
             <!--end viewpayger-->
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
                 <LinearLayout
-                    android:paddingVertical="@dimen/dp5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp5"
                     android:layout_marginTop="@dimen/dp20"
                     android:orientation="horizontal"
-                    android:layout_marginHorizontal="@dimen/dp5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:paddingVertical="@dimen/dp5">
+
                     <TextView
-                        android:layout_gravity="center"
-                        android:gravity="start|center"
-                        android:layout_weight="1"
-                        android:text="Danh mục sản phẩm"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/dp20"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:text="Khám phá danh mục"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp20"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/tvLoadAllCategory"
-                        android:textSize="13sp"
-                        android:textStyle="normal"
-                        android:textColor="@color/color_text_admin"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_marginHorizontal="@dimen/dp10"
-                        android:gravity="end|center|bottom"
                         android:layout_marginBottom="2dp"
-                        android:text="Xem tất cả"
                         android:layout_weight="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:gravity="end|center|bottom"
+                        android:text="Xem tất cả"
+                        android:textColor="@color/color_text_admin"
+                        android:textSize="13sp"
+                        android:textStyle="normal" />
                 </LinearLayout>
 
-                <include layout="@layout/layout_category"/>
+                <include layout="@layout/layout_category" />
             </LinearLayout>
             <!--end layout category-->
             <LinearLayout
-                android:orientation="vertical"
+                android:layout_marginTop="@dimen/dp20"
+                android:background="@drawable/custom_background_item_product_new"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
                 <LinearLayout
-                    android:paddingVertical="@dimen/dp5"
-                    android:layout_marginTop="@dimen/dp20"
-                    android:orientation="horizontal"
-                    android:layout_marginHorizontal="@dimen/dp5"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp5"
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/dp5">
+
                     <TextView
-                        android:layout_gravity="center"
-                        android:gravity="start|center"
-                        android:layout_weight="1"
-                        android:text="Sản phẩm mới"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/dp20"
+                        android:drawableLeft="@drawable/ic_fire"
+                        android:drawablePadding="@dimen/dp10"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:text="Giảm giá nhiều nhất"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dp20"
+                        android:textStyle="bold" />
+
                     <TextView
-                        android:id="@+id/tvLoadAllProduct"
-                        android:textSize="13sp"
-                        android:textStyle="normal"
-                        android:textColor="@color/color_text_admin"
+                        android:id="@+id/tvLoadDiscount"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_marginHorizontal="@dimen/dp10"
-                        android:gravity="end|center|bottom"
                         android:layout_marginBottom="2dp"
-                        android:text="Xem thêm >"
                         android:layout_weight="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:gravity="end|center|bottom"
+                        android:text="Xem tất cả"
+                        android:textColor="@color/color_text_admin"
+                        android:textSize="13sp"
+                        android:textStyle="normal"
+                        tools:visibility="visible"/>
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rcListProduct"
-                    android:nestedScrollingEnabled="false"
+                    android:id="@+id/rcListProductDiscount"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    tools:listitem="@layout/custom_item_product_discount"/>
+            </LinearLayout>
+            <!--end layout discount-->
+            <LinearLayout
+                android:background="@color/bg_home"
+                android:layout_marginTop="@dimen/dp20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp5"
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/dp5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:text="Tin đăng mới"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp20"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvLoadAllProduct"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="@dimen/dp10"
+                        android:layout_marginBottom="2dp"
+                        android:layout_weight="2"
+                        android:gravity="end|center|bottom"
+                        android:text="Xem thêm >"
+                        android:textColor="@color/color_text_admin"
+                        android:textSize="13sp"
+                        android:textStyle="normal" />
+                </LinearLayout>
+
+                <com.canhdinh.lib.recyclerview.XRecyclerView
+                    android:id="@+id/rcListProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:nestedScrollingEnabled="false"
                     tools:itemCount="5"
-                    tools:listitem="@layout/custom_item_product_new"/>
+                    tools:listitem="@layout/custom_item_product_new" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
