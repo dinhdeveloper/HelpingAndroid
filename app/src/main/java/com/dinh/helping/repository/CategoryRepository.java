@@ -32,7 +32,7 @@ public class CategoryRepository  {
             @Override
             public void onResponse(Call<List<CategoryModel>> call, Response<List<CategoryModel>> response) {
                 if (response.isSuccessful()) {
-                    data.setValue(response.body());
+                    data.postValue(response.body());
                 }
             }
 

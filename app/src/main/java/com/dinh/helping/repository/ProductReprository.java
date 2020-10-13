@@ -31,7 +31,7 @@ public class ProductReprository  {
             @Override
             public void onResponse(Call<List<ProductModel>> call, Response<List<ProductModel>> response) {
                 if (response.isSuccessful()) {
-                    data.setValue(response.body());
+                    data.postValue(response.body());
                 }
             }
 
@@ -40,7 +40,6 @@ public class ProductReprository  {
                 Log.e("onFailure", t.getMessage());
             }
         });
-
         return data;
     }
 }

@@ -2,23 +2,23 @@
     <item
         android:id="@+id/home"
         android:icon="@drawable/ic_dinh_home"
-        android:title="Home"
+        android:title="Trang chủ"
         android:checked="true"
         android:iconTint="@color/home"/>
 
     <item
         android:id="@+id/shopping"
         android:icon="@drawable/ic_dinh_shopping"
-        android:title="Shopping"
+        android:title="Tôi bán"
         android:iconTint="@color/logger"/>
     <item
         android:id="@+id/sale"
-        android:icon="@drawable/ic_dinh_flash_sale"
-        android:title="Flash"
-        android:iconTint="@color/logger"/>
+        android:icon="@drawable/ic_dinh_description"
+        android:title="Đăng tin"
+        android:iconTint="@color/documents"/>
     <item
         android:id="@+id/profile"
         android:icon="@drawable/ic_dinh_profile"
-        android:title="Profile"
-        android:iconTint="@color/logger"/>
+        android:title="Cá nhân"
+        android:iconTint="@color/settings"/>
 </menu>

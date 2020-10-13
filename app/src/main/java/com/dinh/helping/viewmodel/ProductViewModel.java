@@ -12,8 +12,8 @@ import java.util.List;
 
 public class ProductViewModel extends ViewModel {
     private MutableLiveData<List<ProductModel>> data;
+    private MutableLiveData<ProductModel> mSelectedItem = new MutableLiveData<>();
     private ProductReprository repository;
-    private MutableLiveData<Boolean> isStatus = new MutableLiveData<>();
 
     public void init() {
         if (data != null) {
@@ -25,5 +25,13 @@ public class ProductViewModel extends ViewModel {
 
     public LiveData<List<ProductModel>> getListProduct(){
         return data;
+    }
+
+    public void setSelectedItem(ProductModel model) {
+        mSelectedItem.postValue(model);
+    }
+
+    public LiveData<ProductModel> getSelectedItem() {
+        return mSelectedItem;
     }
 }
