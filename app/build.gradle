@@ -96,4 +96,7 @@ dependencies {
 
     //togglebutton
     implementation 'com.zcw:togglebutton-library:1.0.0'
+
+    //bottom
+    implementation  'com.fxn769:bubbletabbar:1.0.5'
 }

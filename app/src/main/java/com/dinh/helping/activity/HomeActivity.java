@@ -9,9 +9,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -30,6 +33,8 @@ import com.dinh.helping.model.CategoryModel;
 import com.dinh.helping.model.ProductModel;
 import com.dinh.helping.viewmodel.CategoryViewModel;
 import com.dinh.helping.viewmodel.ProductViewModel;
+import com.fxn.BubbleTabBar;
+import com.fxn.OnBubbleClickListener;
 
 import java.util.List;
 
@@ -50,15 +55,15 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView rcListProductDiscount;
     private XRecyclerView rcListProduct;
     private RoundTextView tvPriceSale6,tvPriceSale5,tvPriceSale4,tvPriceSale3,tvPriceSale2,tvPriceSale1;
-
-
+    private BubbleTabBar bubbleTabBar;
     private int times = 0;
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         addControls();
-
+        fullScreen();
         categoryViewModel = ViewModelProviders.of(this).get(CategoryViewModel.class);
         categoryViewModel.init();
         categoryViewModel.getListCategory().observe(this, categoryModels -> {
@@ -76,7 +81,7 @@ public class HomeActivity extends AppCompatActivity {
             tvPriceSale5.setText("Tivi");
             tvPriceSale6.setText("Áo quần");
         });
-
+        //product
         productViewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
         productViewModel.init();
         productViewModel.getListProduct().observe(this, new Observer<List<ProductModel>>() {
@@ -97,7 +102,40 @@ public class HomeActivity extends AppCompatActivity {
                 productAdapter.notifyDataSetChanged();
             }
         });
+
+        bubbleTabBar.addBubbleListener(new OnBubbleClickListener() {
+            @Override
+            public void onBubbleClick(int i) {
+                switch (i){
+                    case R.id.shopping:
+                        Toast.makeText(HomeActivity.this, "shopping", Toast.LENGTH_SHORT).show();
+                        break;
+                        case R.id.sale:
+                        Toast.makeText(HomeActivity.this, "sale", Toast.LENGTH_SHORT).show();
+                        break;
+                        case R.id.profile:
+                        Toast.makeText(HomeActivity.this, "profile", Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        Toast.makeText(HomeActivity.this, "Home", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        });
     }
+
+    private void fullScreen() {
+        if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) { // lower api
+            View v = this.getWindow().getDecorView();
+            v.setSystemUiVisibility(View.GONE);
+        } else if (Build.VERSION.SDK_INT >= 19) {
+            //for new api versions.
+            View decorView = getWindow().getDecorView();
+            int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+            decorView.setSystemUiVisibility(uiOptions);
+        }
+    }
+
     final int itemLimit = 5;
     private void loadMore(List<ProductModel> productModels) {
         rcListProduct.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
@@ -168,6 +206,8 @@ public class HomeActivity extends AppCompatActivity {
         tvPriceSale4 = findViewById(R.id.tvPriceSale4);
         tvPriceSale5 = findViewById(R.id.tvPriceSale5);
         tvPriceSale6 = findViewById(R.id.tvPriceSale6);
+
+        bubbleTabBar = findViewById(R.id.bubbleTabBar);
     }
 
     @Override
