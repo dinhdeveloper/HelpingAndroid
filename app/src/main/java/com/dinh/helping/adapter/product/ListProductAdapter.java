@@ -67,6 +67,11 @@ public class ListProductAdapter extends RecyclerView.Adapter<ListProductAdapter.
             Glide.with(context).load(R.drawable.giay4).error(R.drawable.no_image_full).into(holder.imvCategory);
         }
 
+        holder.layout_item.setOnClickListener(view -> {
+            if (listener!=null)
+                listener.onClickItem(model);
+        });
+
     }
 
     @Override
@@ -90,10 +95,6 @@ public class ListProductAdapter extends RecyclerView.Adapter<ListProductAdapter.
             tvLocation = itemView.findViewById(R.id.tvLocation);
             progressBar = itemView.findViewById(R.id.progressBar);
 
-            layout_item.setOnClickListener(view -> {
-                if (listener!=null)
-                    listener.onClickItem(list.get(getAdapterPosition()));
-            });
         }
     }
 }
