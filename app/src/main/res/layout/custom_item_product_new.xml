@@ -21,6 +21,7 @@
 
             <ImageView
                 android:id="@+id/imvCategory"
+                android:scaleType="fitXY"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/no_image_full" />
@@ -77,6 +78,8 @@
                 android:textColor="@color/color_view"
                 android:textSize="13sp"
                 android:textStyle="normal"
+                android:maxLines="1"
+                android:ellipsize="end"
                 tools:text="Hồ Chí Minh" />
         </LinearLayout>
     </LinearLayout>

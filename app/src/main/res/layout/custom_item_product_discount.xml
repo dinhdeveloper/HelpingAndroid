@@ -19,7 +19,6 @@
             android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/imvProduct"
-                android:src="@drawable/giay3"
                 android:layout_gravity="center"
                 android:scaleType="fitXY"
                 android:layout_width="match_parent"
@@ -50,6 +49,8 @@
             android:textColor="@color/black"
             android:textStyle="normal"
             android:textSize="12sp"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -62,6 +63,8 @@
             android:textColor="@color/color_price"
             android:textStyle="bold"
             android:textSize="14sp"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>

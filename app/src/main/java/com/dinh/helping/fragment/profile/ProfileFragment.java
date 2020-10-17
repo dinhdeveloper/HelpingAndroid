@@ -1,66 +1,94 @@
 package com.dinh.helping.fragment.profile;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.canhdinh.lib.roundview.RoundLinearLayout;
 import com.dinh.helping.R;
+import com.dinh.helping.activity.HomeActivity;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ProfileFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private ImageView btnBackHeader;
+    private TextView tvTitleHeader;
+    private ImageView imvProfile;
+    private RecyclerView rcListProductByCus;
+    private TextView tvName,tvLocation;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private LinearLayout layout_sign_up;
+    private TextView tvForgot;
+    private RoundLinearLayout btnLogin;
+    private EditText edtPhoneNumber,edtPassword;
 
-    public ProfileFragment() {
-        // Required empty public constructor
-    }
+    private View layout_empty,layout_active;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance(String param1, String param2) {
-        ProfileFragment fragment = new ProfileFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    HomeActivity activity;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getActivity().getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.parseColor("#F3F3F5"));
         }
+        super.onCreate(savedInstanceState);
+        activity = (HomeActivity)getActivity();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_profile, container, false);
+        addControls(view);
+        addEvents();
+        return view;
+    }
+
+    private void addEvents() {
+        btnBackHeader.setVisibility(View.GONE);
+        tvTitleHeader.setText("Thông tin cá nhân");
+
+        tvName.setText("Trần Cảnh Dinh");
+        tvLocation.setText("Bình Thạnh, Hồ Chí Minh");
+
+        layout_sign_up.setOnClickListener(view -> {
+           Fragment fragment = new VeryCodeFragment();
+            activity.getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.layoutRoot, fragment)
+                    .commit();
+        });
+    }
+
+    private void addControls(View view) {
+        btnBackHeader = view.findViewById(R.id.btnBackHeader);
+        tvTitleHeader = view.findViewById(R.id.tvTitleHeader);
+        imvProfile = view.findViewById(R.id.imvProfile);
+        rcListProductByCus = view.findViewById(R.id.rcListProductByCus);
+        tvName = view.findViewById(R.id.tvName);
+        tvLocation = view.findViewById(R.id.tvLocation);
+
+        layout_sign_up = view.findViewById(R.id.layout_sign_up);
+        tvForgot = view.findViewById(R.id.tvForgot);
+        btnLogin = view.findViewById(R.id.btnLogin);
+        edtPassword = view.findViewById(R.id.edtPassword);
+        edtPhoneNumber = view.findViewById(R.id.edtPhoneNumber);
+        layout_empty = view.findViewById(R.id.layout_empty);
+        layout_active = view.findViewById(R.id.layout_active);
     }
 }

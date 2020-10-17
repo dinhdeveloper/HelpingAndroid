@@ -65,6 +65,7 @@ public class ListProductAdapter extends RecyclerView.Adapter<ListProductAdapter.
         }
         if (!TextUtils.isEmpty(model.getProduct_image())){
             Glide.with(context).load(Consts.HOST_API+model.getProduct_image()).error(R.drawable.no_image_full).into(holder.imvCategory);
+            holder.progressBar.setVisibility(View.GONE);
         }
 
         holder.layout_item.setOnClickListener(view -> {
@@ -97,4 +98,5 @@ public class ListProductAdapter extends RecyclerView.Adapter<ListProductAdapter.
 
         }
     }
+
 }

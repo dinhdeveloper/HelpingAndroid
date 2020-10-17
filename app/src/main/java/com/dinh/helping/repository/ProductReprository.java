@@ -30,7 +30,7 @@ public class ProductReprository  {
         MutableLiveData<BaseResponseModel<ProductModel>> data = new MutableLiveData<BaseResponseModel<ProductModel>>();
         APIService apiService = ServiceGenerator.createService(APIService.class);
         ApiParams params = new ApiParams();
-        params.detect = "list_category";
+        params.detect = "list_product";
         apiService.getAllProduct(params).enqueue(new Callback<BaseResponseModel<ProductModel>>() {
             @Override
             public void onResponse(Call<BaseResponseModel<ProductModel>> call, Response<BaseResponseModel<ProductModel>> response) {

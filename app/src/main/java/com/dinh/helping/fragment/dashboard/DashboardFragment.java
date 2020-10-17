@@ -1,5 +1,7 @@
 package com.dinh.helping.fragment.dashboard;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,6 +18,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -36,6 +40,7 @@ import com.dinh.helping.model.CategoryModel;
 import com.dinh.helping.model.ProductModel;
 import com.dinh.helping.viewmodel.CategoryViewModel;
 import com.dinh.helping.viewmodel.ProductViewModel;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.fxn.OnBubbleClickListener;
 
 import java.util.ArrayList;
@@ -58,12 +63,18 @@ public class DashboardFragment extends Fragment {
     private RecyclerView rcListProductDiscount;
     private XRecyclerView rcListProduct;
     private RoundTextView tvPriceSale6, tvPriceSale5, tvPriceSale4, tvPriceSale3, tvPriceSale2, tvPriceSale1;
+    private ShimmerFrameLayout mShimmerFrameLayout;
 
     private int times = 0;
     HomeActivity activity;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getActivity().getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.parseColor("#A06EF8"));
+        }
         super.onCreate(savedInstanceState);
     }
 
@@ -78,6 +89,8 @@ public class DashboardFragment extends Fragment {
     }
 
     private void getData() {
+        //mShimmerFrameLayout.startShimmer();
+        //kham pha danh muc
         categoryViewModel = ViewModelProviders.of(requireActivity()).get(CategoryViewModel.class);
         categoryViewModel.init();
         categoryViewModel.getListCategory().observe(this, categoryModels -> {
@@ -95,6 +108,10 @@ public class DashboardFragment extends Fragment {
             tvPriceSale4.setText(categoryModels.getData()[3].getCategory_name());
             tvPriceSale5.setText(categoryModels.getData()[4].getCategory_name());
             tvPriceSale6.setText(categoryModels.getData()[5].getCategory_name());
+
+            //shimmerAnimation stop and hide
+            mShimmerFrameLayout.stopShimmer();
+            mShimmerFrameLayout.setVisibility(View.GONE);
         });
         //product
         productViewModel = ViewModelProviders.of(requireActivity()).get(ProductViewModel.class);
@@ -116,7 +133,7 @@ public class DashboardFragment extends Fragment {
             });
 
             //ListProduct
-            loadMore(models);
+            //loadMore(models);
             productAdapter = new ListProductAdapter(activity, models);
             rcListProduct.setHasFixedSize(true);
             rcListProduct.setLayoutManager(new GridLayoutManager(activity, 2));
@@ -179,6 +196,18 @@ public class DashboardFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mShimmerFrameLayout.startShimmer();
+    }
+
+    @Override
+    public void onPause() {
+        mShimmerFrameLayout.stopShimmer();
+        super.onPause();
+    }
+
     private void addControls(View view) {
         viewEmptyImageSlider = view.findViewById(R.id.viewEmptyImageSlider);
         layoutSliderImage = view.findViewById(R.id.layoutSliderImage);
@@ -205,5 +234,7 @@ public class DashboardFragment extends Fragment {
         tvPriceSale4 = view.findViewById(R.id.tvPriceSale4);
         tvPriceSale5 = view.findViewById(R.id.tvPriceSale5);
         tvPriceSale6 = view.findViewById(R.id.tvPriceSale6);
+
+        mShimmerFrameLayout = view.findViewById(R.id.shimmer_view_product);
     }
 }

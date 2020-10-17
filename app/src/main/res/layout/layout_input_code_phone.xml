@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.canhdinh.lib.roundview.RoundLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:rv_backgroundColor="@color/bg_login"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="@dimen/dp5"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:padding="@dimen/dp10"
+            android:src="@drawable/ic_arrow_left_white"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:tint="@color/black" />
+
+        <TextView
+            android:text="Nhập mã xác nhận"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:visibility="invisible"
+            android:padding="@dimen/dp10"
+            android:src="@drawable/close"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:tint="@color/black" />
+    </LinearLayout>
+    <!--end toolbar-->
+
+    <TextView
+        android:id="@+id/tvPhoneInput"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="Mã code gửi cho +84 975 469 232"
+        android:layout_width="wrap_content"
+        android:paddingHorizontal="80dp"
+        android:layout_height="wrap_content"/>
+
+    <com.canhdinh.lib.textview.PinTextView
+        android:id="@+id/pinview"
+        android:layout_marginVertical="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:inputType="text"
+        app:pinHeight="40dp"
+        app:pinLength="6"
+        app:pinWidth="40dp"/>
+
+    <TextView
+        android:id="@+id/tvCancel"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="@string/code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.canhdinh.lib.roundview.RoundTextView
+        android:id="@+id/btnVerify"
+        app:rv_radius="@dimen/dp10"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:rv_backgroundColor="@color/color_yellow"
+        android:layout_marginHorizontal="@dimen/dp20"
+        android:text="Xác nhận số điện thoại"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginVertical="@dimen/dp20"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"/>
+
+
+</com.canhdinh.lib.roundview.RoundLinearLayout>
+

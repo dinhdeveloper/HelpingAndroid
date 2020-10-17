@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.canhdinh.lib.roundview.RoundLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    app:rv_backgroundColor="@color/colorPrimary"
     tools:context=".fragment.profile.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <include android:id="@+id/layout_empty"
+        layout="@layout/layout_login_empty"/>
 
-</FrameLayout>
+    <include
+        android:id="@+id/layout_active"
+        layout="@layout/layout_login_active"/>
+
+</com.canhdinh.lib.roundview.RoundLinearLayout>
