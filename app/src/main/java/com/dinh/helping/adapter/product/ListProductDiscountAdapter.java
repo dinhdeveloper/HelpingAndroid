@@ -51,17 +51,17 @@ public class ListProductDiscountAdapter extends RecyclerView.Adapter<ListProduct
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ProductModel model = list.get(position);
 
-        if (!TextUtils.isEmpty(model.getProductName())){
-            holder.tvName.setText(model.getProductName());
+        if (!TextUtils.isEmpty(model.getProduct_name())) {
+            holder.tvName.setText(model.getProduct_name());
         }
-        if (!TextUtils.isEmpty(model.getPriceSale())){
-            holder.tvPrice.setText(Consts.decimalFormat.format(Integer.valueOf(model.getPriceSale()))+" VNĐ");
+        if (!TextUtils.isEmpty(model.getPrice_sale())) {
+            holder.tvPrice.setText(Consts.decimalFormat.format(Integer.valueOf(model.getPrice_sale())) + " VNĐ");
         }
-        if (!TextUtils.isEmpty(model.getProductName())){
-            holder.tvDiscount.setText("80%");
+        if (!TextUtils.isEmpty(model.getDiscount())) {
+            holder.tvDiscount.setText(model.getDiscount() + "%");
         }
-        if (!TextUtils.isEmpty(model.getProductImage())){
-            Glide.with(context).load(R.drawable.giay4).error(R.drawable.no_image_full).into(holder.imvProduct);
+        if (!TextUtils.isEmpty(model.getProduct_image())) {
+            Glide.with(context).load(Consts.HOST_API + model.getProduct_image()).error(R.drawable.no_image_full).into(holder.imvProduct);
         }
 
     }
@@ -86,7 +86,7 @@ public class ListProductDiscountAdapter extends RecyclerView.Adapter<ListProduct
             tvDiscount = itemView.findViewById(R.id.tvDiscount);
 
             layout_item.setOnClickListener(view -> {
-                if (listener!=null)
+                if (listener != null)
                     listener.onClickItem(list.get(getAdapterPosition()));
             });
         }

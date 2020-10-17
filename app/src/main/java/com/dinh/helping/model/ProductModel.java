@@ -1,93 +1,115 @@
 package com.dinh.helping.model;
 
-public class ProductModel  {
+import java.util.List;
+
+public class ProductModel extends BaseResponseModel {
 
     /**
-     * productId : 1
-     * categoryId : 1
-     * productName : IPhone Xs Max 256GB
-     * productPrice : 34000000
-     * percentSale : 0
-     * priceSale : 30000000
-     * amount : 10
-     * productImage : https://mobishops.herokuapp.com:443/images/imageProduct/iphone/iphone_1.png
-     * status : 1
-     * rate : 3.5
+     * product_id : 1
+     * category_id : 1
+     * category_name : Đồ điện tử
+     * product_name : Máy tính bảng
+     * product_image : maytinh.jpg
+     * price_sale : 120900
+     * quantity : 1
+     * description : iPad Mini 7.9 inch Wifi Cellular 64GB (2019) được Apple trang bị hiệu năng rất ấn tượng với con chip Apple A12 cùng RAM 3 GB và 64 GB bộ nhớ trong.
+     * discount : 10
+     * location : Bình Thạnh, Hồ Chí Minh
+     * status : Y
+     * product_photo : [{"image_id":"1","product_id":"1","product_photo":"hoa.jpg"},{"image_id":"2","product_id":"1","product_photo":"hoa.jpg"},{"image_id":"3","product_id":"1","product_photo":"heo.jpg"}]
      */
 
-    private int productId;
-    private int categoryId;
-    private String productName;
-    private String productPrice;
-    private String percentSale;
-    private String priceSale;
-    private String amount;
-    private String productImage;
+    private String product_id;
+    private String category_id;
+    private String category_name;
+    private String product_name;
+    private String product_image;
+    private String price_sale;
+    private String quantity;
+    private String description;
+    private String discount;
+    private String location;
     private String status;
-    private String rate;
+    private PhotoModel[] product_photo;
 
-    public int getProductId() {
-        return productId;
+    public String getProduct_id() {
+        return product_id;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setProduct_id(String product_id) {
+        this.product_id = product_id;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public String getCategory_id() {
+        return category_id;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory_id(String category_id) {
+        this.category_id = category_id;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getCategory_name() {
+        return category_name;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setCategory_name(String category_name) {
+        this.category_name = category_name;
     }
 
-    public String getProductPrice() {
-        return productPrice;
+    public String getProduct_name() {
+        return product_name;
     }
 
-    public void setProductPrice(String productPrice) {
-        this.productPrice = productPrice;
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
     }
 
-    public String getPercentSale() {
-        return percentSale;
+    public String getProduct_image() {
+        return product_image;
     }
 
-    public void setPercentSale(String percentSale) {
-        this.percentSale = percentSale;
+    public void setProduct_image(String product_image) {
+        this.product_image = product_image;
     }
 
-    public String getPriceSale() {
-        return priceSale;
+    public String getPrice_sale() {
+        return price_sale;
     }
 
-    public void setPriceSale(String priceSale) {
-        this.priceSale = priceSale;
+    public void setPrice_sale(String price_sale) {
+        this.price_sale = price_sale;
     }
 
-    public String getAmount() {
-        return amount;
+    public String getQuantity() {
+        return quantity;
     }
 
-    public void setAmount(String amount) {
-        this.amount = amount;
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 
-    public String getProductImage() {
-        return productImage;
+    public String getDescription() {
+        return description;
     }
 
-    public void setProductImage(String productImage) {
-        this.productImage = productImage;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(String discount) {
+        this.discount = discount;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getStatus() {
@@ -98,11 +120,11 @@ public class ProductModel  {
         this.status = status;
     }
 
-    public String getRate() {
-        return rate;
+    public PhotoModel[] getProduct_photo() {
+        return product_photo;
     }
 
-    public void setRate(String rate) {
-        this.rate = rate;
+    public void setProduct_photo(PhotoModel[] product_photo) {
+        this.product_photo = product_photo;
     }
 }

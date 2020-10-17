@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
     android:orientation="vertical">
 
 
@@ -46,6 +47,9 @@
                         app:rv_radius="30dp"
                         tools:text="64.000đ"
                         android:paddingHorizontal="5dp"
+                        android:paddingVertical="2dp"
+                        android:elevation="@dimen/dp5"
+                        android:gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </RelativeLayout>
@@ -86,6 +90,9 @@
                         app:rv_radius="30dp"
                         tools:text="64.000đ"
                         android:paddingHorizontal="5dp"
+                        android:paddingVertical="2dp"
+                        android:elevation="@dimen/dp5"
+                        android:gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </RelativeLayout>
@@ -116,6 +123,9 @@
                         app:rv_radius="30dp"
                         tools:text="64.000đ"
                         android:paddingHorizontal="5dp"
+                        android:paddingVertical="2dp"
+                        android:elevation="@dimen/dp5"
+                        android:gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </RelativeLayout>
@@ -155,6 +165,9 @@
                     app:rv_radius="30dp"
                     tools:text="64.000đ"
                     android:paddingHorizontal="5dp"
+                    android:paddingVertical="2dp"
+                    android:elevation="@dimen/dp5"
+                    android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </RelativeLayout>
@@ -185,6 +198,9 @@
                     app:rv_radius="30dp"
                     tools:text="64.000đ"
                     android:paddingHorizontal="5dp"
+                    android:paddingVertical="2dp"
+                    android:elevation="@dimen/dp5"
+                    android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </RelativeLayout>
@@ -216,6 +232,9 @@
                     app:rv_radius="30dp"
                     tools:text="64.000đ"
                     android:paddingHorizontal="5dp"
+                    android:paddingVertical="2dp"
+                    android:elevation="@dimen/dp5"
+                    android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </RelativeLayout>

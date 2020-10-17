@@ -54,17 +54,17 @@ public class ListProductAdapter extends RecyclerView.Adapter<ListProductAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ProductModel model = list.get(position);
 
-        if (!TextUtils.isEmpty(model.getProductName())){
-            holder.tvName.setText(model.getProductName());
+        if (!TextUtils.isEmpty(model.getProduct_name())){
+            holder.tvName.setText(model.getProduct_name());
         }
-        if (!TextUtils.isEmpty(model.getPriceSale())){
-            holder.tvPrice.setText(Consts.decimalFormat.format(Integer.valueOf(model.getPriceSale()))+" VNĐ");
+        if (!TextUtils.isEmpty(model.getPrice_sale())){
+            holder.tvPrice.setText(Consts.decimalFormat.format(Integer.valueOf(model.getPrice_sale()))+" VNĐ");
         }
-        if (!TextUtils.isEmpty(model.getProductName())){
-            holder.tvLocation.setText("Hồ Chí Minh");
+        if (!TextUtils.isEmpty(model.getLocation())){
+            holder.tvLocation.setText(model.getLocation());
         }
-        if (!TextUtils.isEmpty(model.getProductImage())){
-            Glide.with(context).load(R.drawable.giay4).error(R.drawable.no_image_full).into(holder.imvCategory);
+        if (!TextUtils.isEmpty(model.getProduct_image())){
+            Glide.with(context).load(Consts.HOST_API+model.getProduct_image()).error(R.drawable.no_image_full).into(holder.imvCategory);
         }
 
         holder.layout_item.setOnClickListener(view -> {

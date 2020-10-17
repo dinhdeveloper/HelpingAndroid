@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,11 +31,15 @@ import com.dinh.helping.activity.HomeActivity;
 import com.dinh.helping.adapter.product.ListProductAdapter;
 import com.dinh.helping.adapter.product.ListProductDiscountAdapter;
 import com.dinh.helping.fragment.product_detail.ProductDetailFragment;
+import com.dinh.helping.helper.Consts;
+import com.dinh.helping.model.CategoryModel;
 import com.dinh.helping.model.ProductModel;
 import com.dinh.helping.viewmodel.CategoryViewModel;
 import com.dinh.helping.viewmodel.ProductViewModel;
 import com.fxn.OnBubbleClickListener;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DashboardFragment extends Fragment {
@@ -48,14 +53,15 @@ public class DashboardFragment extends Fragment {
     private RelativeLayout layoutSliderImage;
     private ViewPager pager_slider_image;
     private ViewPagerIndicator indicator_pager_slider_image;
-    private TextView tvLoadAllCategory, tvLoadAllProduct,tvLoadDiscount;
+    private TextView tvLoadAllCategory, tvLoadAllProduct, tvLoadDiscount;
     private ImageView cvItem1, cvItem2, cvItem3, cvItem4, cvItem5, cvItem6;
     private RecyclerView rcListProductDiscount;
     private XRecyclerView rcListProduct;
-    private RoundTextView tvPriceSale6,tvPriceSale5,tvPriceSale4,tvPriceSale3,tvPriceSale2,tvPriceSale1;
+    private RoundTextView tvPriceSale6, tvPriceSale5, tvPriceSale4, tvPriceSale3, tvPriceSale2, tvPriceSale1;
 
     private int times = 0;
     HomeActivity activity;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +72,7 @@ public class DashboardFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_dashboard, container, false);
         addControls(view);
-        activity = (HomeActivity)getActivity();
+        activity = (HomeActivity) getActivity();
         getData();
         return view;
     }
@@ -75,27 +81,30 @@ public class DashboardFragment extends Fragment {
         categoryViewModel = ViewModelProviders.of(requireActivity()).get(CategoryViewModel.class);
         categoryViewModel.init();
         categoryViewModel.getListCategory().observe(this, categoryModels -> {
-            Glide.with(activity).load(R.drawable.giay2).error(R.drawable.no_image_full).into(cvItem1);
-            Glide.with(activity).load(R.drawable.tulanh).error(R.drawable.no_image_full).into(cvItem2);
-            Glide.with(activity).load(R.drawable.giay1).error(R.drawable.no_image_full).into(cvItem3);
-            Glide.with(activity).load(R.drawable.aoquan1).error(R.drawable.no_image_full).into(cvItem4);
-            Glide.with(activity).load(R.drawable.tivi1).error(R.drawable.no_image_full).into(cvItem5);
-            Glide.with(activity).load(R.drawable.aoquan2).error(R.drawable.no_image_full).into(cvItem6);
 
-            tvPriceSale1.setText("Giày");
-            tvPriceSale2.setText("Tủ lạnh");
-            tvPriceSale3.setText("Thời trang");
-            tvPriceSale4.setText("Áo quần");
-            tvPriceSale5.setText("Tivi");
-            tvPriceSale6.setText("Áo quần");
+            Glide.with(activity).load(Consts.HOST_API + categoryModels.getData()[0].getCategory_image()).error(R.drawable.no_image_full).into(cvItem1);
+            Glide.with(activity).load(Consts.HOST_API + categoryModels.getData()[1].getCategory_image()).error(R.drawable.no_image_full).into(cvItem2);
+            Glide.with(activity).load(Consts.HOST_API + categoryModels.getData()[2].getCategory_image()).error(R.drawable.no_image_full).into(cvItem3);
+            Glide.with(activity).load(Consts.HOST_API + categoryModels.getData()[3].getCategory_image()).error(R.drawable.no_image_full).into(cvItem4);
+            Glide.with(activity).load(Consts.HOST_API + categoryModels.getData()[4].getCategory_image()).error(R.drawable.no_image_full).into(cvItem5);
+            Glide.with(activity).load(Consts.HOST_API + categoryModels.getData()[5].getCategory_image()).error(R.drawable.no_image_full).into(cvItem6);
+
+            tvPriceSale1.setText(categoryModels.getData()[0].getCategory_name());
+            tvPriceSale2.setText(categoryModels.getData()[1].getCategory_name());
+            tvPriceSale3.setText(categoryModels.getData()[2].getCategory_name());
+            tvPriceSale4.setText(categoryModels.getData()[3].getCategory_name());
+            tvPriceSale5.setText(categoryModels.getData()[4].getCategory_name());
+            tvPriceSale6.setText(categoryModels.getData()[5].getCategory_name());
         });
         //product
         productViewModel = ViewModelProviders.of(requireActivity()).get(ProductViewModel.class);
         productViewModel.init();
         productViewModel.getListProduct().observe(this, productModels -> {
-            discountAdapter = new ListProductDiscountAdapter(activity,productModels);
+            ArrayList<ProductModel> models = new ArrayList<>();
+            models.addAll(Arrays.asList(productModels.getData()));
+            discountAdapter = new ListProductDiscountAdapter(activity, models);
             rcListProductDiscount.setHasFixedSize(true);
-            rcListProductDiscount.setLayoutManager(new LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false));
+            rcListProductDiscount.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
             rcListProductDiscount.setAdapter(discountAdapter);
             discountAdapter.notifyDataSetChanged();
             discountAdapter.setListener(model -> {
@@ -107,10 +116,10 @@ public class DashboardFragment extends Fragment {
             });
 
             //ListProduct
-            loadMore(productModels);
-            productAdapter = new ListProductAdapter(activity,productModels);
+            loadMore(models);
+            productAdapter = new ListProductAdapter(activity, models);
             rcListProduct.setHasFixedSize(true);
-            rcListProduct.setLayoutManager(new GridLayoutManager(activity,2));
+            rcListProduct.setLayoutManager(new GridLayoutManager(activity, 2));
             rcListProduct.setAdapter(productAdapter);
             productAdapter.notifyDataSetChanged();
 
@@ -125,6 +134,7 @@ public class DashboardFragment extends Fragment {
     }
 
     final int itemLimit = 5;
+
     private void loadMore(List<ProductModel> productModels) {
         rcListProduct.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         rcListProduct.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
@@ -136,15 +146,16 @@ public class DashboardFragment extends Fragment {
             public void onRefresh() {
 
             }
+
             @Override
             public void onLoadMore() {
-                if(times < 2){
-                    new Handler().postDelayed(new Runnable(){
+                if (times < 2) {
+                    new Handler().postDelayed(new Runnable() {
                         public void run() {
-                            for(int i = 0; i < itemLimit ;i++){
+                            for (int i = 0; i < itemLimit; i++) {
                                 productViewModel.getListProduct().getValue();
                             }
-                            if(rcListProduct != null) {
+                            if (rcListProduct != null) {
                                 rcListProduct.loadMoreComplete();
                                 productAdapter.notifyDataSetChanged();
                             }
@@ -153,17 +164,17 @@ public class DashboardFragment extends Fragment {
                 } else {
                     new Handler().postDelayed(new Runnable() {
                         public void run() {
-                            for(int i = 0; i < itemLimit ;i++){
+                            for (int i = 0; i < itemLimit; i++) {
                                 productViewModel.getListProduct().getValue();
                             }
-                            if(rcListProduct != null) {
+                            if (rcListProduct != null) {
                                 rcListProduct.setNoMore(true);
                                 productAdapter.notifyDataSetChanged();
                             }
                         }
                     }, 1000);
                 }
-                times ++;
+                times++;
             }
         });
     }

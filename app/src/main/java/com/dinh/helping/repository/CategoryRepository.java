@@ -1,47 +1,53 @@
 package com.dinh.helping.repository;
 
+import android.app.Application;
+import android.content.Context;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.canhdinh.lib.alert.AlertLoading;
+import com.dinh.helping.activity.HomeActivity;
 import com.dinh.helping.api.APIService;
-import com.dinh.helping.api.APIUntil;
+import com.dinh.helping.api.ServiceGenerator;
+import com.dinh.helping.model.ApiParams;
+import com.dinh.helping.model.BaseResponseModel;
 import com.dinh.helping.model.CategoryModel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CategoryRepository  {
+public class CategoryRepository {
     public static CategoryRepository instance;
-    APIService apiService = APIUntil.getServer();
 
-    public static CategoryRepository getInstance(){
-        if (instance==null){
+    public static CategoryRepository getInstance() {
+        if (instance == null) {
             instance = new CategoryRepository();
         }
         return instance;
     }
 
-    public MutableLiveData<List<CategoryModel>> getDataCategory() {
-        MutableLiveData<List<CategoryModel>> data = new MutableLiveData<List<CategoryModel>>();
-        apiService.getAllCategory().enqueue(new Callback<List<CategoryModel>>() {
+    public MutableLiveData<BaseResponseModel<CategoryModel>> getDataCategory() {
+        MutableLiveData<BaseResponseModel<CategoryModel>> data = new MutableLiveData<BaseResponseModel<CategoryModel>>();
+        APIService apiService = ServiceGenerator.createService(APIService.class);
+        ApiParams params = new ApiParams();
+        params.detect = "list_category";
+        apiService.getAllCategory(params).enqueue(new Callback<BaseResponseModel<CategoryModel>>() {
             @Override
-            public void onResponse(Call<List<CategoryModel>> call, Response<List<CategoryModel>> response) {
-                if (response.isSuccessful()) {
-                    data.postValue(response.body());
-                }
+            public void onResponse(Call<BaseResponseModel<CategoryModel>> call, Response<BaseResponseModel<CategoryModel>> response) {
+                data.setValue(response.body());
             }
 
             @Override
-            public void onFailure(Call<List<CategoryModel>> call, Throwable t) {
+            public void onFailure(Call<BaseResponseModel<CategoryModel>> call, Throwable t) {
                 Log.e("onFailure", t.getMessage());
             }
         });
-
         return data;
     }
 }

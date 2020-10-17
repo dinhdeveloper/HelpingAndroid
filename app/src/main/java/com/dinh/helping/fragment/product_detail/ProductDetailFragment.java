@@ -49,7 +49,6 @@ public class ProductDetailFragment extends Fragment implements BottomNavigationV
                              Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_product_detail, container, false);
         productViewModel = ViewModelProviders.of(requireActivity()).get(ProductViewModel.class);
-        Toast.makeText(activity, "" + productViewModel.getSelectedItem().getValue().getProductName(), Toast.LENGTH_SHORT).show();
         addControls(view);
         addEvents();
         return view;
@@ -88,7 +87,7 @@ public class ProductDetailFragment extends Fragment implements BottomNavigationV
                 smsIntent.setData(Uri.parse("smsto:"));
                 smsIntent.setType("vnd.android-dir/mms-sms");
                 smsIntent.putExtra("address", new String("0975469232"));
-                smsIntent.putExtra("sms_body", productViewModel.getSelectedItem().getValue().getProductName());
+                smsIntent.putExtra("sms_body", "ass");
 
                 try {
                     startActivity(smsIntent);

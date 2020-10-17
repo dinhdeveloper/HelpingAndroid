@@ -1,49 +1,39 @@
 package com.dinh.helping.model;
 
-public class CategoryModel  {
+public class CategoryModel extends BaseResponseModel {
 
 
     /**
-     * categoryId : 1
-     * categoryName : Iphone
-     * categoryImage : https://mobishops.herokuapp.com:443/images/imageCategory/iphone.png
-     * promotionId : 1
+     * category_id : 1
+     * category_name : Đồ điện tử
+     * category_image : dientu.jpg
      */
 
-    private int categoryId;
-    private String categoryName;
-    private String categoryImage;
-    private int promotionId;
+    private String category_id;
+    private String category_name;
+    private String category_image;
 
-    public int getCategoryId() {
-        return categoryId;
+    public String getCategory_id() {
+        return category_id;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory_id(String category_id) {
+        this.category_id = category_id;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getCategory_name() {
+        return category_name;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setCategory_name(String category_name) {
+        this.category_name = category_name;
     }
 
-    public String getCategoryImage() {
-        return categoryImage;
+    public String getCategory_image() {
+        return category_image;
     }
 
-    public void setCategoryImage(String categoryImage) {
-        this.categoryImage = categoryImage;
-    }
-
-    public int getPromotionId() {
-        return promotionId;
-    }
-
-    public void setPromotionId(int promotionId) {
-        this.promotionId = promotionId;
+    public void setCategory_image(String category_image) {
+        this.category_image = category_image;
     }
 }
