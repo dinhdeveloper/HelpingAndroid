@@ -23,6 +23,7 @@ import com.canhdinh.lib.roundview.RoundTextView;
 import com.canhdinh.lib.textview.PinTextView;
 import com.dinh.helping.R;
 import com.dinh.helping.activity.HomeActivity;
+import com.dinh.helping.event.BackFragment;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
@@ -43,6 +44,7 @@ public class VeryCodeFragment extends Fragment {
     private TextView tvPhoneInput,tvCancel;
     private PinTextView pinview;
     private RoundTextView btnVerify;
+    private View layoutRootView;
 
     private String verificationID;
     String smsCode;
@@ -52,6 +54,7 @@ public class VeryCodeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = (HomeActivity) getActivity();
+        activity.hideBottomBar();
     }
 
     @Override
@@ -66,6 +69,14 @@ public class VeryCodeFragment extends Fragment {
     }
 
     private void getEvents() {
+        tmvClose.setOnClickListener(view -> {
+            if (activity != null) {
+                activity.checkBack();
+                activity.showBottomBar();
+                activity.fullScreen();
+                BackFragment.post();
+            }
+        });
         btnSubmit.setOnClickListener(view -> {
             if (!TextUtils.isEmpty(edtPhoneNumber.getRealText())){
 //            PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -138,5 +149,6 @@ public class VeryCodeFragment extends Fragment {
         tvCancel = view.findViewById(R.id.tvCancel);
         pinview = view.findViewById(R.id.pinview);
         btnVerify = view.findViewById(R.id.btnVerify);
+        layoutRootView = view.findViewById(R.id.layoutRootView);
     }
 }

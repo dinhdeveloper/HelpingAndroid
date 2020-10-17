@@ -3,6 +3,7 @@ package com.dinh.helping.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.os.Build;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.dinh.helping.R;
 import com.dinh.helping.fragment.dashboard.DashboardFragment;
 import com.dinh.helping.fragment.profile.ProfileFragment;
+import com.dinh.helping.fragment.profile.VeryCodeFragment;
 import com.fxn.BubbleTabBar;
 import com.fxn.OnBubbleClickListener;
 
@@ -72,7 +74,7 @@ public class HomeActivity extends AppCompatActivity {
         return false;
     }
 
-    private void fullScreen() {
+    public void fullScreen() {
         if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) { // lower api
             View v = this.getWindow().getDecorView();
             v.setSystemUiVisibility(View.GONE);
@@ -129,6 +131,47 @@ public class HomeActivity extends AppCompatActivity {
 
         } else {
             super.onBackPressed();
+        }
+    }
+
+    public void changeToVeryCodeFragment() {
+        Fragment fragment = new VeryCodeFragment();
+        addFragment(fragment,true);
+    }
+
+    public void addFragment(Fragment fragment, boolean addToBackStack) {
+        if (fragment != null && !fragment.isAdded()) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.add(R.id.layoutRoot, fragment);
+
+            // skip add fragment to back stack if it is first fragment
+            if (addToBackStack) {
+                transaction.addToBackStack(null);
+            } else {
+                fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            }
+
+            transaction.commitAllowingStateLoss();
+        }
+    }
+
+    public void replaceFragment(Fragment fragment, boolean addToBackStack) {
+        if (fragment != null && !fragment.isAdded()) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.layoutRoot, fragment);
+
+            // skip add fragment to back stack if it is first fragment
+            if (addToBackStack) {
+                transaction.addToBackStack(null);
+            } else {
+                fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            }
+
+            transaction.commitAllowingStateLoss();
         }
     }
 }

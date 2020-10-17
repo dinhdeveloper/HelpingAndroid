@@ -8,6 +8,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,11 @@ import android.widget.TextView;
 import com.canhdinh.lib.roundview.RoundLinearLayout;
 import com.dinh.helping.R;
 import com.dinh.helping.activity.HomeActivity;
+import com.dinh.helping.event.BackFragment;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public class ProfileFragment extends Fragment {
 
@@ -35,7 +41,7 @@ public class ProfileFragment extends Fragment {
     private RoundLinearLayout btnLogin;
     private EditText edtPhoneNumber,edtPassword;
 
-    private View layout_empty,layout_active;
+    private View layout_empty,layout_active,layoutRootView;
 
     HomeActivity activity;
 
@@ -67,15 +73,22 @@ public class ProfileFragment extends Fragment {
         tvLocation.setText("Bình Thạnh, Hồ Chí Minh");
 
         layout_sign_up.setOnClickListener(view -> {
-           Fragment fragment = new VeryCodeFragment();
-            activity.getSupportFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.layoutRoot, fragment)
-                    .commit();
+            if (activity != null) {
+                activity.changeToVeryCodeFragment();
+                hideRootView();
+            }
         });
     }
 
+    private void hideRootView() {
+        layoutRootView.setVisibility(View.GONE);
+    }
+    private void showRootView() {
+        layoutRootView.setVisibility(View.VISIBLE);
+    }
+
     private void addControls(View view) {
+        layoutRootView = view.findViewById(R.id.layoutRootView);
         btnBackHeader = view.findViewById(R.id.btnBackHeader);
         tvTitleHeader = view.findViewById(R.id.tvTitleHeader);
         imvProfile = view.findViewById(R.id.imvProfile);
@@ -90,5 +103,21 @@ public class ProfileFragment extends Fragment {
         edtPhoneNumber = view.findViewById(R.id.edtPhoneNumber);
         layout_empty = view.findViewById(R.id.layout_empty);
         layout_active = view.findViewById(R.id.layout_active);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onFragmentReloadEvent(BackFragment event) {
+        showRootView();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
     }
 }

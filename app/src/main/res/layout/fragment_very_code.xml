@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:rv_backgroundColor="@color/bg_login"
+    android:id="@+id/layoutRootView"
     android:orientation="vertical">
 
     <include
