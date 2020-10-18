@@ -88,6 +88,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp">
                     <ImageView
+                        android:id="@+id/imvAvatar"
                         android:src="@drawable/person_customer"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"/>
@@ -117,7 +118,8 @@
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:textStyle="normal"
-                android:inputType="number"
+                android:inputType="text"
+                android:imeOptions="actionNext"
                 android:layout_marginVertical="@dimen/dp10"
                 android:paddingHorizontal="@dimen/dp5"
                 android:layout_width="match_parent"
@@ -142,10 +144,11 @@
 
             <EditText
                 android:id="@+id/edtAddress"
+                android:inputType="text"
+                android:imeOptions="actionNext"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:textStyle="normal"
-                android:inputType="number"
                 android:layout_marginVertical="@dimen/dp10"
                 android:paddingHorizontal="@dimen/dp5"
                 android:layout_width="match_parent"
@@ -196,22 +199,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/edtPassword"
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:textStyle="normal"
-                android:inputType="textPassword"
-                android:layout_marginVertical="@dimen/dp10"
-                android:paddingHorizontal="@dimen/dp5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@color/white"
-                android:gravity="start|center"
-                android:hint="Mật khẩu"
-                android:paddingTop="@dimen/dp10"
-                android:paddingBottom="@dimen/dp5"/>
+           <LinearLayout
+               android:orientation="horizontal"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+               <EditText
+                   android:id="@+id/edtPassword"
+                   android:layout_weight="1"
+                   android:textSize="16sp"
+                   android:textColor="@color/black"
+                   android:textStyle="normal"
+                   android:inputType="textPassword"
+                   android:imeOptions="actionNext"
+                   android:layout_marginVertical="@dimen/dp10"
+                   android:paddingHorizontal="@dimen/dp5"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center"
+                   android:background="@color/white"
+                   android:gravity="start|center"
+                   android:hint="Mật khẩu"
+                   android:paddingTop="@dimen/dp10"
+                   android:paddingBottom="@dimen/dp5"/>
+
+               <ImageView
+                   android:id="@+id/imvVisiblePass"
+                   android:paddingHorizontal="@dimen/dp10"
+                   android:layout_gravity="center"
+                   android:src="@drawable/ic_visible_off"
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"/>
+           </LinearLayout>
             <View
                 android:background="@color/color_text_info"
                 android:layout_width="match_parent"
@@ -223,23 +241,36 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/edtRePassword"
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:textStyle="normal"
-                android:inputType="textPassword"
-                android:layout_marginVertical="@dimen/dp10"
-                android:paddingHorizontal="@dimen/dp5"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@color/white"
-                android:gravity="start|center"
-                android:hint="Nhập lại mật khẩu"
-                android:paddingTop="@dimen/dp10"
-                android:paddingBottom="@dimen/dp5"/>
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/edtRePassword"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:inputType="textPassword"
+                    android:imeOptions="actionNext"
+                    android:layout_marginVertical="@dimen/dp10"
+                    android:paddingHorizontal="@dimen/dp5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:gravity="start|center"
+                    android:hint="Nhập lại mật khẩu"
+                    android:paddingTop="@dimen/dp10"
+                    android:paddingBottom="@dimen/dp5"/>
+                <ImageView
+                    android:id="@+id/imvVisibleRePass"
+                    android:paddingHorizontal="@dimen/dp10"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_visible_off"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
             <View
                 android:background="@color/color_text_info"
                 android:layout_width="match_parent"

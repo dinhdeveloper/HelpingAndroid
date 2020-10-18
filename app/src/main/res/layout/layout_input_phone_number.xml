@@ -73,21 +73,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-            <com.canhdinh.lib.edittext.FormattedEditText
+            <EditText
                 android:id="@+id/edtPhoneNumber"
+                android:layout_gravity="center"
+                android:paddingVertical="@dimen/dp5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/bg_login"
                 android:inputType="phone"
                 android:maxLength="12"
-                android:hint="+(84)-0000-0000-000"
-                app:fet_clearDrawable="@drawable/close"
-                app:fet_drawableGravity="fet_center"
-                app:fet_drawablePadding="4dp"
-                app:fet_emptyPlaceholder="_"
-                app:fet_formatStyle="0000-000-000"
-                app:fet_mode="mode_mask"
-                app:fet_showHintWhileEmpty="true" />
+                android:hint="0000-000-000"/>
         </LinearLayout>
         <com.canhdinh.lib.roundview.RoundLinearLayout
             android:id="@+id/btnSubmit"

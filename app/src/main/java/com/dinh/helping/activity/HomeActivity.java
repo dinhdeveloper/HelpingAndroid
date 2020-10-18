@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.dinh.helping.R;
@@ -32,6 +34,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         bubbleTabBar = findViewById(R.id.bubbleTabBar);
+
         defauFragment(new DashboardFragment());
         fullScreen();
         bubbleTabBar.addBubbleListener(new OnBubbleClickListener() {
@@ -73,7 +76,7 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    private boolean defauFragment(DashboardFragment fragment) {
+    public boolean defauFragment(DashboardFragment fragment) {
         if (fragment != null) {
             getSupportFragmentManager()
                     .beginTransaction()
@@ -135,19 +138,17 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    private void checkFragment() {
-        FragmentManager fm = getSupportFragmentManager();
-        if (fm.getBackStackEntryCount() > 0) {
-            fm.popBackStack();
-
-        } else {
-            super.onBackPressed();
+    //FRAGMENT
+    public static void hideSoftKeyboard(Activity activity) {
+        try {
+            InputMethodManager inputMethodManager = (InputMethodManager) activity
+                    .getSystemService(Activity.INPUT_METHOD_SERVICE);
+            View view = activity.getCurrentFocus();
+            if (view != null && inputMethodManager != null) {
+                inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+        } catch (Exception ignored) {
         }
-    }
-
-    public void changeToVeryCodeFragment() {
-        Fragment fragment = new VeryCodeFragment();
-        addFragment(fragment, true);
     }
 
     public void addFragment(Fragment fragment, boolean addToBackStack) {
@@ -185,6 +186,25 @@ public class HomeActivity extends AppCompatActivity {
             transaction.commitAllowingStateLoss();
         }
     }
+
+    //END
+
+    private void checkFragment() {
+        FragmentManager fm = getSupportFragmentManager();
+        if (fm.getBackStackEntryCount() > 0) {
+            fm.popBackStack();
+
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    public void changeToVeryCodeFragment() {
+        Fragment fragment = new VeryCodeFragment();
+        addFragment(fragment, true);
+    }
+
+
 
     public void changeToSignUpFragment() {
         addFragment(new SignUpFragment(), true);

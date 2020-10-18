@@ -8,7 +8,7 @@
 
     <item
         android:id="@+id/sale"
-        android:icon="@drawable/ic_dinh_description"
+        android:icon="@drawable/ic_write_letter"
         android:title="Tôi bán"
         android:iconTint="@color/logger"/>
     <item

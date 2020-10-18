@@ -3,13 +3,16 @@ package com.dinh.helping.fragment.profile.verify;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +27,7 @@ import com.canhdinh.lib.textview.PinTextView;
 import com.dinh.helping.R;
 import com.dinh.helping.activity.HomeActivity;
 import com.dinh.helping.event.BackFragment;
+import com.dinh.helping.viewmodel.customer.CustomerViewModel;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
@@ -32,10 +36,12 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
+import static com.dinh.helping.activity.HomeActivity.hideSoftKeyboard;
+
 public class VeryCodeFragment extends Fragment {
 
     private ImageView tmvClose;
-    private FormattedEditText edtPhoneNumber;
+    private EditText edtPhoneNumber;
     private RoundLinearLayout btnSubmit;
 
     private View layout_phone;
@@ -50,6 +56,8 @@ public class VeryCodeFragment extends Fragment {
     String smsCode;
     HomeActivity activity;
 
+    CustomerViewModel viewModel;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,8 +69,9 @@ public class VeryCodeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_very_code, container, false);
-
+        viewModel = ViewModelProviders.of(requireActivity()).get(CustomerViewModel.class);
         getControls(view);
+        hideSoftKeyboard(activity);
         getEvents();
 
         return view;
@@ -77,8 +86,10 @@ public class VeryCodeFragment extends Fragment {
                 BackFragment.post();
             }
         });
-        btnSubmit.setOnClickListener(view -> {
-            if (!TextUtils.isEmpty(edtPhoneNumber.getRealText())){
+        try {
+            btnSubmit.setOnClickListener(view -> {
+                if (!TextUtils.isEmpty(edtPhoneNumber.getText().toString().trim())){
+
             PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                 @Override
                 public void onVerificationCompleted(PhoneAuthCredential credential) {
@@ -110,11 +121,12 @@ public class VeryCodeFragment extends Fragment {
                         layout_phone.setVisibility(View.GONE);
                         layout_code.setVisibility(View.VISIBLE);
 
-                        tvPhoneInput.setText("Mã code gửi cho "+edtPhoneNumber.getRealText());
+                        tvPhoneInput.setText("Mã code gửi cho "+edtPhoneNumber.getText().toString());
 
                         btnVerify.setOnClickListener(view1 -> {
                             if (pinview.getValue().equalsIgnoreCase(smsCode)){
                                 if (activity != null) {
+                                    viewModel.setPhoneNumber(edtPhoneNumber.getText().toString());
                                     activity.changeToSignUpFragment();
                                 }
                             }
@@ -127,16 +139,19 @@ public class VeryCodeFragment extends Fragment {
             };
 
             PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                    "+84" + edtPhoneNumber.getRealText(),        // Phone number to verify
+                    "+84" + edtPhoneNumber.getText().toString(),        // Phone number to verify
                     60,                 // Timeout duration
                     TimeUnit.SECONDS,   // Unit of timeout
                     activity,               // Activity (for callback binding)
                     mCallbacks);        // OnVerificationStateChangedCallbacks
-            }
-            else {
-                Toast.makeText(activity, "Bạn chưa nhập số điện thoại", Toast.LENGTH_SHORT).show();
-            }
-        });
+                }
+                else {
+                    Toast.makeText(activity, "Bạn chưa nhập số điện thoại", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }catch (Exception e){
+            Log.e("Exception",e.getMessage());
+        }
     }
 
 

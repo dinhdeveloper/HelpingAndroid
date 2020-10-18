@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="center"
+    android:padding="@dimen/dp15"
+    android:orientation="vertical">
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvStatus"-->
+<!--        android:text="Giới tính"-->
+<!--        android:layout_marginVertical="@dimen/dp20"-->
+<!--        android:textSize="@dimen/dp20"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textColor="@color/color_text_admin"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_list_sex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/choose_item_sex"/>
+
+<!--    <LinearLayout-->
+<!--        android:layout_marginVertical="@dimen/dp20"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+<!--        <TextView-->
+<!--            android:id="@+id/btnCancel"-->
+<!--            android:gravity="center|start"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:textColor="@color/color_orange"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textSize="@dimen/dp15"-->
+<!--            android:text="Hủy bỏ"-->
+<!--            android:paddingHorizontal="30dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="40dp"/>-->
+<!--        <TextView-->
+<!--            android:id="@+id/btnOk"-->
+<!--            android:gravity="center|end"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:paddingHorizontal="30dp"-->
+<!--            android:textColor="@color/color_text_admin"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textSize="@dimen/dp15"-->
+<!--            android:text="OK"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="40dp"/>-->
+<!--    </LinearLayout>-->
+
+</LinearLayout>
