@@ -61,11 +61,11 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getActivity().getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.parseColor("#F3F3F5"));
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            Window window = getActivity().getWindow();
+//            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//            window.setStatusBarColor(Color.parseColor("#F3F3F5"));
+//        }
         super.onCreate(savedInstanceState);
         activity = (HomeActivity) getActivity();
     }
@@ -138,11 +138,6 @@ public class ProfileFragment extends Fragment {
                         sharePrefs.saveUserModel(Arrays.asList(user.getData()).get(0));
                         layout_empty.setVisibility(View.GONE);
                         layout_active.setVisibility(View.VISIBLE);
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                            Window window = getActivity().getWindow();
-                            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                            window.setStatusBarColor(Color.parseColor("#A06EF8"));
-                        }
                     }
                     else {
                         AlertError.showAlertError(activity,user.getMessage());
@@ -202,6 +197,7 @@ public class ProfileFragment extends Fragment {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onFragmentReloadEvent(BackLoginFragment event) {
         showRootView();
+        addEvents();
     }
 
     @Override

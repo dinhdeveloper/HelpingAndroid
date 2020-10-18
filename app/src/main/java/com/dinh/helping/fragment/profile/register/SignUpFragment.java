@@ -211,6 +211,9 @@ public class SignUpFragment extends Fragment implements BSImagePicker.OnSingleIm
                         AlertSuccess.showAlertSuccess(activity,"Xác nhận","Tạo mới thành công");
                         SharePrefs sharePrefs = new SharePrefs(activity);
                         sharePrefs.saveUserModel(Arrays.asList(user.getData()).get(0));
+                        activity.checkBack();
+                        activity.checkBack();
+                        BackLoginFragment.post();
                     } else if (user.getSuccess().equalsIgnoreCase("false")) {
                         Toast.makeText(activity, user.getMessage(), Toast.LENGTH_SHORT).show();
                     }
