@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +21,6 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.canhdinh.lib.recyclerview.ProgressStyle;
@@ -36,12 +33,10 @@ import com.dinh.helping.adapter.product.ListProductAdapter;
 import com.dinh.helping.adapter.product.ListProductDiscountAdapter;
 import com.dinh.helping.fragment.product_detail.ProductDetailFragment;
 import com.dinh.helping.helper.Consts;
-import com.dinh.helping.model.CategoryModel;
 import com.dinh.helping.model.ProductModel;
-import com.dinh.helping.viewmodel.CategoryViewModel;
-import com.dinh.helping.viewmodel.ProductViewModel;
+import com.dinh.helping.viewmodel.category.CategoryViewModel;
+import com.dinh.helping.viewmodel.product.ProductViewModel;
 import com.facebook.shimmer.ShimmerFrameLayout;
-import com.fxn.OnBubbleClickListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;

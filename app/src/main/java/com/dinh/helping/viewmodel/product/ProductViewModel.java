@@ -1,4 +1,4 @@
-package com.dinh.helping.viewmodel;
+package com.dinh.helping.viewmodel.product;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -6,10 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.dinh.helping.model.BaseResponseModel;
 import com.dinh.helping.model.ProductModel;
-import com.dinh.helping.repository.CategoryRepository;
-import com.dinh.helping.repository.ProductReprository;
-
-import java.util.List;
+import com.dinh.helping.repository.product.ProductReprository;
 
 public class ProductViewModel extends ViewModel {
     private MutableLiveData<BaseResponseModel<ProductModel>> data;

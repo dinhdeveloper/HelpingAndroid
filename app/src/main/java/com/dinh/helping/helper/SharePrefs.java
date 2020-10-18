@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 
+import com.dinh.helping.model.UserResponseModel;
 import com.google.gson.Gson;
 
 import java.util.Locale;
@@ -386,17 +387,17 @@ public class SharePrefs {
 
     private final Gson gson = new Gson();
 
-//    public void saveUserModel(UserResponseModel model) {
-//        save(PREF_USER_MODEL, gson.toJson(model));
-//    }
-//
-//    public UserResponseModel getUserModel() {
-//        String json = get(PREF_USER_MODEL, "");
-//        if (!TextUtils.isEmpty(json)) {
-//            return gson.fromJson(json, UserResponseModel.class);
-//        }
-//        return null;
-//    }
+    public void saveUserModel(UserResponseModel model) {
+        save(PREF_USER_MODEL, gson.toJson(model));
+    }
+
+    public UserResponseModel getUserModel() {
+        String json = get(PREF_USER_MODEL, "");
+        if (!TextUtils.isEmpty(json)) {
+            return gson.fromJson(json, UserResponseModel.class);
+        }
+        return null;
+    }
 
     private static final String PREF_DEVICE_IMEI = "PREF_DEVICE_IMEI";
 

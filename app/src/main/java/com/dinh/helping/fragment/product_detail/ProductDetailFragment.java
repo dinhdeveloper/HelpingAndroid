@@ -10,10 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -25,8 +23,7 @@ import android.widget.Toast;
 
 import com.dinh.helping.R;
 import com.dinh.helping.activity.HomeActivity;
-import com.dinh.helping.model.ProductModel;
-import com.dinh.helping.viewmodel.ProductViewModel;
+import com.dinh.helping.viewmodel.product.ProductViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ProductDetailFragment extends Fragment implements BottomNavigationView.OnNavigationItemSelectedListener {

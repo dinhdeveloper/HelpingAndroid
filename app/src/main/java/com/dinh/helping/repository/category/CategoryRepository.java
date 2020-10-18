@@ -1,22 +1,14 @@
-package com.dinh.helping.repository;
+package com.dinh.helping.repository.category;
 
-import android.app.Application;
-import android.content.Context;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.canhdinh.lib.alert.AlertLoading;
-import com.dinh.helping.activity.HomeActivity;
 import com.dinh.helping.api.APIService;
 import com.dinh.helping.api.ServiceGenerator;
 import com.dinh.helping.model.ApiParams;
 import com.dinh.helping.model.BaseResponseModel;
 import com.dinh.helping.model.CategoryModel;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

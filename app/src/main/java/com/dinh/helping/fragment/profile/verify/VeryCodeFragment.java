@@ -1,4 +1,4 @@
-package com.dinh.helping.fragment.profile;
+package com.dinh.helping.fragment.profile.verify;
 
 import android.os.Bundle;
 
@@ -79,57 +79,59 @@ public class VeryCodeFragment extends Fragment {
         });
         btnSubmit.setOnClickListener(view -> {
             if (!TextUtils.isEmpty(edtPhoneNumber.getRealText())){
-//            PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-//                @Override
-//                public void onVerificationCompleted(PhoneAuthCredential credential) {
-//                    if (credential != null) {
-//                        smsCode = credential.getSmsCode();
-//                    }
-//                }
-//
-//                @Override
-//                public void onVerificationFailed(FirebaseException e) {
-//                    if (e instanceof FirebaseAuthInvalidCredentialsException) {
-//                        //The format of the phone number provided is incorrect
-//                        //phone numbers are written in the format [+][country code][subscriber number including area code]
-//
-//                        AlertError.showAlertError(getActivity(), "Không thể gửi mã xác thực, hãy kiểm tra lại số điện thoại của bạn.");
-//
-//                    } else if (e instanceof FirebaseTooManyRequestsException) {
-//                        AlertError.showAlertError(getActivity(), "Bạn đã gửi quá nhiều yêu cầu xác thực, xin hãy thử lại sau!!!");
-//                    }
-//
-//                }
-//
-//                @Override
-//                public void onCodeSent(String verificationId,
-//                                       PhoneAuthProvider.ForceResendingToken token) {
-//                    verificationID = verificationId;
-//                    if (verificationId != null) {
-//                        //đã gửi code
-//                        layout_phone.setVisibility(View.GONE);
-//                        layout_code.setVisibility(View.VISIBLE);
-//
-//                        tvPhoneInput.setText("Mã code gửi cho "+edtPhoneNumber.getRealText());
-//
-//                        btnVerify.setOnClickListener(view1 -> {
-//                            if (pinview.getValue().equalsIgnoreCase(smsCode)){
-//                                Toast.makeText(activity, "ok", Toast.LENGTH_SHORT).show();
-//                            }
-//                            else {
-//                                Toast.makeText(activity, "No ok", Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-//                    }
-//                }
-//            };
+            PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                @Override
+                public void onVerificationCompleted(PhoneAuthCredential credential) {
+                    if (credential != null) {
+                        smsCode = credential.getSmsCode();
+                    }
+                }
 
-//            PhoneAuthProvider.getInstance().verifyPhoneNumber(
-//                    "+84" + edtPhoneNumber.getRealText(),        // Phone number to verify
-//                    60,                 // Timeout duration
-//                    TimeUnit.SECONDS,   // Unit of timeout
-//                    activity,               // Activity (for callback binding)
-//                    mCallbacks);        // OnVerificationStateChangedCallbacks
+                @Override
+                public void onVerificationFailed(FirebaseException e) {
+                    if (e instanceof FirebaseAuthInvalidCredentialsException) {
+                        //The format of the phone number provided is incorrect
+                        //phone numbers are written in the format [+][country code][subscriber number including area code]
+
+                        AlertError.showAlertError(getActivity(), "Không thể gửi mã xác thực, hãy kiểm tra lại số điện thoại của bạn.");
+
+                    } else if (e instanceof FirebaseTooManyRequestsException) {
+                        AlertError.showAlertError(getActivity(), "Bạn đã gửi quá nhiều yêu cầu xác thực, xin hãy thử lại sau!!!");
+                    }
+
+                }
+
+                @Override
+                public void onCodeSent(String verificationId,
+                                       PhoneAuthProvider.ForceResendingToken token) {
+                    verificationID = verificationId;
+                    if (verificationId != null) {
+                        //đã gửi code
+                        layout_phone.setVisibility(View.GONE);
+                        layout_code.setVisibility(View.VISIBLE);
+
+                        tvPhoneInput.setText("Mã code gửi cho "+edtPhoneNumber.getRealText());
+
+                        btnVerify.setOnClickListener(view1 -> {
+                            if (pinview.getValue().equalsIgnoreCase(smsCode)){
+                                if (activity != null) {
+                                    activity.changeToSignUpFragment();
+                                }
+                            }
+                            else {
+                                Toast.makeText(activity, "Nhập sai mã code", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }
+            };
+
+            PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                    "+84" + edtPhoneNumber.getRealText(),        // Phone number to verify
+                    60,                 // Timeout duration
+                    TimeUnit.SECONDS,   // Unit of timeout
+                    activity,               // Activity (for callback binding)
+                    mCallbacks);        // OnVerificationStateChangedCallbacks
             }
             else {
                 Toast.makeText(activity, "Bạn chưa nhập số điện thoại", Toast.LENGTH_SHORT).show();

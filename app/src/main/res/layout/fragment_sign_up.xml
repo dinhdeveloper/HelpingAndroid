@@ -34,6 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <LinearLayout
+                    android:id="@+id/btnLogin"
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
@@ -112,6 +113,7 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/edtFullName"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:textStyle="normal"
@@ -134,12 +136,68 @@
 
         <LinearLayout
             android:paddingHorizontal="@dimen/dp20"
-            android:layout_marginVertical="@dimen/dp15"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/edtAddress"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="normal"
+                android:inputType="number"
+                android:layout_marginVertical="@dimen/dp10"
+                android:paddingHorizontal="@dimen/dp5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:gravity="start|center"
+                android:hint="Địa chỉ"
+                android:paddingTop="@dimen/dp10"
+                android:paddingBottom="@dimen/dp5"/>
+            <View
+                android:background="@color/color_text_info"
+                android:layout_width="match_parent"
+                android:layout_height="1sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:paddingHorizontal="@dimen/dp20"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/edtSex"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="normal"
+                android:inputType="number"
+                android:layout_marginVertical="@dimen/dp10"
+                android:paddingHorizontal="@dimen/dp5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:gravity="start|center"
+                android:hint="Giới tính"
+                android:paddingTop="@dimen/dp10"
+                android:paddingBottom="@dimen/dp5"/>
+            <View
+                android:background="@color/color_text_info"
+                android:layout_width="match_parent"
+                android:layout_height="1sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:paddingHorizontal="@dimen/dp20"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/edtPassword"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:textStyle="normal"
@@ -167,6 +225,7 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/edtRePassword"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:textStyle="normal"
@@ -201,6 +260,7 @@
             android:layout_height="@dimen/dp20"/>
 
         <com.canhdinh.lib.roundview.RoundLinearLayout
+            android:id="@+id/btnSubmit"
             android:layout_marginBottom="@dimen/dp20"
             android:layout_marginRight="@dimen/dp20"
             android:layout_alignParentRight="true"

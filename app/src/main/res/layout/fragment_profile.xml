@@ -7,7 +7,7 @@
     android:orientation="vertical"
     app:rv_backgroundColor="@color/colorPrimary"
     android:id="@+id/layoutRootView"
-    tools:context=".fragment.profile.ProfileFragment">
+    tools:context=".fragment.profile.info.ProfileFragment">
 
     <include android:id="@+id/layout_empty"
         layout="@layout/layout_login_empty"/>

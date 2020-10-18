@@ -1,6 +1,4 @@
-package com.dinh.helping.viewmodel;
-
-import android.content.Context;
+package com.dinh.helping.viewmodel.category;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -8,9 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.dinh.helping.model.BaseResponseModel;
 import com.dinh.helping.model.CategoryModel;
-import com.dinh.helping.repository.CategoryRepository;
-
-import java.util.List;
+import com.dinh.helping.repository.category.CategoryRepository;
 
 public class CategoryViewModel extends ViewModel {
     private MutableLiveData<BaseResponseModel<CategoryModel>> data;

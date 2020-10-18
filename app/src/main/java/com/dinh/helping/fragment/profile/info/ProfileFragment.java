@@ -1,4 +1,4 @@
-package com.dinh.helping.fragment.profile;
+package com.dinh.helping.fragment.profile.info;
 
 import android.graphics.Color;
 import android.os.Build;

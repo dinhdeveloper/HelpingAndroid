@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,8 +13,11 @@ import android.widget.Toast;
 
 import com.dinh.helping.R;
 import com.dinh.helping.fragment.dashboard.DashboardFragment;
-import com.dinh.helping.fragment.profile.ProfileFragment;
-import com.dinh.helping.fragment.profile.VeryCodeFragment;
+import com.dinh.helping.fragment.messenger.MessFragment;
+import com.dinh.helping.fragment.profile.info.ProfileFragment;
+import com.dinh.helping.fragment.profile.register.SignUpFragment;
+import com.dinh.helping.fragment.profile.verify.VeryCodeFragment;
+import com.dinh.helping.fragment.seller.SellerFragment;
 import com.fxn.BubbleTabBar;
 import com.fxn.OnBubbleClickListener;
 
@@ -38,11 +40,19 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onBubbleClick(int i) {
                 switch (i) {
-                    case R.id.shopping:
-                        Toast.makeText(HomeActivity.this, "shopping", Toast.LENGTH_SHORT).show();
+                    case R.id.mess:
+                        fragment = new MessFragment();
+                        getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.layoutRoot, fragment)
+                                .commit();
                         break;
                     case R.id.sale:
-                        Toast.makeText(HomeActivity.this, "sale", Toast.LENGTH_SHORT).show();
+                        fragment = new SellerFragment();
+                        getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.layoutRoot, fragment)
+                                .commit();
                         break;
                     case R.id.profile:
                         fragment = new ProfileFragment();
@@ -112,6 +122,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private int isShowContainer = 0;
+
     public void checkBack() {
         if (isShowContainer > 0) {
             isShowContainer--;
@@ -136,7 +147,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public void changeToVeryCodeFragment() {
         Fragment fragment = new VeryCodeFragment();
-        addFragment(fragment,true);
+        addFragment(fragment, true);
     }
 
     public void addFragment(Fragment fragment, boolean addToBackStack) {
@@ -173,5 +184,9 @@ public class HomeActivity extends AppCompatActivity {
 
             transaction.commitAllowingStateLoss();
         }
+    }
+
+    public void changeToSignUpFragment() {
+        addFragment(new SignUpFragment(), true);
     }
 }

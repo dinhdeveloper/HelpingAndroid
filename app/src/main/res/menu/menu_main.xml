@@ -7,14 +7,14 @@
         android:iconTint="@color/home"/>
 
     <item
-        android:id="@+id/shopping"
-        android:icon="@drawable/ic_dinh_shopping"
+        android:id="@+id/sale"
+        android:icon="@drawable/ic_dinh_description"
         android:title="Tôi bán"
         android:iconTint="@color/logger"/>
     <item
-        android:id="@+id/sale"
-        android:icon="@drawable/ic_dinh_description"
-        android:title="Đăng tin"
+        android:id="@+id/mess"
+        android:icon="@drawable/ic_mess_1"
+        android:title="Tin nhắn"
         android:iconTint="@color/documents"/>
     <item
         android:id="@+id/profile"
