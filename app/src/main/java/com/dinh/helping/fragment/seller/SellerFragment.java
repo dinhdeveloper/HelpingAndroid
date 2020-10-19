@@ -63,40 +63,57 @@ public class SellerFragment extends Fragment {
         tvTitleHeader.setText("Đăng bán");
     }
 
-    private void getDataApi() {
-        SimpleSearchDialogCompat<CityModel> searchDialog =
-                new SimpleSearchDialogCompat<CityModel>(activity, "Tìm kiếm",
-                        "Nhập tên thành phố", null, new ArrayList<>(),
-                        (dialog, item, position) -> {
-                            MyToast.show(activity, item.getTitle());
-                            dialog.dismiss();
-                        });
-
-        BaseFilter baseFilter = new BaseFilter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence constraint) {
-                doBeforeFiltering();
-                FilterResults results = new FilterResults();
-                results.values = new ArrayList<CityModel>();
-                results.count = 0;
-                results.values = Arrays.asList(cityViewModel.getListCategory().getValue().getData());
-                results.count = Arrays.asList(cityViewModel.getListCategory().getValue().getData()).size();
-                return results;
-            }
-
-            @Override
-            protected void publishResults(CharSequence constraint, FilterResults filterResults) {
-                if (filterResults != null) {
-                    ArrayList<CityModel> filter = (ArrayList<CityModel>) filterResults.values;
-                    if (filter != null) {
-                        searchDialog.getFilterResultListener().onFilter(filter);
-                    }
-                    doAfterFiltering();
-                }
-            }
-        };
-        searchDialog.setFilter(baseFilter);
-        searchDialog.show();
+    void provideSimpleDialogWithApiCalls() {
+//        final SimpleSearchDialogCompat<CityModel> searchDialog =
+//                new SimpleSearchDialogCompat(activity, "Tìm kiếm...",
+//                        "Nhập tên sản phẩm?", null, new ArrayList(),
+//                        new SearchResultListener<Searchable>() {
+//                            @Override
+//                            public void onSelected(
+//                                    BaseSearchDialogCompat dialog,
+//                                    Searchable item, int position
+//                            ) {
+//                                Toast.makeText(activity, item.getTitle(),
+//                                        Toast.LENGTH_SHORT
+//                                ).show();
+//                                dialog.dismiss();
+//                            }
+//                        }
+//                );
+//        BaseFilter apiFilter = new BaseFilter() {
+//            @Override
+//            protected FilterResults performFiltering(CharSequence charSequence) {
+//                doBeforeFiltering();
+//                FilterResults results = new FilterResults();
+//                results.values = new ArrayList<CityModel>();
+//                results.count = 0;
+//                try {
+//                    ArrayList<CityModel> users = (ArrayList<CityModel>) apiService.searchProduct(charSequence.toString())
+//                            .execute().body();
+//                    if (users != null) {
+//                        results.values = users;
+//                        results.count = users.size();
+//                    }
+//                    return results;
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                    return null;
+//                }
+//            }
+//
+//            @Override
+//            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+//                if (filterResults != null) {
+//                    ArrayList<CityModel> filtered = (ArrayList<CityModel>) filterResults.values;
+//                    if (filtered != null) {
+//                        searchDialog.getFilterResultListener().onFilter(filtered);
+//                    }
+//                    doAfterFiltering();
+//                }
+//            }
+//        };
+//        searchDialog.setFilter(apiFilter);
+//        searchDialog.show();
     }
 
     private void addControls(View view) {
