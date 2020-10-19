@@ -3,8 +3,8 @@ package com.dinh.helping.helper;
 import java.text.DecimalFormat;
 
 public class Consts {
-    private static final String HOST_DOMAIN = "https://canhdinh.000webhostapp.com/";
-    private static final String HOST_DEV = "http://ninomotor.qtctek.com/";
+    private static final String HOST_DOMAIN = "https://global-cma.com/";
+    private static final String HOST_DEV = "https://canhdinh.000webhostapp.com/";
     private static final String LOCALHOST = "http://192.168.100.27:8080/hospital/";
 
     public static final String HOST_API = HOST_DOMAIN;
