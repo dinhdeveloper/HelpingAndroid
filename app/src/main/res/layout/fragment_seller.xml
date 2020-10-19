@@ -3,9 +3,374 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".fragment.seller.SellerFragment">
 
     <include layout="@layout/layout_header"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:elevation="2dp"
+                android:background="@color/bg_layout"
+                android:paddingVertical="@dimen/dp15"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Danh mục sản phẩm"
+                        android:layout_marginHorizontal="@dimen/dp10"
+                        android:paddingVertical="@dimen/dp10"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <com.canhdinh.lib.roundview.RoundTextView
+                        android:layout_marginHorizontal="@dimen/dp10"
+                        app:rv_strokeWidth="1sp"
+                        app:rv_strokeColor="@color/black"
+                        app:rv_radius="@dimen/dp5"
+                        android:hint="Chọn"
+                        android:drawableEnd="@drawable/ic_bottom_down"
+                        android:drawableTint="@color/gray"
+                        android:paddingHorizontal="@dimen/dp10"
+                        android:drawablePadding="@dimen/dp10"
+                        android:gravity="center|start"
+                        android:layout_gravity="center"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"
+                        android:textStyle="normal"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"/>
+            </LinearLayout>
+            <!--end item-->
+
+            <LinearLayout
+                android:elevation="2dp"
+                android:background="@color/bg_layout"
+                android:paddingVertical="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp20"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Tên sản phẩm"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:paddingVertical="@dimen/dp10"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <EditText
+                    android:background="@drawable/back_ground_edittext"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:hint="Tên sản phẩm"
+                    android:paddingHorizontal="@dimen/dp10"
+                    android:gravity="center|start"
+                    android:layout_gravity="center"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"/>
+            </LinearLayout>
+            <!--end item-->
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/dp20"
+                android:elevation="2dp"
+                android:background="@color/bg_layout"
+                android:paddingVertical="@dimen/dp15"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Tỉnh (Thành phố)"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:paddingVertical="@dimen/dp10"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <com.canhdinh.lib.roundview.RoundTextView
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    app:rv_strokeWidth="1sp"
+                    app:rv_strokeColor="@color/black"
+                    app:rv_radius="@dimen/dp5"
+                    android:hint="Chọn"
+                    android:drawableEnd="@drawable/ic_bottom_down"
+                    android:drawableTint="@color/gray"
+                    android:paddingHorizontal="@dimen/dp10"
+                    android:drawablePadding="@dimen/dp10"
+                    android:gravity="center|start"
+                    android:layout_gravity="center"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"/>
+            </LinearLayout>
+            <!--end item-->
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/dp20"
+                android:elevation="2dp"
+                android:background="@color/bg_layout"
+                android:paddingVertical="@dimen/dp15"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Huyện (Quận)"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:paddingVertical="@dimen/dp10"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <com.canhdinh.lib.roundview.RoundTextView
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    app:rv_strokeWidth="1sp"
+                    app:rv_strokeColor="@color/black"
+                    app:rv_radius="@dimen/dp5"
+                    android:hint="Chọn"
+                    android:drawableEnd="@drawable/ic_bottom_down"
+                    android:drawableTint="@color/gray"
+                    android:paddingHorizontal="@dimen/dp10"
+                    android:drawablePadding="@dimen/dp10"
+                    android:gravity="center|start"
+                    android:layout_gravity="center"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"/>
+            </LinearLayout>
+            <!--end item-->
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/dp20"
+                android:elevation="2dp"
+                android:background="@color/bg_layout"
+                android:paddingVertical="@dimen/dp15"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Xã (Phường/Thị trấn)"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:paddingVertical="@dimen/dp10"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <com.canhdinh.lib.roundview.RoundTextView
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    app:rv_strokeWidth="1sp"
+                    app:rv_strokeColor="@color/black"
+                    app:rv_radius="@dimen/dp5"
+                    android:hint="Chọn"
+                    android:drawableEnd="@drawable/ic_bottom_down"
+                    android:drawableTint="@color/gray"
+                    android:paddingHorizontal="@dimen/dp10"
+                    android:drawablePadding="@dimen/dp10"
+                    android:gravity="center|start"
+                    android:layout_gravity="center"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"/>
+            </LinearLayout>
+            <!--end item-->
+
+            <LinearLayout
+                android:elevation="2dp"
+                android:background="@color/bg_layout"
+                android:paddingVertical="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp20"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Tên đường"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:paddingVertical="@dimen/dp10"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <EditText
+                    android:inputType="text"
+                    android:imeOptions="actionNext"
+                    android:background="@drawable/back_ground_edittext"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:hint="Tên đường"
+                    android:paddingHorizontal="@dimen/dp10"
+                    android:gravity="center|start"
+                    android:layout_gravity="center"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"/>
+            </LinearLayout>
+            <!--end item-->
+
+            <LinearLayout
+                android:elevation="2dp"
+                android:background="@color/bg_layout"
+                android:paddingVertical="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp20"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Giá bán"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:paddingVertical="@dimen/dp10"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <EditText
+                    android:inputType="number"
+                    android:imeOptions="actionNext"
+                    android:background="@drawable/back_ground_edittext"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:hint="Giá bán sản phẩm"
+                    android:paddingHorizontal="@dimen/dp10"
+                    android:gravity="center|start"
+                    android:layout_gravity="center"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"/>
+            </LinearLayout>
+            <!--end item-->
+
+            <LinearLayout
+                android:elevation="2dp"
+                android:background="@color/bg_layout"
+                android:paddingVertical="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp20"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Mô tả"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:paddingVertical="@dimen/dp10"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <EditText
+                    android:imeOptions="actionNext"
+                    android:background="@drawable/back_ground_edittext"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:hint="Nội dung"
+                    android:paddingHorizontal="@dimen/dp10"
+                    android:gravity="top|left"
+                    android:layout_gravity="center"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:lines="8"
+                    android:maxLines="10"
+                    android:minLines="5"
+                    android:scrollbars="vertical" />
+            </LinearLayout>
+            <!--end item-->
+            <LinearLayout
+                android:layout_marginTop="@dimen/dp20"
+                android:elevation="2dp"
+                android:background="@color/bg_layout"
+                android:paddingVertical="@dimen/dp15"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_weight="1"
+                    android:text="Hình ảnh"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:paddingVertical="@dimen/dp10"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <com.canhdinh.lib.roundview.RoundTextView
+                    android:text="Chọn hình"
+                    app:rv_backgroundColor="@color/color_orange"
+                    android:layout_weight="2"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    app:rv_radius="17dp"
+                    android:paddingHorizontal="@dimen/dp10"
+                    android:drawablePadding="@dimen/dp10"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"
+                    android:textStyle="normal"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"/>
+            </LinearLayout>
+            <!--end item-->
+
+            <ImageView
+                android:layout_marginTop="@dimen/dp20"
+                android:layout_gravity="center"
+                android:src="@drawable/no_image_full"
+                android:layout_width="200dp"
+                android:layout_height="170dp"/>
+
+
+            <com.canhdinh.lib.roundview.RoundTextView
+                android:layout_marginVertical="30dp"
+                android:text="Đăng bài"
+                app:rv_backgroundColor="@color/color_orange"
+                android:layout_weight="2"
+                android:layout_marginHorizontal="30dp"
+                app:rv_radius="@dimen/dp20"
+                android:paddingHorizontal="@dimen/dp10"
+                android:drawablePadding="@dimen/dp10"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:textStyle="normal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

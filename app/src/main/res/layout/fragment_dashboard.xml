@@ -31,7 +31,7 @@
             app:rv_backgroundColor="@color/white"
             android:orientation="horizontal"
             android:gravity="center"
-            android:layout_height="40dp">
+            android:layout_height="38dp">
             <ImageView
                 android:layout_marginHorizontal="@dimen/dp5"
                 android:paddingHorizontal="@dimen/dp5"

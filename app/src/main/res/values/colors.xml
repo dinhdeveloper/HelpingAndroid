@@ -53,4 +53,5 @@
     <color name="bg_login">#F3F3F5</color>
     <color name="placeholder_bg">#dddddd</color>
     <color name="color_yellow">#FFDC3D</color>
+    <color name="bg_layout">#F5F5F5</color>
 </resources>

@@ -4,6 +4,7 @@ import com.dinh.helping.helper.Consts;
 import com.dinh.helping.model.ApiParams;
 import com.dinh.helping.model.BaseResponseModel;
 import com.dinh.helping.model.CategoryModel;
+import com.dinh.helping.model.CityModel;
 import com.dinh.helping.model.ProductModel;
 import com.dinh.helping.model.UserResponseModel;
 
@@ -26,4 +27,7 @@ public interface APIService {
 
     @POST(Consts.REST_ENDPOINT)
     Call<BaseResponseModel<UserResponseModel>> login(@Body ApiParams params);
+
+    @POST(Consts.REST_ENDPOINT)
+    Call<BaseResponseModel<CityModel>> getListCity(@Body ApiParams params);
 }
