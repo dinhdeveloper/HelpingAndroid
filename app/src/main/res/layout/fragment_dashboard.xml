@@ -13,15 +13,40 @@
         android:layout_height="180dp"
         android:background="@color/colorPrimary">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:text="Trang chủ"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textStyle="bold" />-->
+
+        <com.canhdinh.lib.roundview.RoundLinearLayout
+            app:rv_radius="5dp"
+            android:layout_marginHorizontal="30dp"
             android:layout_marginTop="20dp"
-            android:text="Trang chủ"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_width="match_parent"
+            app:rv_backgroundColor="@color/white"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_height="40dp">
+            <ImageView
+                android:layout_marginHorizontal="@dimen/dp5"
+                android:paddingHorizontal="@dimen/dp5"
+                android:src="@drawable/ic_search"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+            <TextView
+                android:gravity="start|center"
+                android:layout_gravity="center"
+                android:hint="Bạn muốn tìm gì?"
+                android:textColorHint="@color/gray"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.canhdinh.lib.roundview.RoundLinearLayout>
 
     </RelativeLayout>
 

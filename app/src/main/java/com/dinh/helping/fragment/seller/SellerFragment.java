@@ -7,10 +7,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.dinh.helping.R;
 
 public class SellerFragment extends Fragment {
+    private ImageView btnBackHeader;
+    private TextView tvTitleHeader;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +24,19 @@ public class SellerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_seller, container, false);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_seller, container, false);
+        addControls(view);
+        addEvents();
+        return view;
+    }
+
+    private void addEvents() {
+        btnBackHeader.setVisibility(View.GONE);
+        tvTitleHeader.setText("Đăng bài");
+    }
+
+    private void addControls(View view) {
+        btnBackHeader = view.findViewById(R.id.btnBackHeader);
+        tvTitleHeader = view.findViewById(R.id.tvTitleHeader);
     }
 }

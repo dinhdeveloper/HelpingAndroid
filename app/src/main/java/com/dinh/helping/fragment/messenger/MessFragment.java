@@ -7,11 +7,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.dinh.helping.R;
 
 public class MessFragment extends Fragment {
 
+    private ImageView btnBackHeader;
+    private TextView tvTitleHeader;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,10 +31,13 @@ public class MessFragment extends Fragment {
     }
 
     private void addEvents() {
-
+        btnBackHeader.setVisibility(View.GONE);
+        tvTitleHeader.setText("Tin nhắn");
     }
 
     private void addControls(View view) {
+        btnBackHeader = view.findViewById(R.id.btnBackHeader);
+        tvTitleHeader = view.findViewById(R.id.tvTitleHeader);
 
     }
 }
