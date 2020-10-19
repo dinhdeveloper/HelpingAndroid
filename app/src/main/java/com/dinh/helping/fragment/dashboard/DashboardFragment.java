@@ -31,12 +31,17 @@ import com.dinh.helping.R;
 import com.dinh.helping.activity.HomeActivity;
 import com.dinh.helping.adapter.product.ListProductAdapter;
 import com.dinh.helping.adapter.product.ListProductDiscountAdapter;
+import com.dinh.helping.event.BackFragment;
 import com.dinh.helping.fragment.product_detail.ProductDetailFragment;
 import com.dinh.helping.helper.Consts;
 import com.dinh.helping.model.ProductModel;
 import com.dinh.helping.viewmodel.category.CategoryViewModel;
 import com.dinh.helping.viewmodel.product.ProductViewModel;
 import com.facebook.shimmer.ShimmerFrameLayout;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -59,6 +64,7 @@ public class DashboardFragment extends Fragment {
     private XRecyclerView rcListProduct;
     private RoundTextView tvPriceSale6, tvPriceSale5, tvPriceSale4, tvPriceSale3, tvPriceSale2, tvPriceSale1;
     private ShimmerFrameLayout mShimmerFrameLayout;
+    private RelativeLayout layoutRootView;
 
     private int times = 0;
     HomeActivity activity;
@@ -80,7 +86,31 @@ public class DashboardFragment extends Fragment {
         addControls(view);
         activity = (HomeActivity) getActivity();
         getData();
+        addEvents();
         return view;
+    }
+
+    private void addEvents() {
+        tvLoadAllCategory.setOnClickListener(view -> {
+            if (activity!=null){
+                activity.changeToListCategory();
+                hideRootView();
+                activity.hideBottomBar();
+            }
+        });
+    }
+    @SuppressWarnings("unused")
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onFragmentReloadEvent(BackFragment event) {
+        showRootView();
+        activity.showBottomBar();
+    }
+
+    private void hideRootView() {
+        layoutRootView.setVisibility(View.GONE);
+    }
+    private void showRootView(){
+        layoutRootView.setVisibility(View.VISIBLE);
     }
 
     private void getData() {
@@ -231,5 +261,18 @@ public class DashboardFragment extends Fragment {
         tvPriceSale6 = view.findViewById(R.id.tvPriceSale6);
 
         mShimmerFrameLayout = view.findViewById(R.id.shimmer_view_product);
+        layoutRootView = view.findViewById(R.id.layoutRootView);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
     }
 }

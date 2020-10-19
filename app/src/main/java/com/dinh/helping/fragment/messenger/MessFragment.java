@@ -20,7 +20,17 @@ public class MessFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mess, container, false);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_mess, container, false);
+        addControls(view);
+        addEvents();
+        return view;
+    }
+
+    private void addEvents() {
+
+    }
+
+    private void addControls(View view) {
+
     }
 }

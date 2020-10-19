@@ -6,6 +6,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,7 +15,9 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.canhdinh.lib.alert.AlertError;
 import com.dinh.helping.R;
+import com.dinh.helping.fragment.category.ListCategoryFragment;
 import com.dinh.helping.fragment.dashboard.DashboardFragment;
 import com.dinh.helping.fragment.messenger.MessFragment;
 import com.dinh.helping.fragment.profile.info.ProfileFragment;
@@ -33,47 +37,56 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        bubbleTabBar = findViewById(R.id.bubbleTabBar);
-
-        defauFragment(new DashboardFragment());
-        fullScreen();
-        bubbleTabBar.addBubbleListener(new OnBubbleClickListener() {
-            Fragment fragment = null;
-
-            @Override
-            public void onBubbleClick(int i) {
-                switch (i) {
-                    case R.id.mess:
-                        fragment = new MessFragment();
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.layoutRoot, fragment)
-                                .commit();
-                        break;
-                    case R.id.sale:
-                        fragment = new SellerFragment();
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.layoutRoot, fragment)
-                                .commit();
-                        break;
-                    case R.id.profile:
-                        fragment = new ProfileFragment();
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.layoutRoot, fragment)
-                                .commit();
-                        break;
-                    default:
-                        fragment = new DashboardFragment();
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.layoutRoot, fragment)
-                                .commit();
-                        break;
+        if (isNetworkConnected()) {
+            bubbleTabBar = findViewById(R.id.bubbleTabBar);
+            defauFragment(new DashboardFragment());
+            fullScreen();
+            bubbleTabBar.addBubbleListener(new OnBubbleClickListener() {
+                Fragment fragment = null;
+                @Override
+                public void onBubbleClick(int i) {
+                    switch (i) {
+                        case R.id.mess:
+                            fragment = new MessFragment();
+                            getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.layoutRoot, fragment)
+                                    .commit();
+                            break;
+                        case R.id.sale:
+                            fragment = new SellerFragment();
+                            getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.layoutRoot, fragment)
+                                    .commit();
+                            break;
+                        case R.id.profile:
+                            fragment = new ProfileFragment();
+                            getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.layoutRoot, fragment)
+                                    .commit();
+                            break;
+                        default:
+                            fragment = new DashboardFragment();
+                            getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.layoutRoot, fragment)
+                                    .commit();
+                            break;
+                    }
                 }
-            }
-        });
+            });
+        }
+        else {
+            AlertError.showAlertError(HomeActivity.this,"Xác nhận","Bạn chưa kết nối internet");
+        }
+    }
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
     }
 
     public boolean defauFragment(DashboardFragment fragment) {
@@ -205,8 +218,11 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-
     public void changeToSignUpFragment() {
         addFragment(new SignUpFragment(), true);
+    }
+
+    public void changeToListCategory() {
+        addFragment(new ListCategoryFragment(), true);
     }
 }

@@ -4,8 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragment.messenger.MessFragment">
+    tools:context=".fragment.category.ListCategoryFragment">
 
     <include layout="@layout/layout_header"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcListCategory"
+        android:layout_margin="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/custom_item_category"/>
 
 </LinearLayout>
