@@ -5,8 +5,10 @@ import com.dinh.helping.model.ApiParams;
 import com.dinh.helping.model.BaseResponseModel;
 import com.dinh.helping.model.CategoryModel;
 import com.dinh.helping.model.CityModel;
+import com.dinh.helping.model.DistrictModel;
 import com.dinh.helping.model.ProductModel;
 import com.dinh.helping.model.UserResponseModel;
+import com.dinh.helping.model.WardModel;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -37,4 +39,10 @@ public interface APIService {
 
     @POST(Consts.REST_ENDPOINT)
     Call<BaseResponseModel<CityModel>> getListCity(@Body ApiParams params);
+
+    @POST(Consts.REST_ENDPOINT)
+    Call<BaseResponseModel<DistrictModel>> getListDistrictByCity(@Body ApiParams params);
+
+    @POST(Consts.REST_ENDPOINT)
+    Call<BaseResponseModel<WardModel>> getListWardByDistrict(@Body ApiParams params);
 }

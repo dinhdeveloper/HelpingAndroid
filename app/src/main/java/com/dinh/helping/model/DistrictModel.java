@@ -1,6 +1,8 @@
 package com.dinh.helping.model;
 
-public class DistrictModel extends BaseResponseModel {
+import com.canhdinh.lib.searchdialog.core.Searchable;
+
+public class DistrictModel extends BaseResponseModel implements Searchable {
 
     /**
      * district_id : 001
@@ -44,5 +46,10 @@ public class DistrictModel extends BaseResponseModel {
 
     public void setDistrict_type(String district_type) {
         this.district_type = district_type;
+    }
+
+    @Override
+    public String getTitle() {
+        return district_name;
     }
 }

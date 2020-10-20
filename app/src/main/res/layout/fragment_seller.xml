@@ -35,6 +35,7 @@
                         android:layout_height="wrap_content"/>
 
                     <com.canhdinh.lib.roundview.RoundTextView
+                        android:id="@+id/tvChooseCategory"
                         android:layout_marginHorizontal="@dimen/dp10"
                         app:rv_strokeWidth="1sp"
                         app:rv_strokeColor="@color/black"
@@ -73,6 +74,7 @@
                     android:layout_height="wrap_content"/>
 
                 <EditText
+                    android:id="@+id/edtNameProduct"
                     android:background="@drawable/back_ground_edittext"
                     android:layout_marginHorizontal="@dimen/dp10"
                     android:hint="Tên sản phẩm"
@@ -106,6 +108,7 @@
                     android:layout_height="wrap_content"/>
 
                 <com.canhdinh.lib.roundview.RoundTextView
+                    android:id="@+id/tvCity"
                     android:layout_marginHorizontal="@dimen/dp10"
                     app:rv_strokeWidth="1sp"
                     app:rv_strokeColor="@color/black"
@@ -144,6 +147,7 @@
                     android:layout_height="wrap_content"/>
 
                 <com.canhdinh.lib.roundview.RoundTextView
+                    android:id="@+id/tvDistrict"
                     android:layout_marginHorizontal="@dimen/dp10"
                     app:rv_strokeWidth="1sp"
                     app:rv_strokeColor="@color/black"
@@ -182,6 +186,7 @@
                     android:layout_height="wrap_content"/>
 
                 <com.canhdinh.lib.roundview.RoundTextView
+                    android:id="@+id/tvWard"
                     android:layout_marginHorizontal="@dimen/dp10"
                     app:rv_strokeWidth="1sp"
                     app:rv_strokeColor="@color/black"
@@ -220,6 +225,7 @@
                     android:layout_height="wrap_content"/>
 
                 <EditText
+                    android:id="@+id/edtStreet"
                     android:inputType="text"
                     android:imeOptions="actionNext"
                     android:background="@drawable/back_ground_edittext"
@@ -255,6 +261,7 @@
                     android:layout_height="wrap_content"/>
 
                 <EditText
+                    android:id="@+id/edtPrice"
                     android:inputType="number"
                     android:imeOptions="actionNext"
                     android:background="@drawable/back_ground_edittext"
@@ -290,6 +297,7 @@
                     android:layout_height="wrap_content"/>
 
                 <EditText
+                    android:id="@+id/edtDescription"
                     android:imeOptions="actionNext"
                     android:background="@drawable/back_ground_edittext"
                     android:layout_marginHorizontal="@dimen/dp10"
@@ -329,6 +337,7 @@
                     android:layout_height="wrap_content"/>
 
                 <com.canhdinh.lib.roundview.RoundTextView
+                    android:id="@+id/tvChooseImage"
                     android:text="Chọn hình"
                     app:rv_backgroundColor="@color/color_orange"
                     android:layout_weight="2"
@@ -347,6 +356,7 @@
             <!--end item-->
 
             <ImageView
+                android:id="@+id/imvProduct"
                 android:layout_marginTop="@dimen/dp20"
                 android:layout_gravity="center"
                 android:src="@drawable/no_image_full"
@@ -355,6 +365,7 @@
 
 
             <com.canhdinh.lib.roundview.RoundTextView
+                android:id="@+id/btnSubmit"
                 android:layout_marginVertical="30dp"
                 android:text="Đăng bài"
                 app:rv_backgroundColor="@color/color_orange"

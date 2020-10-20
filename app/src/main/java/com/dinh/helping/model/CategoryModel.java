@@ -1,6 +1,8 @@
 package com.dinh.helping.model;
 
-public class CategoryModel extends BaseResponseModel {
+import com.canhdinh.lib.searchdialog.core.Searchable;
+
+public class CategoryModel extends BaseResponseModel implements Searchable {
 
 
     /**
@@ -35,5 +37,10 @@ public class CategoryModel extends BaseResponseModel {
 
     public void setCategory_image(String category_image) {
         this.category_image = category_image;
+    }
+
+    @Override
+    public String getTitle() {
+        return category_name;
     }
 }

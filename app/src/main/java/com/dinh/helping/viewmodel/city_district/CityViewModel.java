@@ -22,7 +22,7 @@ public class CityViewModel extends ViewModel {
         data = repository.getListCity();
     }
 
-    public LiveData<BaseResponseModel<CityModel>> getListCategory(){
+    public LiveData<BaseResponseModel<CityModel>> getListCity(){
         return data;
     }
 }
