@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="horizontal"
+    android:layout_marginHorizontal="@dimen/dp10"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/dp20"
+        android:scrollbars="horizontal"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.cardview.widget.CardView
+            android:layout_marginRight="@dimen/dp10"
+            app:cardElevation="3dp"
+            app:cardCornerRadius="@dimen/dp5"
+            android:layout_width="100dp"
+            android:layout_height="140dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:scaleType="fitXY"
+                    android:src="@drawable/hochiminh"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:alpha="10"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:elevation="@dimen/dp10"
+                    android:text="Hồ Chí Minh"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        <!--end-->
+        <androidx.cardview.widget.CardView
+            android:layout_marginRight="@dimen/dp10"
+            app:cardElevation="3dp"
+            app:cardCornerRadius="@dimen/dp5"
+            android:layout_width="100dp"
+            android:layout_height="140dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:scaleType="fitXY"
+                    android:src="@drawable/hanoi"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:alpha="10"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:elevation="@dimen/dp10"
+                    android:text="Hà Nội"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        <!--end-->
+        <androidx.cardview.widget.CardView
+            android:layout_marginRight="@dimen/dp10"
+            app:cardElevation="3dp"
+            app:cardCornerRadius="@dimen/dp5"
+            android:layout_width="100dp"
+            android:layout_height="140dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:scaleType="fitXY"
+                    android:src="@drawable/danang"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:alpha="10"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:elevation="@dimen/dp10"
+                    android:text="Đà Nẵng"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        <!--end-->
+        <androidx.cardview.widget.CardView
+            android:layout_marginRight="@dimen/dp10"
+            app:cardElevation="3dp"
+            app:cardCornerRadius="@dimen/dp5"
+            android:layout_width="100dp"
+            android:layout_height="140dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:scaleType="fitXY"
+                    android:src="@drawable/haiphong"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:alpha="10"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:elevation="@dimen/dp10"
+                    android:text="Hải Phòng"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        <!--end-->
+        <androidx.cardview.widget.CardView
+            android:layout_marginRight="@dimen/dp10"
+            app:cardElevation="3dp"
+            app:cardCornerRadius="@dimen/dp5"
+            android:layout_width="100dp"
+            android:layout_height="140dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:scaleType="fitXY"
+                    android:src="@drawable/cantho"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:alpha="10"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:elevation="@dimen/dp10"
+                    android:text="Cần Thơ"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        <!--end-->
+    </LinearLayout>
+
+</HorizontalScrollView>

@@ -13,16 +13,6 @@
         android:layout_height="180dp"
         android:background="@color/colorPrimary">
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_centerHorizontal="true"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:text="Trang chủ"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="20sp"-->
-<!--            android:textStyle="bold" />-->
-
         <com.canhdinh.lib.roundview.RoundLinearLayout
             app:rv_radius="5dp"
             android:layout_marginHorizontal="30dp"
@@ -135,6 +125,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <include layout="@layout/layout_city_district"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
