@@ -23,7 +23,10 @@ public class SearchViewModel extends ViewModel {
         data = repository.getListSearchProduct(product_name);
     }
 
-    public LiveData<BaseResponseModel<ProductModel>> getListSearch(){
+    public MutableLiveData<BaseResponseModel<ProductModel>> getListSearch(){
+        if (data == null) {
+            data = new MutableLiveData<>();
+        }
         return data;
     }
 }

@@ -3,15 +3,96 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".fragment.search.SearchFragment">
 
-   <include layout="@layout/layout_header"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary">
+        <ImageView
+            android:id="@+id/btnBackHeader"
+            android:padding="@dimen/dp5"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:contentDescription="TODO"
+            android:src="@drawable/ic_arrow_left_white"
+            app:tint="@color/white" />
 
+        <LinearLayout
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toLeftOf="@+id/layoutActionButton"
+            android:background="@drawable/border_shape_white_layout_toolbar_search_contact"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:padding="@dimen/dp10"
+                android:src="@drawable/ic_search"
+                android:visibility="visible" />
+
+            <EditText
+                android:id="@+id/edtFilter"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:enabled="true"
+                android:hint="Tìm kiếm"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/imvClearSearch"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:padding="@dimen/dp10"
+                android:src="@drawable/close"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:padding="8dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:contentDescription="TODO"
+            android:src="@drawable/ic_dinh_icon_filter"
+            app:tint="@color/white" />
+
+    </RelativeLayout>
+
+    <!--end toolbar-->
     <include
-        android:layout_margin="@dimen/dp20"
-        layout="@layout/layout_filter"
-        android:layout_height="50dp"
-        android:layout_width="match_parent" />
+        android:id="@+id/layout_empty"
+        layout="@layout/layout_empty"/>
 
 </LinearLayout>

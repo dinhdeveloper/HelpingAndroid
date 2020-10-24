@@ -127,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <include layout="@layout/layout_city_district"/>
+<!--                <include layout="@layout/layout_city_district"/>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"

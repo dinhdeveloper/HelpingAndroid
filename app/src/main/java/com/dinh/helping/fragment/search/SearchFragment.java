@@ -11,7 +11,9 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,10 +27,10 @@ import com.dinh.helping.viewmodel.search.SearchViewModel;
 
 public class SearchFragment extends Fragment implements LifecycleOwner {
     private ImageView btnBackHeader;
-    private TextView tvTitleHeader;
 
     private ImageView imvClearSearch;
     private EditText edtFilter;
+    private View layout_empty;
 
     HomeActivity activity;
     SearchViewModel searchViewModel;
@@ -37,6 +39,8 @@ public class SearchFragment extends Fragment implements LifecycleOwner {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = (HomeActivity)getActivity();
+        searchViewModel = ViewModelProviders.of(requireActivity()).get(SearchViewModel.class);
+        searchViewModel.init();
     }
 
     @Override
@@ -44,8 +48,6 @@ public class SearchFragment extends Fragment implements LifecycleOwner {
                              Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_search, container, false);
         addControls(view);
-        searchViewModel = ViewModelProviders.of(requireActivity()).get(SearchViewModel.class);
-        searchViewModel.init();
         addEvents();
         return view;
     }
@@ -56,7 +58,11 @@ public class SearchFragment extends Fragment implements LifecycleOwner {
             BackFragment.post();
             activity.showBottomBar();
         });
-        tvTitleHeader.setText("Tìm kiếm");
+
+        //forcus edittext and show keyboard
+        edtFilter.requestFocus();
+        InputMethodManager imm = (InputMethodManager)activity.getSystemService(activity.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,InputMethodManager.HIDE_IMPLICIT_ONLY);
 
         edtFilter.setOnEditorActionListener((textView, actionId, keyEvent) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -72,17 +78,28 @@ public class SearchFragment extends Fragment implements LifecycleOwner {
                     imvClearSearch.setVisibility(View.GONE);
                 }
                 searchViewModel.searchProduct(edtFilter.getText().toString());
+
+                searchViewModel.getListSearch().observe(this,model -> {
+                    if (model!=null){
+                        layout_empty.setVisibility(View.GONE);
+                        Toast.makeText(activity, ""+model.getData()[0].getProduct_name(), Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        layout_empty.setVisibility(View.VISIBLE);
+                    }
+                });
                 return true;
             }
+            layout_empty.setVisibility(View.VISIBLE);
             return false;
         });
     }
 
     private void addControls(View view) {
         btnBackHeader = view.findViewById(R.id.btnBackHeader);
-        tvTitleHeader = view.findViewById(R.id.tvTitleHeader);
 
         imvClearSearch = view.findViewById(R.id.imvClearSearch);
         edtFilter = view.findViewById(R.id.edtFilter);
+        layout_empty = view.findViewById(R.id.layout_empty);
     }
 }
