@@ -299,6 +299,7 @@
                 <EditText
                     android:id="@+id/edtDescription"
                     android:imeOptions="actionNext"
+                    android:padding="@dimen/dp5"
                     android:background="@drawable/back_ground_edittext"
                     android:layout_marginHorizontal="@dimen/dp10"
                     android:hint="Nội dung"

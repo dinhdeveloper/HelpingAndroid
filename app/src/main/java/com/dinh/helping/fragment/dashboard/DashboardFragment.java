@@ -65,6 +65,7 @@ public class DashboardFragment extends Fragment {
     private RoundTextView tvPriceSale6, tvPriceSale5, tvPriceSale4, tvPriceSale3, tvPriceSale2, tvPriceSale1;
     private ShimmerFrameLayout mShimmerFrameLayout;
     private RelativeLayout layoutRootView;
+    private TextView tvSearch;
 
     private int times = 0;
     HomeActivity activity;
@@ -94,6 +95,14 @@ public class DashboardFragment extends Fragment {
         tvLoadAllCategory.setOnClickListener(view -> {
             if (activity!=null){
                 activity.changeToListCategory();
+                hideRootView();
+                activity.hideBottomBar();
+            }
+        });
+
+        tvSearch.setOnClickListener(view -> {
+            if (activity!=null){
+                activity.changeToSearchFragment();
                 hideRootView();
                 activity.hideBottomBar();
             }
@@ -262,6 +271,7 @@ public class DashboardFragment extends Fragment {
 
         mShimmerFrameLayout = view.findViewById(R.id.shimmer_view_product);
         layoutRootView = view.findViewById(R.id.layoutRootView);
+        tvSearch = view.findViewById(R.id.tvSearch);
     }
 
     @Override

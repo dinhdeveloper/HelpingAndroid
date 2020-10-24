@@ -45,4 +45,7 @@ public interface APIService {
 
     @POST(Consts.REST_ENDPOINT)
     Call<BaseResponseModel<WardModel>> getListWardByDistrict(@Body ApiParams params);
+
+    @POST(Consts.REST_ENDPOINT)
+    Call<BaseResponseModel<ProductModel>> searchProduct(@Body ApiParams params);
 }

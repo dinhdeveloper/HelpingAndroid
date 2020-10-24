@@ -23,6 +23,7 @@ import com.dinh.helping.fragment.messenger.MessFragment;
 import com.dinh.helping.fragment.profile.info.ProfileFragment;
 import com.dinh.helping.fragment.profile.register.SignUpFragment;
 import com.dinh.helping.fragment.profile.verify.VeryCodeFragment;
+import com.dinh.helping.fragment.search.SearchFragment;
 import com.dinh.helping.fragment.seller.SellerFragment;
 import com.fxn.BubbleTabBar;
 import com.fxn.OnBubbleClickListener;
@@ -224,5 +225,9 @@ public class HomeActivity extends AppCompatActivity {
 
     public void changeToListCategory() {
         addFragment(new ListCategoryFragment(), true);
+    }
+
+    public void changeToSearchFragment() {
+        addFragment(new SearchFragment(), true);
     }
 }
