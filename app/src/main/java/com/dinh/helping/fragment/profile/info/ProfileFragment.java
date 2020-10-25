@@ -138,9 +138,22 @@ public class ProfileFragment extends Fragment {
                         sharePrefs.saveUserModel(Arrays.asList(user.getData()).get(0));
                         layout_empty.setVisibility(View.GONE);
                         layout_active.setVisibility(View.VISIBLE);
+
+                        btnBackHeader.setVisibility(View.GONE);
+                        tvTitleHeader.setText("Thông tin cá nhân");
+
+                        if (!TextUtils.isEmpty(sharePrefs.getUserModel().getFull_name())){
+                            tvName.setText(sharePrefs.getUserModel().getFull_name());
+                        }
+                        if (!TextUtils.isEmpty(sharePrefs.getUserModel().getAddress())){
+                            tvLocation.setText(sharePrefs.getUserModel().getAddress());
+                        }
+                        if (!TextUtils.isEmpty(sharePrefs.getUserModel().getImage())){
+                            Glide.with(activity).load(sharePrefs.getUserModel().getImage()).into(imvProfile);
+                        }
                     }
                     else {
-                        AlertError.showAlertError(activity,user.getMessage());
+                        Toast.makeText(activity, "Sai mật khẩu hoặc số điện thoại", Toast.LENGTH_SHORT).show();
                     }
                 });
 

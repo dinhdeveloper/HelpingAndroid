@@ -3,6 +3,7 @@ package com.dinh.helping.fragment.product_detail;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -21,10 +22,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.canhdinh.lib.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
+import com.canhdinh.lib.smarteist.autoimageslider.IndicatorView.draw.controller.DrawController;
+import com.canhdinh.lib.smarteist.autoimageslider.SliderAnimations;
+import com.canhdinh.lib.smarteist.autoimageslider.SliderView;
 import com.dinh.helping.R;
 import com.dinh.helping.activity.HomeActivity;
+import com.dinh.helping.adapter.product.ProductDetailSliderAdapter;
+import com.dinh.helping.model.PhotoModel;
 import com.dinh.helping.viewmodel.product.ProductViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ProductDetailFragment extends Fragment implements BottomNavigationView.OnNavigationItemSelectedListener {
     private ProductViewModel productViewModel;
@@ -33,6 +43,11 @@ public class ProductDetailFragment extends Fragment implements BottomNavigationV
     private ImageView btnBackHeader;
     private TextView tvTitleHeader;
     private BottomNavigationView navBottom;
+
+    private TextView tvName;
+
+    SliderView sliderView;
+    private ProductDetailSliderAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +61,31 @@ public class ProductDetailFragment extends Fragment implements BottomNavigationV
                              Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_product_detail, container, false);
         productViewModel = ViewModelProviders.of(requireActivity()).get(ProductViewModel.class);
+        productViewModel.init();
+        productViewModel.getSelectedItem().observe(this, model -> {
+            ArrayList<PhotoModel> photoModels = new ArrayList<>();
+            photoModels.addAll(Arrays.asList(model.getProduct_photo()));
+            adapter = new ProductDetailSliderAdapter(activity, photoModels);
+            sliderView.setSliderAdapter(adapter);
+            sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+            sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+            sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
+            sliderView.setIndicatorSelectedColor(Color.WHITE);
+            sliderView.setIndicatorUnselectedColor(Color.GRAY);
+            sliderView.setScrollTimeInSec(3);
+            sliderView.setAutoCycle(true);
+            sliderView.startAutoCycle();
+
+            //click vao tung item hinh anh.
+            sliderView.setOnIndicatorClickListener(new DrawController.ClickListener() {
+                @Override
+                public void onIndicatorClicked(int position) {
+
+                }
+            });
+
+            tvName.setText(model.getProduct_name());
+        });
         addControls(view);
         addEvents();
         return view;
@@ -64,6 +104,9 @@ public class ProductDetailFragment extends Fragment implements BottomNavigationV
         navBottom = view.findViewById(R.id.navBottom);
         tvTitleHeader = view.findViewById(R.id.tvTitleHeader);
         btnBackHeader = view.findViewById(R.id.btnBackHeader);
+        sliderView = view.findViewById(R.id.imageSlider);
+
+        tvName = view.findViewById(R.id.tvName);
     }
 
     @Override

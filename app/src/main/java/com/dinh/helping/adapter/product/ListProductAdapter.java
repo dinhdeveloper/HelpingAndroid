@@ -118,7 +118,7 @@ public class ListProductAdapter extends RecyclerView.Adapter<ListProductAdapter.
                 if (months == 1) {
                     times.append(" ,một tháng");
                 } else {
-                    times.append(" ," + months + " tháng");
+                    times.append(", " + months + " tháng");
                 }
             }
         } else if (months > 0) {
@@ -131,7 +131,7 @@ public class ListProductAdapter extends RecyclerView.Adapter<ListProductAdapter.
                 if (days == 1) {
                     times.append(" ,một ngày");
                 } else {
-                    times.append(" ," + days + " ngày");
+                    times.append(", " + days + " ngày");
                 }
             }
         } else if (days > 0) {
@@ -144,7 +144,7 @@ public class ListProductAdapter extends RecyclerView.Adapter<ListProductAdapter.
                 if (hrs == 1) {
                     times.append(",một giờ");
                 } else {
-                    times.append(" ," + hrs + " giờ");
+                    times.append(", " + hrs + " giờ");
                 }
             }
         } else if (hrs > 0) {
@@ -154,7 +154,7 @@ public class ListProductAdapter extends RecyclerView.Adapter<ListProductAdapter.
                 times.append(hrs + " giờ");
             }
             if (min > 1) {
-                times.append(" ," + min + " phút");
+                times.append(", " + min + " phút");
             }
         } else if (min > 0) {
             if (min == 1) {
@@ -163,7 +163,7 @@ public class ListProductAdapter extends RecyclerView.Adapter<ListProductAdapter.
                 times.append(min + " phút");
             }
             if (sec > 1) {
-                times.append(" ," + sec + " giây");
+                times.append(", " + sec + " giây");
             }
         } else {
             if (sec <= 1) {
