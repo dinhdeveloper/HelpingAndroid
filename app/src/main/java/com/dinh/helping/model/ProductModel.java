@@ -23,6 +23,7 @@ public class ProductModel extends BaseResponseModel {
     private String category_id;
     private String category_name;
     private String product_name;
+    private String phone_contact;
     private String product_image;
     private String price_sale;
     private String quantity;
@@ -63,6 +64,14 @@ public class ProductModel extends BaseResponseModel {
 
     public void setProduct_name(String product_name) {
         this.product_name = product_name;
+    }
+
+    public String getPhone_contact() {
+        return phone_contact;
+    }
+
+    public void setPhone_contact(String phone_contact) {
+        this.phone_contact = phone_contact;
     }
 
     public String getProduct_image() {

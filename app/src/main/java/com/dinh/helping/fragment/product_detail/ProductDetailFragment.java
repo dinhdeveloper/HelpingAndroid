@@ -1,6 +1,7 @@
 package com.dinh.helping.fragment.product_detail;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -48,6 +49,9 @@ public class ProductDetailFragment extends Fragment implements BottomNavigationV
 
     SliderView sliderView;
     private ProductDetailSliderAdapter adapter;
+
+    private String contactZalo;
+    private String contactMessenger;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -113,31 +117,76 @@ public class ProductDetailFragment extends Fragment implements BottomNavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.call:
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:0975469232"));
-
-                if (ContextCompat.checkSelfPermission(activity, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_PHONE_CALL);
-                } else {
-                    startActivity(callIntent);
-                }
+                ContactCall();
                 return true;
             case R.id.sms:
-                Intent smsIntent = new Intent(Intent.ACTION_VIEW);
-                smsIntent.setData(Uri.parse("smsto:"));
-                smsIntent.setType("vnd.android-dir/mms-sms");
-                smsIntent.putExtra("address", new String("0975469232"));
-                smsIntent.putExtra("sms_body", "ass");
-
-                try {
-                    startActivity(smsIntent);
-                    Log.i("Finished sending SMS...", "");
-                } catch (android.content.ActivityNotFoundException ex) {
-                    Toast.makeText(activity,
-                            "SMS faild, please try again later.", Toast.LENGTH_SHORT).show();
-                }
+                ContactSMS();
+                return true;
+            case R.id.zalo:
+                ContactZalo();
+                return true;
+            case R.id.mess:
+                ContactMessenger();
                 return true;
         }
         return false;
+    }
+
+    private void ContactCall() {
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse("tel:0975469232"));
+
+        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_PHONE_CALL);
+        } else {
+            startActivity(callIntent);
+        }
+    }
+
+    private void ContactSMS() {
+        Intent smsIntent = new Intent(Intent.ACTION_VIEW);
+        smsIntent.setData(Uri.parse("smsto:"));
+        smsIntent.setType("vnd.android-dir/mms-sms");
+        smsIntent.putExtra("address", new String("0975469232"));
+        smsIntent.putExtra("sms_body", "ass");
+
+        try {
+            startActivity(smsIntent);
+            Log.i("Finished sending SMS...", "");
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(activity,
+                    "SMS faild, please try again later.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void ContactZalo() {
+        String phone = "0975469232";
+        try {
+            Intent waIntent = new Intent(Intent.ACTION_VIEW);
+            waIntent.setData(Uri.parse("https://zalo.me/" + phone));
+            waIntent.setPackage("com.zing.zalo");
+            activity.startActivity(waIntent);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.zing.zalo&hl=vi"));
+            activity.startActivity(intent);
+        }
+    }
+
+    private void ContactMessenger() {
+        String fbID = "thuhuyendepgai00";
+        try {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.setPackage("com.facebook.orca");
+            intent.setData(Uri.parse("https://m.me/" + fbID));
+            activity.startActivity(intent);
+        } catch (ActivityNotFoundException ex) {
+            activity.startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("https://play.google.com/store/apps/details?id=com.facebook.orca")
+                    )
+            );
+        }
     }
 }
