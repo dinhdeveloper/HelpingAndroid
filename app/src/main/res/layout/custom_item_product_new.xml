@@ -56,6 +56,20 @@
                 tools:text="Nước hoa nồng nặc ơi là nồng nặc" />
 
             <TextView
+                android:id="@+id/tvTimes"
+                android:drawablePadding="@dimen/dp10"
+                android:drawableTint="@color/color_green"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp5"
+                android:textColor="@color/color_text_info"
+                android:textSize="13sp"
+                android:textStyle="normal"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="Hồ Chí Minh" />
+
+            <TextView
                 android:id="@+id/tvPrice"
                 android:drawableLeft="@drawable/ic_dinh_cash"
                 android:drawablePadding="@dimen/dp10"

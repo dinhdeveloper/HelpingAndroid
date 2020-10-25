@@ -48,6 +48,7 @@ public class SearchFragment extends Fragment implements LifecycleOwner {
 
     private ImageView imvClearSearch;
     private EditText edtFilter;
+    private TextView btnSearch;
     private View layout_empty;
     private RecyclerView rcListProductSearch;
 
@@ -126,9 +127,8 @@ public class SearchFragment extends Fragment implements LifecycleOwner {
                                 rcListProductSearch.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
                                 rcListProductSearch.setAdapter(searchAdapter);
                                 searchAdapter.notifyDataSetChanged();
-                            }
-                            else {
-                                Toast.makeText(activity, ""+model.getMessage(), Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(activity, "" + model.getMessage(), Toast.LENGTH_SHORT).show();
                                 rcListProductSearch.setVisibility(View.GONE);
                                 layout_empty.setVisibility(View.VISIBLE);
                             }
@@ -158,6 +158,33 @@ public class SearchFragment extends Fragment implements LifecycleOwner {
             showPopupChooseWard(district_id);
         });
 
+        btnSearch.setOnClickListener(view -> {
+            if (!TextUtils.isEmpty(city_id)){
+                searchViewModel.searchProduct(edtFilter.getText().toString(), city_id, district_id, ward_id);
+
+                searchViewModel.getListSearch().observe(this,model -> {
+                    rcListProductSearch.setVisibility(View.VISIBLE);
+                    layout_empty.setVisibility(View.GONE);
+                    ArrayList<ProductModel> list = new ArrayList<>();
+                    if (model.getData() != null) {
+                        list.addAll(Arrays.asList(model.getData()));
+                        ListProductSearchAdapter searchAdapter = new ListProductSearchAdapter(activity, list);
+                        rcListProductSearch.setHasFixedSize(true);
+                        rcListProductSearch.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
+                        rcListProductSearch.setAdapter(searchAdapter);
+                        searchAdapter.notifyDataSetChanged();
+                    } else {
+                        Toast.makeText(activity, "" + model.getMessage(), Toast.LENGTH_SHORT).show();
+                        rcListProductSearch.setVisibility(View.GONE);
+                        layout_empty.setVisibility(View.VISIBLE);
+                    }
+                });
+            }
+            else {
+                Toast.makeText(activity, "Vui lòng chọn nơi bạn muốn tìm !!!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     private void showPopupChooseWard(String district_id) {
@@ -177,6 +204,8 @@ public class SearchFragment extends Fragment implements LifecycleOwner {
         SimpleSearchDialogCompat dialog = new SimpleSearchDialogCompat(activity, "Tìm kiếm...",
                 "Nhập quận huyện?", null, getListDistrict(city_id),
                 (SearchResultListener<DistrictModel>) (dialog1, item, position) -> {
+                    ward_id = null;
+                    tvWard.setText("Phường");
                     district_id = item.getDistrict_id();
                     tvDistrict.setText(item.getTitle());
                     dialog1.dismiss();
@@ -190,7 +219,10 @@ public class SearchFragment extends Fragment implements LifecycleOwner {
         SimpleSearchDialogCompat dialog = new SimpleSearchDialogCompat(activity, "Tìm kiếm...",
                 "Nhập thành phố?", null, getListCity(),
                 (SearchResultListener<CityModel>) (dialog1, item, position) -> {
-
+                    district_id = null;
+                    ward_id = null;
+                    tvDistrict.setText("Quận");
+                    tvWard.setText("Phường");
                     city_id = item.getCity_id();
                     tvCity.setText(item.getTitle());
                     dialog1.dismiss();
@@ -231,6 +263,7 @@ public class SearchFragment extends Fragment implements LifecycleOwner {
         edtFilter = view.findViewById(R.id.edtFilter);
         layout_empty = view.findViewById(R.id.layout_empty);
         rcListProductSearch = view.findViewById(R.id.rcListProductSearch);
+        btnSearch = view.findViewById(R.id.btnSearch);
 
         tvCity = view.findViewById(R.id.tvCity);
         tvDistrict = view.findViewById(R.id.tvDistrict);

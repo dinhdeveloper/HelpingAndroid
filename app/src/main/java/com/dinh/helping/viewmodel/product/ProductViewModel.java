@@ -10,6 +10,7 @@ import com.dinh.helping.repository.product.ProductReprository;
 
 public class ProductViewModel extends ViewModel {
     private MutableLiveData<BaseResponseModel<ProductModel>> data;
+    private MutableLiveData<BaseResponseModel<ProductModel>> data_by_date;
     private MutableLiveData<ProductModel> mSelectedItem = new MutableLiveData<>();
     private ProductReprository repository;
 
@@ -21,8 +22,12 @@ public class ProductViewModel extends ViewModel {
         data = repository.getDataProduct();
     }
 
-    public LiveData<BaseResponseModel<ProductModel>> getListProduct(){
+    public LiveData<BaseResponseModel<ProductModel>> getListProduct() {
         return data;
+    }
+
+    public LiveData<BaseResponseModel<ProductModel>> getListProductByDate() {
+        return data_by_date = repository.getAllProductByDate();
     }
 
     public void setSelectedItem(ProductModel model) {

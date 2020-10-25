@@ -18,7 +18,7 @@ import retrofit2.http.POST;
 
 public interface APIService {
 
-//    @Headers({
+    //    @Headers({
 //            "Content-Type: application/json",
 //            "Authorization: Basic YWRtaW46cXRjdGVrQDEyMwx=="
 //    })
@@ -27,6 +27,9 @@ public interface APIService {
 
     @POST(Consts.REST_ENDPOINT)
     Call<BaseResponseModel<ProductModel>> getAllProduct(@Body ApiParams params);
+
+    @POST(Consts.REST_ENDPOINT)
+    Call<BaseResponseModel<ProductModel>> getAllProductByDate(@Body ApiParams params);
 
 
     @POST(Consts.REST_ENDPOINT)

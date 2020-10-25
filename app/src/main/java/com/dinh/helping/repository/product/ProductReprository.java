@@ -46,4 +46,25 @@ public class ProductReprository  {
         });
         return data;
     }
+
+    public MutableLiveData<BaseResponseModel<ProductModel>> getAllProductByDate() {
+        MutableLiveData<BaseResponseModel<ProductModel>> data = new MutableLiveData<BaseResponseModel<ProductModel>>();
+        APIService apiService = ServiceGenerator.createService(APIService.class);
+        ApiParams params = new ApiParams();
+        params.detect = "product_by_date";
+        apiService.getAllProductByDate(params).enqueue(new Callback<BaseResponseModel<ProductModel>>() {
+            @Override
+            public void onResponse(Call<BaseResponseModel<ProductModel>> call, Response<BaseResponseModel<ProductModel>> response) {
+                if (response.isSuccessful()) {
+                    data.postValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponseModel<ProductModel>> call, Throwable t) {
+                Log.e("onFailure", t.getMessage());
+            }
+        });
+        return data;
+    }
 }

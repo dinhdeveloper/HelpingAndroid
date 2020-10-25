@@ -26,6 +26,7 @@ public class ProductModel extends BaseResponseModel {
     private String product_image;
     private String price_sale;
     private String quantity;
+    private String date_create;
     private String description;
     private String discount;
     private String location;
@@ -86,6 +87,14 @@ public class ProductModel extends BaseResponseModel {
 
     public void setQuantity(String quantity) {
         this.quantity = quantity;
+    }
+
+    public String getDate_create() {
+        return date_create;
+    }
+
+    public void setDate_create(String date_create) {
+        this.date_create = date_create;
     }
 
     public String getDescription() {

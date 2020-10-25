@@ -28,6 +28,11 @@ import com.dinh.helping.fragment.seller.SellerFragment;
 import com.fxn.BubbleTabBar;
 import com.fxn.OnBubbleClickListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 
 public class HomeActivity extends AppCompatActivity {
     boolean doubleBackToExitPressedOnce = false;
@@ -88,6 +93,101 @@ public class HomeActivity extends AppCompatActivity {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
+
+    public String tinhThoiGian(String dates) {
+        Date dateTime = null;
+        try {
+            dateTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(dates);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        StringBuffer times = new StringBuffer();
+        Date current = Calendar.getInstance().getTime();
+        long diffInSeconds = (current.getTime() - dateTime.getTime()) / 1000;
+
+    /*long diff[] = new long[]{0, 0, 0, 0};
+    /* sec *  diff[3] = (diffInSeconds >= 60 ? diffInSeconds % 60 : diffInSeconds);
+    /* min *  diff[2] = (diffInSeconds = (diffInSeconds / 60)) >= 60 ? diffInSeconds % 60 : diffInSeconds;
+    /* hours *  diff[1] = (diffInSeconds = (diffInSeconds / 60)) >= 24 ? diffInSeconds % 24 : diffInSeconds;
+    /* days * diff[0] = (diffInSeconds = (diffInSeconds / 24));
+     */
+        long sec = (diffInSeconds >= 60 ? diffInSeconds % 60 : diffInSeconds);
+        long min = (diffInSeconds = (diffInSeconds / 60)) >= 60 ? diffInSeconds % 60 : diffInSeconds;
+        long hrs = (diffInSeconds = (diffInSeconds / 60)) >= 24 ? diffInSeconds % 24 : diffInSeconds;
+        long days = (diffInSeconds = (diffInSeconds / 24)) >= 30 ? diffInSeconds % 30 : diffInSeconds;
+        long months = (diffInSeconds = (diffInSeconds / 30)) >= 12 ? diffInSeconds % 12 : diffInSeconds;
+        long years = (diffInSeconds = (diffInSeconds / 12));
+
+        if (years > 0) {
+            if (years == 1) {
+                times.append("1 năm");
+            } else {
+                times.append(years + " năm");
+            }
+            if (years <= 6 && months > 0) {
+                if (months == 1) {
+                    times.append(" ,một tháng");
+                } else {
+                    times.append(" ," + months + " tháng");
+                }
+            }
+        } else if (months > 0) {
+            if (months == 1) {
+                times.append("1 tháng");
+            } else {
+                times.append(months + " tháng");
+            }
+            if (months <= 6 && days > 0) {
+                if (days == 1) {
+                    times.append(" ,một ngày");
+                } else {
+                    times.append(" ," + days + " ngày");
+                }
+            }
+        } else if (days > 0) {
+            if (days == 1) {
+                times.append("1 ngày");
+            } else {
+                times.append(days + " ngày");
+            }
+            if (days <= 3 && hrs > 0) {
+                if (hrs == 1) {
+                    times.append(",một giờ");
+                } else {
+                    times.append(" ," + hrs + " giờ");
+                }
+            }
+        } else if (hrs > 0) {
+            if (hrs == 1) {
+                times.append("1 giờ");
+            } else {
+                times.append(hrs + " giờ");
+            }
+            if (min > 1) {
+                times.append(" ," + min + " phút");
+            }
+        } else if (min > 0) {
+            if (min == 1) {
+                times.append("1 phút");
+            } else {
+                times.append(min + " phút");
+            }
+            if (sec > 1) {
+                times.append(" ," + sec + " giây");
+            }
+        } else {
+            if (sec <= 1) {
+                times.append("khoảng một giây");
+            } else {
+                times.append(" khoảng " + sec + " giây");
+            }
+        }
+
+        times.append(" trước");
+
+        return times.toString();
     }
 
     public boolean defauFragment(DashboardFragment fragment) {

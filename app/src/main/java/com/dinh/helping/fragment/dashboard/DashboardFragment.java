@@ -1,7 +1,5 @@
 package com.dinh.helping.fragment.dashboard;
 
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,11 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -43,8 +40,12 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class DashboardFragment extends Fragment {
@@ -93,7 +94,7 @@ public class DashboardFragment extends Fragment {
 
     private void addEvents() {
         tvLoadAllCategory.setOnClickListener(view -> {
-            if (activity!=null){
+            if (activity != null) {
                 activity.changeToListCategory();
                 hideRootView();
                 activity.hideBottomBar();
@@ -101,13 +102,14 @@ public class DashboardFragment extends Fragment {
         });
 
         tvSearch.setOnClickListener(view -> {
-            if (activity!=null){
+            if (activity != null) {
                 activity.changeToSearchFragment();
                 hideRootView();
                 activity.hideBottomBar();
             }
         });
     }
+
     @SuppressWarnings("unused")
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onFragmentReloadEvent(BackFragment event) {
@@ -118,7 +120,8 @@ public class DashboardFragment extends Fragment {
     private void hideRootView() {
         layoutRootView.setVisibility(View.GONE);
     }
-    private void showRootView(){
+
+    private void showRootView() {
         layoutRootView.setVisibility(View.VISIBLE);
     }
 
@@ -165,9 +168,11 @@ public class DashboardFragment extends Fragment {
                 transaction.addToBackStack(null);
                 transaction.commit();
             });
+        });
 
-            //ListProduct
-            //loadMore(models);
+        productViewModel.getListProductByDate().observe(this,productModels -> {
+            ArrayList<ProductModel> models = new ArrayList<>();
+            models.addAll(Arrays.asList(productModels.getData()));
             productAdapter = new ListProductAdapter(activity, models);
             rcListProduct.setHasFixedSize(true);
             rcListProduct.setLayoutManager(new GridLayoutManager(activity, 2));
