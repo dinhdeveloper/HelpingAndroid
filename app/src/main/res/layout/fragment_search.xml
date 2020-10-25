@@ -78,6 +78,7 @@
         </LinearLayout>
 
         <ImageView
+            android:visibility="invisible"
             android:layout_alignParentRight="true"
             android:padding="8dp"
             android:layout_width="35dp"
@@ -91,8 +92,17 @@
     </RelativeLayout>
 
     <!--end toolbar-->
+
+    <include layout="@layout/layout_list_item_location"/>
     <include
         android:id="@+id/layout_empty"
         layout="@layout/layout_empty"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcListProductSearch"
+        android:visibility="gone"
+        android:layout_margin="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

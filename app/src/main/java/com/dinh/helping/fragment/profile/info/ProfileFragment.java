@@ -197,6 +197,7 @@ public class ProfileFragment extends Fragment {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onFragmentReloadEvent(BackLoginFragment event) {
         showRootView();
+        activity.showBottomBar();
         addEvents();
     }
 

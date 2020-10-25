@@ -19,8 +19,8 @@ public class SearchViewModel extends ViewModel {
         repository = SearchRepository.getInstance();
     }
 
-    public void searchProduct(String product_name) {
-        data = repository.getListSearchProduct(product_name);
+    public void searchProduct(String product_name,String city_id,String district_id,String ward_id) {
+        data = repository.getListSearchProduct(product_name,city_id,district_id,ward_id);
     }
 
     public MutableLiveData<BaseResponseModel<ProductModel>> getListSearch(){
