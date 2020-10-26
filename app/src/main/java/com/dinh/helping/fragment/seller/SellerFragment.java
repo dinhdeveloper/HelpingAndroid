@@ -1,6 +1,7 @@
 package com.dinh.helping.fragment.seller;
 
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,9 +16,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.canhdinh.lib.roundview.RoundTextView;
 import com.canhdinh.lib.searchdialog.SimpleSearchDialogCompat;
 import com.canhdinh.lib.searchdialog.core.SearchResultListener;
+import com.canhdinh.lib.selectimage.BSImagePicker;
 import com.dinh.helping.R;
 import com.dinh.helping.activity.HomeActivity;
 import com.dinh.helping.model.BaseResponseModel;
@@ -32,8 +35,10 @@ import com.dinh.helping.viewmodel.city_district.WardViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
-public class SellerFragment extends Fragment {
+public class SellerFragment extends Fragment implements BSImagePicker.OnSingleImageSelectedListener,
+        BSImagePicker.OnMultiImageSelectedListener, BSImagePicker.ImageLoaderDelegate, BSImagePicker.OnSelectImageCancelledListener {
     private ImageView btnBackHeader;
     private TextView tvTitleHeader;
 
@@ -49,6 +54,7 @@ public class SellerFragment extends Fragment {
 
     String city_id;
     String district_id;
+    String imageProduct;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -95,6 +101,12 @@ public class SellerFragment extends Fragment {
 
         tvWard.setOnClickListener(view -> {
             showPopupChooseWard(district_id);
+        });
+
+        tvChooseImage.setOnClickListener(view -> {
+            BSImagePicker pickerDialog = new BSImagePicker.Builder("com.dinh.helping.fileprovider")
+                    .build();
+            pickerDialog.show(getChildFragmentManager(), "picker");
         });
     }
 
@@ -195,5 +207,26 @@ public class SellerFragment extends Fragment {
         edtStreet = view.findViewById(R.id.edtStreet);
         edtPrice = view.findViewById(R.id.edtPrice);
         imvProduct = view.findViewById(R.id.imvProduct);
+    }
+
+    @Override
+    public void loadImage(Uri imageUri, ImageView ivImage) {
+        Glide.with(activity).load(imageUri).into(ivImage);
+    }
+
+    @Override
+    public void onMultiImageSelected(List<Uri> uriList, String tag) {
+
+    }
+
+    @Override
+    public void onCancelled(boolean isMultiSelecting, String tag) {
+
+    }
+
+    @Override
+    public void onSingleImageSelected(Uri uri, String tag) {
+        imageProduct = uri.getPath();
+        Glide.with(activity).load(uri).into(imvProduct);
     }
 }
