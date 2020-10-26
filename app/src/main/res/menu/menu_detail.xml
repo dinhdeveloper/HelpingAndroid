@@ -11,4 +11,16 @@
         android:icon="@drawable/ic_baseline_message_24"
         android:title="Gửi SMS"
         android:iconTint="@color/color_success"/>
+
+    <item
+        android:id="@+id/zalo"
+        android:icon="@drawable/ic_zalo_seeklogo"
+        android:title="Chat Zalo"
+        android:iconTint="@color/color_success"/>
+
+    <item
+        android:id="@+id/mess"
+        android:icon="@drawable/ic_mess_1"
+        android:title="Chat Messenger"
+        android:iconTint="@color/color_success"/>
 </menu>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_marginVertical="@dimen/dp10"
+    android:paddingHorizontal="@dimen/dp20"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content">
+
+    <com.canhdinh.lib.roundview.RoundLinearLayout
+        android:paddingBottom="@dimen/dp10"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <com.canhdinh.lib.roundview.RoundTextView
+            android:id="@+id/tvCity"
+            android:layout_margin="5dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:drawableRight="@drawable/ic_bottom_down"
+            android:drawablePadding="@dimen/dp5"
+            android:gravity="center"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            app:rv_strokeColor="@color/gray"
+            app:rv_strokeWidth="1sp"
+            app:rv_radius="@dimen/dp5"
+            android:text="Thành Phố" />
+
+        <com.canhdinh.lib.roundview.RoundTextView
+            android:id="@+id/tvDistrict"
+            android:layout_margin="5dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:drawableRight="@drawable/ic_bottom_down"
+            android:drawablePadding="@dimen/dp5"
+            android:gravity="center"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            app:rv_strokeColor="@color/gray"
+            app:rv_strokeWidth="1sp"
+            app:rv_radius="@dimen/dp5"
+            android:text="Quận" />
+
+        <com.canhdinh.lib.roundview.RoundTextView
+            android:id="@+id/tvWard"
+            android:layout_margin="5dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:drawableRight="@drawable/ic_bottom_down"
+            android:drawablePadding="@dimen/dp5"
+            android:gravity="center"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            app:rv_strokeColor="@color/gray"
+            app:rv_strokeWidth="1sp"
+            app:rv_radius="@dimen/dp5"
+            android:text="Phường" />
+
+        <TextView
+            android:id="@+id/btnSearch"
+            android:layout_marginHorizontal="@dimen/dp5"
+            android:padding="@dimen/dp5"
+            android:text="Tìm kiếm"
+            android:textStyle="bold"
+            android:textColor="@color/color_text_admin"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </com.canhdinh.lib.roundview.RoundLinearLayout>
+
+</HorizontalScrollView>

@@ -23,9 +23,11 @@ public class ProductModel extends BaseResponseModel {
     private String category_id;
     private String category_name;
     private String product_name;
+    private String phone_contact;
     private String product_image;
     private String price_sale;
     private String quantity;
+    private String date_create;
     private String description;
     private String discount;
     private String location;
@@ -64,6 +66,14 @@ public class ProductModel extends BaseResponseModel {
         this.product_name = product_name;
     }
 
+    public String getPhone_contact() {
+        return phone_contact;
+    }
+
+    public void setPhone_contact(String phone_contact) {
+        this.phone_contact = phone_contact;
+    }
+
     public String getProduct_image() {
         return product_image;
     }
@@ -86,6 +96,14 @@ public class ProductModel extends BaseResponseModel {
 
     public void setQuantity(String quantity) {
         this.quantity = quantity;
+    }
+
+    public String getDate_create() {
+        return date_create;
+    }
+
+    public void setDate_create(String date_create) {
+        this.date_create = date_create;
     }
 
     public String getDescription() {

@@ -2,6 +2,7 @@ package com.dinh.helping.fragment.profile.verify;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -28,8 +29,11 @@ import com.dinh.helping.R;
 import com.dinh.helping.activity.HomeActivity;
 import com.dinh.helping.event.BackFragment;
 import com.dinh.helping.viewmodel.customer.CustomerViewModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
@@ -98,6 +102,7 @@ public class VeryCodeFragment extends Fragment {
                 public void onVerificationCompleted(PhoneAuthCredential credential) {
                     if (credential != null) {
                         smsCode = credential.getSmsCode();
+                        Log.e("AAAAAAAAAA","AAA"+credential.getSmsCode());
                     }
                 }
 
@@ -127,15 +132,16 @@ public class VeryCodeFragment extends Fragment {
                         tvPhoneInput.setText("Mã code gửi cho "+edtPhoneNumber.getText().toString());
 
                         btnVerify.setOnClickListener(view1 -> {
-                            if (pinview.getValue().equalsIgnoreCase(smsCode)){
-                                if (activity != null) {
-                                    viewModel.setPhoneNumber(edtPhoneNumber.getText().toString());
-                                    activity.changeToSignUpFragment();
-                                }
-                            }
-                            else {
-                                Toast.makeText(activity, "Nhập sai mã code", Toast.LENGTH_SHORT).show();
-                            }
+                            signInWithPhoneAuthCredential(pinview.getValue());
+//                            if (pinview.getValue().toString().equalsIgnoreCase(smsCode.toString())){
+//                                if (activity != null) {
+//                                    viewModel.setPhoneNumber(edtPhoneNumber.getText().toString());
+//                                    activity.changeToSignUpFragment();
+//                                }
+//                            }
+//                            else {
+//                                Toast.makeText(activity, "Nhập sai mã code", Toast.LENGTH_SHORT).show();
+//                            }
                         });
                     }
                 }
@@ -155,6 +161,21 @@ public class VeryCodeFragment extends Fragment {
         }catch (Exception e){
             Log.e("Exception",e.getMessage());
         }
+    }
+
+    private void signInWithPhoneAuthCredential(String smsCode) {
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationID, smsCode);
+        mAuth.signInWithCredential(credential).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Toast.makeText(activity, "Mã xác minh hợp lệ", Toast.LENGTH_SHORT).show();
+                if (activity!=null){
+                    viewModel.setPhoneNumber(edtPhoneNumber.getText().toString());
+                    activity.changeToSignUpFragment();
+                }
+            } else {
+                Toast.makeText(activity, "Mã xác minh không hợp lệ", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

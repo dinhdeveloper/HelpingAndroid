@@ -92,8 +92,8 @@
                 android:paddingHorizontal="@dimen/dp20">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     app:cardCornerRadius="@dimen/dp5"
                     app:cardElevation="2dp">
 
@@ -110,7 +110,7 @@
                     android:paddingHorizontal="@dimen/dp20"
                     android:text="Xin chào bạn"
                     android:textColor="@color/black"
-                    android:textSize="25sp"
+                    android:textSize="@dimen/dp20"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
@@ -128,7 +128,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginVertical="@dimen/dp10"
                 android:background="@color/bg_login"
                 android:gravity="start|center"
                 android:hint="Số điện thoại"
@@ -158,7 +157,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginVertical="@dimen/dp10"
                 android:background="@color/bg_login"
                 android:gravity="start|center"
                 android:hint="Mật khẩu"

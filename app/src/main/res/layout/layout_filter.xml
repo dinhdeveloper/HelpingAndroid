@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutBackgroundFilter"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toLeftOf="@+id/layoutActionButton"
+            android:background="@drawable/border_shape_white_layout_toolbar_search_contact"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:padding="7dp"
+                android:src="@drawable/ic_search"
+                android:visibility="visible" />
+
+            <EditText
+                android:id="@+id/edtFilter"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:enabled="true"
+                android:hint="Tìm kiếm"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/imvClearSearch"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:padding="@dimen/dp10"
+                android:src="@drawable/close"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+<!--            <ImageView-->
+<!--                android:id="@+id/btnAction2"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:background="?attr/selectableItemBackground"-->
+<!--                android:clickable="true"-->
+<!--                android:padding="7dp"-->
+<!--                android:src="@drawable/ic_dinh_filter_admin"-->
+<!--                android:visibility="gone"-->
+<!--                tools:visibility="visible" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/btnAction1"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:background="?attr/selectableItemBackground"-->
+<!--                android:clickable="true"-->
+<!--                android:padding="7dp"-->
+<!--                android:src="@drawable/ic_add_module"-->
+<!--                android:visibility="visible"-->
+<!--                tools:visibility="visible"-->
+<!--                app:tint="@color/color_orange" />-->
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

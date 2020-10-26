@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -16,15 +17,17 @@ import android.widget.TextView;
 
 import com.dinh.helping.R;
 import com.dinh.helping.adapter.slider.ViewsSliderAdapter;
+import com.dinh.helping.helper.SharePrefs;
 
 public class SplashActivity extends AppCompatActivity {
     private ViewPager2 viewPager;
     private LinearLayout layoutDots;
-    private Button btnNext,btnSkip;
+    private Button btnNext, btnSkip;
 
     private ViewsSliderAdapter mAdapter;
     private TextView[] dots;
     private int[] layouts;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -42,8 +45,13 @@ public class SplashActivity extends AppCompatActivity {
             int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
             decorView.setSystemUiVisibility(uiOptions);
         }
-        addControls();
-        init();
+        SharePrefs sharePrefs = new SharePrefs(getApplication());
+        if (sharePrefs.getUserModel() != null) {
+            launchHomeScreen();
+        } else {
+            addControls();
+            init();
+        }
     }
 
     private void addControls() {
@@ -62,7 +70,7 @@ public class SplashActivity extends AppCompatActivity {
                 R.layout.slide_three,
                 R.layout.slide_four};
 
-        mAdapter = new ViewsSliderAdapter(SplashActivity.this,layouts);
+        mAdapter = new ViewsSliderAdapter(SplashActivity.this, layouts);
         viewPager.setAdapter(mAdapter);
         viewPager.registerOnPageChangeCallback(pageChangeCallback);
         btnSkip.setOnClickListener(v -> launchHomeScreen());

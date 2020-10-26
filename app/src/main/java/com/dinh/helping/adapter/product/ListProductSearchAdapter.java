@@ -7,16 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.canhdinh.lib.labelview.LabelImageView;
-import com.canhdinh.lib.roundview.RoundTextView;
 import com.dinh.helping.R;
 import com.dinh.helping.helper.Consts;
 import com.dinh.helping.model.ProductModel;
@@ -27,60 +23,51 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class ListProductAdapter extends RecyclerView.Adapter<ListProductAdapter.ViewHolder> {
+public class ListProductSearchAdapter extends RecyclerView.Adapter<ListProductSearchAdapter.ViewHolder> {
 
-    private Context context;
     private List<ProductModel> list;
+    private Context context;
+    private ListProductSearchListener listener;
 
-    private ListProductListener listener;
-
-    public interface ListProductListener {
+    public interface ListProductSearchListener {
         void onClickItem(ProductModel model);
     }
 
-    public void setListener(ListProductListener listener) {
+    public void setListener(ListProductSearchListener listener) {
         this.listener = listener;
     }
 
-    public ListProductAdapter(Context context, List<ProductModel> list) {
-        this.context = context;
+    public ListProductSearchAdapter(Context context, List<ProductModel> list) {
         this.list = list;
+        this.context = context;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.custom_item_product_new, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.custom_item_result_search, parent, false);
+
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ProductModel model = list.get(position);
-
-        if (!TextUtils.isEmpty(model.getDate_create())) {
-            tinhThoiGian(holder.tvTimes, model.getDate_create());
+        if (!TextUtils.isEmpty(model.getProduct_image())) {
+            Glide.with(context).load(Consts.HOST_API + model.getProduct_image()).error(R.drawable.no_image_full).into(holder.imvProduct);
         }
-
-        if (!TextUtils.isEmpty(model.getProduct_name())) {
+        if (!TextUtils.isEmpty(model.getProduct_name())){
             holder.tvName.setText(model.getProduct_name());
         }
-        if (!TextUtils.isEmpty(model.getPrice_sale())) {
-            holder.tvPrice.setText(Consts.decimalFormat.format(Integer.valueOf(model.getPrice_sale())) + " VNĐ");
+        if (!TextUtils.isEmpty(model.getPrice_sale())){
+            holder.tvPrice.setText(Consts.decimalFormat.format(Long.valueOf(model.getPrice_sale()))+" VNĐ");
         }
         if (!TextUtils.isEmpty(model.getLocation())) {
             holder.tvLocation.setText(model.getLocation());
         }
-        if (!TextUtils.isEmpty(model.getProduct_image())) {
-            Glide.with(context).load(Consts.HOST_API + model.getProduct_image()).error(R.drawable.no_image_full).into(holder.imvCategory);
-            holder.progressBar.setVisibility(View.GONE);
+        if (!TextUtils.isEmpty(model.getDate_create())) {
+            tinhThoiGian(holder.tvTimes, model.getDate_create());
         }
-
-        holder.layout_item.setOnClickListener(view -> {
-            if (listener != null)
-                listener.onClickItem(model);
-        });
-
     }
 
     private void tinhThoiGian(TextView tvTimes, String date_create) {
@@ -180,27 +167,25 @@ public class ListProductAdapter extends RecyclerView.Adapter<ListProductAdapter.
 
     @Override
     public int getItemCount() {
-        return list != null ? list.size() : 0;
+        return list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        CardView layout_item;
-        ImageView imvCategory;
-        TextView tvName, tvPrice, tvLocation, tvTimes;
-        ProgressBar progressBar;
+        private LinearLayout layout_item;
+        private ImageView imvProduct;
+        private TextView tvName,tvTimes;
+        private TextView tvLocation;
+        private TextView tvPrice;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             layout_item = itemView.findViewById(R.id.layout_item);
-            imvCategory = itemView.findViewById(R.id.imvCategory);
+            imvProduct = itemView.findViewById(R.id.imvProduct);
             tvName = itemView.findViewById(R.id.tvName);
-            tvPrice = itemView.findViewById(R.id.tvPrice);
             tvTimes = itemView.findViewById(R.id.tvTimes);
             tvLocation = itemView.findViewById(R.id.tvLocation);
-            progressBar = itemView.findViewById(R.id.progressBar);
-
+            tvPrice = itemView.findViewById(R.id.tvPrice);
         }
     }
-
 }
