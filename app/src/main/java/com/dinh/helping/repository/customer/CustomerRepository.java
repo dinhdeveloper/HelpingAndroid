@@ -47,7 +47,9 @@ public class CustomerRepository {
         builder.addFormDataPart("full_name", model.getFull_name());
         builder.addFormDataPart("phone_number", model.getPhone_number());
         builder.addFormDataPart("address", model.getAddress());
-        builder.addFormDataPart("sex", model.getGender());
+        if (!TextUtils.isEmpty(model.getGender())){
+            builder.addFormDataPart("sex", model.getGender());
+        }
         builder.addFormDataPart("password", model.getPassword());
         builder.addFormDataPart("detect", "register")
                 .setType(MultipartBody.FORM);
@@ -85,6 +87,28 @@ public class CustomerRepository {
 
             @Override
             public void onFailure(Call<BaseResponseModel<UserResponseModel>> call, Throwable t) {
+                Log.e("onFailure",t.getMessage());
+            }
+        });
+
+        return data;
+    }
+
+    public MutableLiveData<BaseResponseModel> checkPhone(String phone) {
+        MutableLiveData<BaseResponseModel> data = new MutableLiveData<BaseResponseModel>();
+        APIService apiService = ServiceGenerator.createService(APIService.class);
+        ApiParams params = new ApiParams();
+        params.detect = "check_login";
+        params.phone_number = phone;
+
+        apiService.checkLogin(params).enqueue(new Callback<BaseResponseModel>() {
+            @Override
+            public void onResponse(Call<BaseResponseModel> call, Response<BaseResponseModel> response) {
+                data.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponseModel> call, Throwable t) {
                 Log.e("onFailure",t.getMessage());
             }
         });

@@ -4,7 +4,7 @@
 <!--    <corners android:radius="@dimen/dp5"/>-->
     <padding android:bottom="@dimen/dp5"/>
     <gradient
-        android:endColor="#FBC7D4"
+        android:endColor="#E3FE3C"
         android:angle="0"
-        android:startColor="#9796F0"/>
+        android:startColor="#FEA53C"/>
 </shape>

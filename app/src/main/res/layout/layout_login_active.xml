@@ -1,84 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.canhdinh.lib.roundview.RoundLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.canhdinh.lib.roundview.RoundRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:rv_backgroundColor="@color/colorPrimary"
-    android:visibility="gone"
-    tools:visibility="visible"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:visibility="visible">
 
-    <include layout="@layout/layout_header"/>
+    <include layout="@layout/layout_header_2" />
 
-    <com.canhdinh.lib.roundview.RoundRelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <com.canhdinh.lib.roundview.RoundLinearLayout
-            android:layout_marginTop="60dp"
-            app:rv_backgroundColor="@color/white"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="140dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="@dimen/dp10"
+        android:outlineAmbientShadowColor="@color/black"
+        android:layout_centerHorizontal="true">
+        <ImageView
+            android:layout_gravity="center"
+            android:src="@drawable/icon_user_login"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:rv_radius_top_right="25dp"
-            android:paddingTop="50dp"
-            android:orientation="vertical"
-            app:rv_radius_top_left="25dp">
-            <TextView
-                android:paddingVertical="@dimen/dp5"
-                android:id="@+id/tvName"
-                android:gravity="center"
-                android:textColor="@color/black"
-                tools:text="Tran canh dinh"
-                android:textSize="22sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:id="@+id/tvLocation"
-                android:gravity="center"
-                android:textColor="@color/color_text_admin"
-                tools:text="Ho Chi Minh"
-                android:textSize="16sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <View
-                android:layout_marginVertical="@dimen/dp10"
-                android:background="@color/color_disible"
-                android:layout_width="match_parent"
-                android:layout_height="2sp"/>
-            <TextView
-                android:layout_marginHorizontal="@dimen/dp10"
-                android:textStyle="bold"
-                android:text="Sản phẩm của bạn"
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                android:paddingVertical="@dimen/dp5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcListProductByCus"
-                android:layout_margin="@dimen/dp10"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/custom_item_customer"/>
-        </com.canhdinh.lib.roundview.RoundLinearLayout>
-
-        <androidx.cardview.widget.CardView
+            android:layout_height="match_parent"/>
+    </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/tvHello"
+            android:text="Chào mừng bạn quay trở lại"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textStyle="normal"
+            android:textColor="@color/text"
             android:layout_marginTop="@dimen/dp10"
-            app:cardCornerRadius="@dimen/dp5"
             android:layout_centerHorizontal="true"
-            android:layout_width="100dp"
-            android:layout_height="100dp">
-            <ImageView
-                android:id="@+id/imvProfile"
-                android:src="@drawable/person_customer"
+            android:layout_below="@+id/cardview"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/dp20"
+        android:layout_below="@+id/tvHello"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:hint="Số điện thoại"
+            android:paddingHorizontal="@dimen/dp10"
+            android:paddingVertical="@dimen/dp10"
+            android:layout_marginHorizontal="@dimen/dp20"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginHorizontal="20dp"
+            android:background="@color/gray"
+            android:layout_width="match_parent"
+            android:layout_height="1sp"/>
+
+        <LinearLayout
+            android:layout_marginHorizontal="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp20"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_weight="1"
+                android:hint="Mật khẩu"
+                android:paddingHorizontal="@dimen/dp10"
+                android:paddingVertical="@dimen/dp10"
+                android:background="@color/white"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:src="@drawable/ic_visible_on"
+                android:background="@color/white"
+                android:layout_width="wrap_content"
+                android:paddingLeft="@dimen/dp20"
                 android:layout_height="match_parent"/>
-        </androidx.cardview.widget.CardView>
+        </LinearLayout>
+        <View
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginHorizontal="20dp"
+            android:background="@color/gray"
+            android:layout_width="match_parent"
+            android:layout_height="1sp"/>
 
-    </com.canhdinh.lib.roundview.RoundRelativeLayout>
+        <TextView
+            android:layout_gravity="end"
+            android:gravity="center"
+            android:textColor="@color/color_login"
+            android:text="Quên mật khẩu"
+            android:paddingHorizontal="@dimen/dp20"
+            android:paddingVertical="@dimen/dp15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
+        <com.canhdinh.lib.roundview.RoundTextView
+            app:rv_radius="8dp"
+            android:textColor="@color/white"
+            android:layout_marginHorizontal="40dp"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:text="Đăng nhập"
+            app:rv_backgroundColor="@color/color_login"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
 
-</com.canhdinh.lib.roundview.RoundLinearLayout>
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="40dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp10"/>
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/dp10"
+            android:weightSum="3"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:gravity="end"
+                android:layout_weight="2"
+                android:text="Nếu bạn chưa có tài khoản?"
+                android:padding="@dimen/dp10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:textColor="@color/color_login"
+                android:gravity="start"
+                android:layout_weight="1"
+                android:text="Đăng ký"
+                android:padding="@dimen/dp10"
+                android:layout_width="0dp"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</com.canhdinh.lib.roundview.RoundRelativeLayout>

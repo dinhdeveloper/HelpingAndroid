@@ -1,60 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.canhdinh.lib.roundview.RoundLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:rv_backgroundPressColor="@color/bg_"
     tools:context=".fragment.product_detail.ProductDetailFragment">
 
     <include layout="@layout/layout_header" />
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/navBottom"
-        android:layout_below="@+id/layoutBackgroundHeader"
-        android:orientation="vertical">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_slider_mainActivity"
+        android:layout_height="match_parent">
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true">
-
-            <com.canhdinh.lib.smarteist.autoimageslider.SliderView
-                android:id="@+id/imageSlider"
+            android:layout_height="match_parent">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_slider_mainActivity"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                app:sliderAnimationDuration="600"
-                app:sliderAutoCycleDirection="back_and_forth"
-                app:sliderIndicatorAnimationDuration="600"
-                app:sliderIndicatorEnabled="true"
-                app:sliderIndicatorGravity="center_horizontal|bottom"
-                app:sliderIndicatorMargin="15dp"
-                app:sliderIndicatorOrientation="horizontal"
-                app:sliderIndicatorPadding="3dp"
-                app:sliderIndicatorRadius="2dp"
-                app:sliderIndicatorSelectedColor="#5A5A5A"
-                app:sliderIndicatorUnselectedColor="#96F12C"
-                app:sliderScrollTimeInSec="1" />
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true">
 
-        </androidx.cardview.widget.CardView>
-        <!--end image photo-->
-        <TextView
-            android:id="@+id/tvName"
-            android:paddingHorizontal="@dimen/dp10"
-            android:paddingVertical="@dimen/dp15"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+                <com.canhdinh.lib.smarteist.autoimageslider.SliderView
+                    android:id="@+id/imageSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    app:sliderAnimationDuration="600"
+                    app:sliderAutoCycleDirection="back_and_forth"
+                    app:sliderIndicatorAnimationDuration="600"
+                    app:sliderIndicatorEnabled="true"
+                    app:sliderIndicatorGravity="center_horizontal|bottom"
+                    app:sliderIndicatorMargin="15dp"
+                    app:sliderIndicatorOrientation="horizontal"
+                    app:sliderIndicatorPadding="3dp"
+                    app:sliderIndicatorRadius="2dp"
+                    app:sliderIndicatorSelectedColor="#5A5A5A"
+                    app:sliderIndicatorUnselectedColor="#96F12C"
+                    app:sliderScrollTimeInSec="1" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/navBottom"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        app:menu="@menu/menu_detail" />
-</RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <!--end image photo-->
+            <com.canhdinh.lib.roundview.RoundLinearLayout
+                android:layout_marginTop="-50dp"
+                app:rv_radius_top_left="50dp"
+                android:layout_below="@+id/cv_slider_mainActivity"
+                android:background="@color/bg_"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </com.canhdinh.lib.roundview.RoundLinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</com.canhdinh.lib.roundview.RoundLinearLayout>

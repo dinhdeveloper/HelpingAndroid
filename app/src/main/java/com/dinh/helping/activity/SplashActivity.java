@@ -4,10 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.TextUtils;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -18,6 +23,9 @@ import android.widget.TextView;
 import com.dinh.helping.R;
 import com.dinh.helping.adapter.slider.ViewsSliderAdapter;
 import com.dinh.helping.helper.SharePrefs;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class SplashActivity extends AppCompatActivity {
     private ViewPager2 viewPager;
@@ -34,6 +42,21 @@ public class SplashActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+//        try {
+//            PackageInfo info = getPackageManager().getPackageInfo(
+//                    "com.dinh.helping",                  //Insert your own package name.
+//                    PackageManager.GET_SIGNATURES);
+//            for (Signature signature : info.signatures) {
+//                MessageDigest md = MessageDigest.getInstance("SHA");
+//                md.update(signature.toByteArray());
+//                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+//            }
+//        } catch (PackageManager.NameNotFoundException e) {
+//
+//        } catch (NoSuchAlgorithmException e) {
+//
+//        }
 
         //fullscreen
         if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) { // lower api

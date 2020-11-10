@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/dp20"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/dp10">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/dp10"
+            android:src="@drawable/ic_like_1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_next"
+                android:fontFamily="@font/gotu_regular"
+                android:padding="@dimen/dp5"
+                android:text="Sản phẩm yêu thích"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <View
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:background="@color/gray" />
+        </LinearLayout>
+    </LinearLayout>
+    <!--end item-->
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/dp10">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/dp10"
+            android:src="@drawable/ic_setting_1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_next"
+                android:fontFamily="@font/gotu_regular"
+                android:padding="@dimen/dp5"
+                android:text="Thiết lập tài khoản"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <View
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:background="@color/gray" />
+        </LinearLayout>
+    </LinearLayout>
+    <!--end item-->
+    <LinearLayout
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/dp10">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/dp10"
+            android:src="@drawable/ic_help_1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_next"
+                android:fontFamily="@font/gotu_regular"
+                android:padding="@dimen/dp5"
+                android:text="Trợ giúp và phản hồi"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <View
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:background="@color/gray" />
+        </LinearLayout>
+    </LinearLayout>
+    <!--end item-->
+    <LinearLayout
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/dp10">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/dp10"
+            android:src="@drawable/ic_share_1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_next"
+                android:fontFamily="@font/gotu_regular"
+                android:padding="@dimen/dp5"
+                android:text="Chia sẽ với bạn bè"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <View
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:background="@color/gray" />
+        </LinearLayout>
+    </LinearLayout>
+    <!--end item-->
+    <LinearLayout
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/dp10">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/dp10"
+            android:src="@drawable/ic_logout_1" />
+
+        <LinearLayout
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_next"
+                android:fontFamily="@font/gotu_regular"
+                android:padding="@dimen/dp5"
+                android:text="Đăng xuất"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <View
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:background="@color/gray" />
+        </LinearLayout>
+    </LinearLayout>
+    <!--end item-->
+</LinearLayout>

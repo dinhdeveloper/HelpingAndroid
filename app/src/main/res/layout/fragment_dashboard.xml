@@ -11,17 +11,21 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:background="@color/colorPrimary">
+        android:background="@color/white">
 
         <com.canhdinh.lib.roundview.RoundLinearLayout
-            app:rv_radius="5dp"
+            app:rv_radius_top_left="20dp"
+            app:rv_radius_bottom_left="20dp"
+            app:rv_radius_bottom_right="20dp"
+            app:rv_strokeWidth="1sp"
+            app:rv_strokeColor="@color/gray"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             app:rv_backgroundColor="@color/white"
             android:orientation="horizontal"
             android:gravity="center"
-            android:layout_height="38dp">
+            android:layout_height="40dp">
             <ImageView
                 android:layout_marginHorizontal="@dimen/dp5"
                 android:paddingHorizontal="@dimen/dp5"
@@ -30,6 +34,7 @@
                 android:layout_height="match_parent"/>
             <TextView
                 android:id="@+id/tvSearch"
+                android:fontFamily="@font/rambla_regular"
                 android:gravity="start|center"
                 android:layout_gravity="center"
                 android:hint="Bạn muốn tìm gì?"
@@ -48,6 +53,7 @@
         android:layout_gravity="center"
         android:orientation="vertical"
         app:shimmer_duration="800"
+        tools:visibility="gone"
         tools:ignore="MissingConstraints">
         <include layout="@layout/custom_main_animation" />
     </com.facebook.shimmer.ShimmerFrameLayout>
@@ -67,8 +73,9 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <com.canhdinh.lib.roundview.RoundRelativeLayout
                 android:id="@+id/layoutHeaderSlide"
+                app:rv_radius="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginLeft="20dp"
@@ -81,7 +88,7 @@
                     android:layout_height="match_parent"
                     android:contentDescription="TODO"
                     android:scaleType="fitXY"
-                    android:src="@drawable/imvslide"
+                    android:src="@drawable/banner2"
                     android:visibility="visible"
                     tools:visibility="visible" />
 
@@ -120,67 +127,40 @@
                         layout="@layout/layout_shimmer_slider_dashboard" />
                 </RelativeLayout>
 
-            </RelativeLayout>
+            </com.canhdinh.lib.roundview.RoundRelativeLayout>
             <!--end viewpayger-->
-            <LinearLayout
+
+            <RelativeLayout
+                android:layout_marginTop="@dimen/dp20"
+                android:layout_marginHorizontal="@dimen/dp10"
+                android:gravity="center"
+                android:layout_gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-<!--                <include layout="@layout/layout_city_district"/>-->
-
-                <LinearLayout
+                android:layout_height="wrap_content">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@id/rcListCategory"
+                    android:nestedScrollingEnabled="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/dp5"
-                    android:layout_marginTop="@dimen/dp20"
-                    android:orientation="horizontal"
-                    android:paddingVertical="@dimen/dp5">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="start|center"
-                        android:text="Khám phá danh mục"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/dp20"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvLoadAllCategory"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_marginHorizontal="@dimen/dp10"
-                        android:layout_marginBottom="2dp"
-                        android:layout_weight="2"
-                        android:gravity="end|center|bottom"
-                        android:text="Xem tất cả"
-                        android:textColor="@color/color_text_admin"
-                        android:textSize="13sp"
-                        android:textStyle="normal" />
-                </LinearLayout>
-
-                <include layout="@layout/layout_category" />
-            </LinearLayout>
-            <!--end layout category-->
+                    tools:listitem="@layout/custom_item_category_new"
+                    tools:itemCount="2"/>
+            </RelativeLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp20"
-                android:background="@drawable/custom_background_item_product_new"
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:background="@drawable/custom_background_item_product_new"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/dp5"
+                    android:paddingHorizontal="@dimen/dp5"
                     android:orientation="horizontal"
-                    android:paddingVertical="@dimen/dp5">
+                    android:paddingVertical="8dp">
 
                     <TextView
+                        android:fontFamily="@font/gotu_regular"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
@@ -188,13 +168,14 @@
                         android:drawableLeft="@drawable/ic_fire"
                         android:drawablePadding="@dimen/dp10"
                         android:gravity="start|center"
-                        android:text="Giảm giá nhiều nhất"
+                        android:text="Sản phẩm còn mới"
                         android:textColor="@color/white"
                         android:textSize="@dimen/dp20"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvLoadDiscount"
+                        android:fontFamily="@font/gotu_regular"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
@@ -212,6 +193,9 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcListProductDiscount"
+                    android:background="@color/bg_"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingVertical="@dimen/dp15"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     tools:listitem="@layout/custom_item_product_discount" />
@@ -220,30 +204,32 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp20"
                 android:background="@color/bg_home"
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:background="@drawable/custom_background_item_product_new"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/dp5"
+                    android:paddingHorizontal="@dimen/dp5"
                     android:orientation="horizontal"
-                    android:paddingVertical="@dimen/dp5">
+                    android:paddingVertical="8dp">
 
                     <TextView
+                        android:fontFamily="@font/gotu_regular"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="start|center"
                         android:text="Tin đăng mới"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/dp20"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvLoadAllProduct"
+                        android:fontFamily="@font/rambla_regular"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
@@ -252,6 +238,8 @@
                         android:layout_weight="2"
                         android:gravity="end|center|bottom"
                         android:text="Xem thêm >"
+                        android:visibility="gone"
+                        tools:visibility="visible"
                         android:textColor="@color/color_text_admin"
                         android:textSize="13sp"
                         android:textStyle="normal" />
@@ -259,6 +247,8 @@
 
                 <com.canhdinh.lib.recyclerview.XRecyclerView
                     android:id="@+id/rcListProduct"
+                    android:background="@color/bg_"
+                    android:paddingHorizontal="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:nestedScrollingEnabled="false"

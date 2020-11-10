@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">Helping</string>
+    <string name="app_name">Buler</string>
+    <string name="ssl">tUw2F8+ETK5kjylFABKlr5QLrBk=</string>
+    <string name="facebook_app_id">385345685917388</string>
+    <string name="fb_login_protocol_scheme">fb385345685917388</string>
+
 
     <string name="next">Tiếp</string>
     <string name="skip">Bỏ qua</string>

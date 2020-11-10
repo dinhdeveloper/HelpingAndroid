@@ -63,7 +63,7 @@ public class ListCategoryFragment extends Fragment {
             rcListCategory.setAdapter(categoryAdapter);
             categoryAdapter.notifyDataSetChanged();
             categoryAdapter.setListener(model1 -> {
-
+                viewModel.setListProductByCategory(model1);
             });
         });
     }

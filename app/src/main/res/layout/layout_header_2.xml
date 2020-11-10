@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutBackgroundHeader"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:background="@drawable/hinh_login">
+
+    <ImageView
+        android:id="@+id/btnBackHeader"
+        android:padding="@dimen/dp5"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="@dimen/dp20"
+        android:layout_marginLeft="10dp"
+        android:contentDescription="TODO"
+        android:src="@drawable/ic_back_login"/>
+
+    <LinearLayout
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTitleHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="Title" />
+
+        <TextView
+            android:id="@+id/tvSubtitleHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:visibility="gone"
+            tools:text="Subtitle"
+            tools:visibility="visible" />
+    </LinearLayout>
+
+</RelativeLayout>

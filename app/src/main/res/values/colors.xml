@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#A7C957</color>
-    <color name="colorPrimaryDark">#A7C957</color>
+    <color name="colorPrimary">#FEA53C</color>
+    <color name="colorPrimaryDark">#FEA53C</color>
     <color name="colorAccent">#03DAC5</color>
 
     <!-- Screens background color-->
@@ -54,4 +54,8 @@
     <color name="placeholder_bg">#dddddd</color>
     <color name="color_yellow">#FFDC3D</color>
     <color name="bg_layout">#F5F5F5</color>
+    <color name="bg_">#FFE6D4</color>
+    <color name="text">#4E4E4E</color>
+    <color name="color_login">#ED577E</color>
+    <color name="color_main">#FE933D</color>
 </resources>

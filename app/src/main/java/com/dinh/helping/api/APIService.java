@@ -6,6 +6,7 @@ import com.dinh.helping.model.BaseResponseModel;
 import com.dinh.helping.model.CategoryModel;
 import com.dinh.helping.model.CityModel;
 import com.dinh.helping.model.DistrictModel;
+import com.dinh.helping.model.PhotoModel;
 import com.dinh.helping.model.ProductModel;
 import com.dinh.helping.model.UserResponseModel;
 import com.dinh.helping.model.WardModel;
@@ -41,6 +42,11 @@ public interface APIService {
 
 
     @POST(Consts.REST_ENDPOINT)
+    Call<BaseResponseModel> checkLogin(@Body ApiParams params);
+
+
+
+    @POST(Consts.REST_ENDPOINT)
     Call<BaseResponseModel<CityModel>> getListCity(@Body ApiParams params);
 
     @POST(Consts.REST_ENDPOINT)
@@ -51,4 +57,13 @@ public interface APIService {
 
     @POST(Consts.REST_ENDPOINT)
     Call<BaseResponseModel<ProductModel>> searchProduct(@Body ApiParams params);
+
+    @POST(Consts.REST_ENDPOINT)
+    Call<BaseResponseModel<ProductModel>> createProduct(@Body RequestBody params);
+
+    @POST(Consts.REST_ENDPOINT)
+    Call<BaseResponseModel<PhotoModel>> createPhotoProduct(@Body RequestBody params);
+
+
+
 }

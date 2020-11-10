@@ -1,5 +1,7 @@
 package com.dinh.helping.fragment.dashboard;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,6 +17,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -26,6 +30,7 @@ import com.canhdinh.lib.roundview.RoundTextView;
 import com.canhdinh.lib.viewpager.ViewPagerIndicator;
 import com.dinh.helping.R;
 import com.dinh.helping.activity.HomeActivity;
+import com.dinh.helping.adapter.category.ListCategoryAdapter;
 import com.dinh.helping.adapter.product.ListProductAdapter;
 import com.dinh.helping.adapter.product.ListProductDiscountAdapter;
 import com.dinh.helping.event.BackFragment;
@@ -59,9 +64,8 @@ public class DashboardFragment extends Fragment {
     private RelativeLayout layoutSliderImage;
     private ViewPager pager_slider_image;
     private ViewPagerIndicator indicator_pager_slider_image;
-    private TextView tvLoadAllCategory, tvLoadAllProduct, tvLoadDiscount;
-    private ImageView cvItem1, cvItem2, cvItem3, cvItem4, cvItem5, cvItem6;
-    private RecyclerView rcListProductDiscount;
+    private TextView tvLoadAllProduct, tvLoadDiscount;
+    private RecyclerView rcListProductDiscount, rcListCategory;
     private XRecyclerView rcListProduct;
     private RoundTextView tvPriceSale6, tvPriceSale5, tvPriceSale4, tvPriceSale3, tvPriceSale2, tvPriceSale1;
     private ShimmerFrameLayout mShimmerFrameLayout;
@@ -76,9 +80,12 @@ public class DashboardFragment extends Fragment {
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 //            Window window = getActivity().getWindow();
 //            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-//            window.setStatusBarColor(Color.parseColor("#A7C957"));
+//            window.setStatusBarColor(Color.parseColor("#000000"));
 //        }
         super.onCreate(savedInstanceState);
+        //product
+        productViewModel = ViewModelProviders.of(requireActivity()).get(ProductViewModel.class);
+        productViewModel.init();
     }
 
     @Override
@@ -93,13 +100,6 @@ public class DashboardFragment extends Fragment {
     }
 
     private void addEvents() {
-        tvLoadAllCategory.setOnClickListener(view -> {
-            if (activity != null) {
-                activity.changeToListCategory();
-                hideRootView();
-                activity.hideBottomBar();
-            }
-        });
 
         tvSearch.setOnClickListener(view -> {
             if (activity != null) {
@@ -132,27 +132,17 @@ public class DashboardFragment extends Fragment {
         categoryViewModel.init();
         categoryViewModel.getListCategory().observe(this, categoryModels -> {
 
-            Glide.with(activity).load(Consts.HOST_API + categoryModels.getData()[0].getCategory_image()).error(R.drawable.no_image_full).into(cvItem1);
-            Glide.with(activity).load(Consts.HOST_API + categoryModels.getData()[1].getCategory_image()).error(R.drawable.no_image_full).into(cvItem2);
-            Glide.with(activity).load(Consts.HOST_API + categoryModels.getData()[2].getCategory_image()).error(R.drawable.no_image_full).into(cvItem3);
-            Glide.with(activity).load(Consts.HOST_API + categoryModels.getData()[3].getCategory_image()).error(R.drawable.no_image_full).into(cvItem4);
-            Glide.with(activity).load(Consts.HOST_API + categoryModels.getData()[4].getCategory_image()).error(R.drawable.no_image_full).into(cvItem5);
-            Glide.with(activity).load(Consts.HOST_API + categoryModels.getData()[5].getCategory_image()).error(R.drawable.no_image_full).into(cvItem6);
-
-            tvPriceSale1.setText(categoryModels.getData()[0].getCategory_name());
-            tvPriceSale2.setText(categoryModels.getData()[1].getCategory_name());
-            tvPriceSale3.setText(categoryModels.getData()[2].getCategory_name());
-            tvPriceSale4.setText(categoryModels.getData()[3].getCategory_name());
-            tvPriceSale5.setText(categoryModels.getData()[4].getCategory_name());
-            tvPriceSale6.setText(categoryModels.getData()[5].getCategory_name());
-
+            ListCategoryAdapter categoryAdapter = new ListCategoryAdapter(activity, Arrays.asList(categoryModels.getData()));
+            rcListCategory.setLayoutManager(new GridLayoutManager(activity, 4, LinearLayoutManager.VERTICAL, false));
+            rcListCategory.setAdapter(categoryAdapter);
+            rcListCategory.setHasFixedSize(true);
+            categoryAdapter.notifyDataSetChanged();
             //shimmerAnimation stop and hide
             mShimmerFrameLayout.stopShimmer();
             mShimmerFrameLayout.setVisibility(View.GONE);
         });
-        //product
-        productViewModel = ViewModelProviders.of(requireActivity()).get(ProductViewModel.class);
-        productViewModel.init();
+
+        //giam gia nhieu nhat
         productViewModel.getListProduct().observe(this, productModels -> {
             ArrayList<ProductModel> models = new ArrayList<>();
             models.addAll(Arrays.asList(productModels.getData()));
@@ -170,7 +160,8 @@ public class DashboardFragment extends Fragment {
             });
         });
 
-        productViewModel.getListProductByDate().observe(this,productModels -> {
+        //tin mới đăng
+        productViewModel.getListProductByDate().observe(this, productModels -> {
             ArrayList<ProductModel> models = new ArrayList<>();
             models.addAll(Arrays.asList(productModels.getData()));
             productAdapter = new ListProductAdapter(activity, models);
@@ -253,16 +244,9 @@ public class DashboardFragment extends Fragment {
         pager_slider_image = view.findViewById(R.id.pager_slider_image);
         indicator_pager_slider_image = view.findViewById(R.id.indicator_pager_slider_image);
 
-        tvLoadAllCategory = view.findViewById(R.id.tvLoadAllCategory);
+        rcListCategory = view.findViewById(R.id.rcListCategory);
         tvLoadAllProduct = view.findViewById(R.id.tvLoadAllProduct);
         tvLoadDiscount = view.findViewById(R.id.tvLoadDiscount);
-
-        cvItem1 = view.findViewById(R.id.cvItem1);
-        cvItem2 = view.findViewById(R.id.cvItem2);
-        cvItem3 = view.findViewById(R.id.cvItem3);
-        cvItem4 = view.findViewById(R.id.cvItem4);
-        cvItem5 = view.findViewById(R.id.cvItem5);
-        cvItem6 = view.findViewById(R.id.cvItem6);
 
         rcListProduct = view.findViewById(R.id.rcListProduct);
         rcListProductDiscount = view.findViewById(R.id.rcListProductDiscount);

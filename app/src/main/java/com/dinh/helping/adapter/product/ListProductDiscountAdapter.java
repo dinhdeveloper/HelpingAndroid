@@ -55,7 +55,7 @@ public class ListProductDiscountAdapter extends RecyclerView.Adapter<ListProduct
             holder.tvName.setText(model.getProduct_name());
         }
         if (!TextUtils.isEmpty(model.getPrice_sale())) {
-            holder.tvPrice.setText(Consts.decimalFormat.format(Integer.valueOf(model.getPrice_sale())) + " VNĐ");
+            holder.tvPrice.setText(Consts.decimalFormat.format(Integer.valueOf(model.getPrice_sale())) + " VND");
         }
         if (!TextUtils.isEmpty(model.getDiscount())) {
             holder.tvDiscount.setText(model.getDiscount() + "%");

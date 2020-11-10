@@ -43,9 +43,7 @@ public class ProductDetailFragment extends Fragment implements BottomNavigationV
     private static final int REQUEST_PHONE_CALL = 1;
     private ImageView btnBackHeader;
     private TextView tvTitleHeader;
-    private BottomNavigationView navBottom;
 
-    private TextView tvName;
 
     SliderView sliderView;
     private ProductDetailSliderAdapter adapter;
@@ -87,8 +85,6 @@ public class ProductDetailFragment extends Fragment implements BottomNavigationV
 
                 }
             });
-
-            tvName.setText(model.getProduct_name());
         });
         addControls(view);
         addEvents();
@@ -96,7 +92,6 @@ public class ProductDetailFragment extends Fragment implements BottomNavigationV
     }
 
     private void addEvents() {
-        navBottom.setOnNavigationItemSelectedListener(this);
         tvTitleHeader.setText("Chi tiết sản phẩm");
         btnBackHeader.setOnClickListener(view1 -> {
             activity.checkBack();
@@ -105,12 +100,9 @@ public class ProductDetailFragment extends Fragment implements BottomNavigationV
     }
 
     private void addControls(View view) {
-        navBottom = view.findViewById(R.id.navBottom);
         tvTitleHeader = view.findViewById(R.id.tvTitleHeader);
         btnBackHeader = view.findViewById(R.id.btnBackHeader);
         sliderView = view.findViewById(R.id.imageSlider);
-
-        tvName = view.findViewById(R.id.tvName);
     }
 
     @Override

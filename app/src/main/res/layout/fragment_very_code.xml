@@ -10,6 +10,7 @@
     <include
         android:id="@+id/layout_phone"
         layout="@layout/layout_input_phone_number"/>
+
     <include
         android:id="@+id/layout_code"
         layout="@layout/layout_input_code_phone"/>

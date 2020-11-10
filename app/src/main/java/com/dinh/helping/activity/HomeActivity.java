@@ -11,6 +11,7 @@ import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -23,8 +24,13 @@ import com.dinh.helping.fragment.messenger.MessFragment;
 import com.dinh.helping.fragment.profile.info.ProfileFragment;
 import com.dinh.helping.fragment.profile.register.SignUpFragment;
 import com.dinh.helping.fragment.profile.verify.VeryCodeFragment;
+import com.dinh.helping.fragment.register.RegisterFragment;
 import com.dinh.helping.fragment.search.SearchFragment;
 import com.dinh.helping.fragment.seller.SellerFragment;
+import com.dinh.helping.helper.SharePrefs;
+import com.dinh.helping.model.UserResponseModel;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import com.fxn.BubbleTabBar;
 import com.fxn.OnBubbleClickListener;
 
@@ -43,12 +49,17 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+//        FacebookSdk.sdkInitialize(getApplicationContext());
+//        AppEventsLogger.activateApp(this);
+
         if (isNetworkConnected()) {
             bubbleTabBar = findViewById(R.id.bubbleTabBar);
             defauFragment(new DashboardFragment());
             fullScreen();
             bubbleTabBar.addBubbleListener(new OnBubbleClickListener() {
                 Fragment fragment = null;
+
                 @Override
                 public void onBubbleClick(int i) {
                     switch (i) {
@@ -83,11 +94,18 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 }
             });
-        }
-        else {
-            AlertError.showAlertError(HomeActivity.this,"Xác nhận","Bạn chưa kết nối internet");
+        } else {
+            AlertError.showAlertError(HomeActivity.this, "Xác nhận", "Bạn chưa kết nối internet");
         }
     }
+
+//    public static void hideSoftKeyboard(Activity activity) {
+//        if (activity.getCurrentFocus() == null) {
+//            return;
+//        }
+//        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+//        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+//    }
 
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -313,14 +331,10 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    public void changeToVeryCodeFragment() {
-        Fragment fragment = new VeryCodeFragment();
-        addFragment(fragment, true);
-    }
-
-
     public void changeToSignUpFragment() {
-        addFragment(new SignUpFragment(), true);
+        hideBottomBar();
+        isShowContainer++;
+        replaceFragment(new RegisterFragment(), true);
     }
 
     public void changeToListCategory() {
@@ -329,5 +343,11 @@ public class HomeActivity extends AppCompatActivity {
 
     public void changeToSearchFragment() {
         addFragment(new SearchFragment(), true);
+    }
+
+    public void changeToFragmentVeryCode() {
+        hideBottomBar();
+        isShowContainer++;
+        replaceFragment(new VeryCodeFragment(), true);
     }
 }

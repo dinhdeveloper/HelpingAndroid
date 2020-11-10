@@ -1,388 +1,520 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".fragment.seller.SellerFragment">
 
-    <include layout="@layout/layout_header"/>
+    <include layout="@layout/layout_header" />
 
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/layout_empty"
+        android:layout_centerInParent="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.canhdinh.lib.roundview.RoundTextView
+            android:id="@+id/btnLogin"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="100dp"
+            android:layout_marginVertical="30dp"
+            android:drawablePadding="@dimen/dp10"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/dp10"
+            android:text="Đăng nhập"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            app:rv_backgroundColor="@color/color_orange"
+            app:rv_radius="@dimen/dp20" />
+    </LinearLayout>
+    <ScrollView
+        android:layout_below="@+id/layoutBackgroundHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/layout_root"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="visible">
 
             <LinearLayout
-                android:elevation="2dp"
-                android:background="@color/bg_layout"
-                android:paddingVertical="@dimen/dp15"
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/bg_layout"
+                android:elevation="2dp"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/dp15">
+
                 <TextView
-                    android:layout_weight="1"
-                    android:text="Hình ảnh"
-                    android:layout_marginHorizontal="@dimen/dp10"
-                    android:paddingVertical="@dimen/dp10"
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:layout_weight="1"
+                    android:paddingVertical="@dimen/dp10"
+                    android:text="Hình ảnh(*)"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <com.canhdinh.lib.roundview.RoundTextView
                     android:id="@+id/tvChooseImage"
-                    android:text="Chọn hình"
-                    app:rv_backgroundColor="@color/color_orange"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/dp10"
                     android:layout_weight="2"
-                    android:layout_marginHorizontal="@dimen/dp10"
-                    app:rv_radius="17dp"
-                    android:paddingHorizontal="@dimen/dp10"
-                    android:drawablePadding="@dimen/dp10"
                     android:gravity="center"
-                    android:layout_gravity="center"
-                    android:textSize="15sp"
+                    android:paddingHorizontal="5dp"
+                    android:text="Chọn hình"
                     android:textColor="@color/white"
+                    android:textSize="15sp"
                     android:textStyle="normal"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"/>
+                    app:rv_backgroundColor="@color/color_orange"
+                    app:rv_radius="17dp" />
             </LinearLayout>
             <!--end item-->
 
-            <ImageView
-                android:id="@+id/imvProduct"
-                android:layout_marginTop="@dimen/dp20"
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@drawable/no_image_full"
-                android:layout_width="200dp"
-                android:layout_height="170dp"/>
+                android:layout_marginTop="@dimen/dp20">
 
-            <LinearLayout
-                android:layout_marginTop="@dimen/dp20"
-                android:elevation="2dp"
-                android:background="@color/bg_layout"
-                android:paddingVertical="@dimen/dp15"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                    <TextView
-                        android:text="Danh mục sản phẩm"
-                        android:layout_marginHorizontal="@dimen/dp10"
-                        android:paddingVertical="@dimen/dp10"
-                        android:textSize="15sp"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                <ImageView
+                    android:id="@+id/imvProduct"
+                    android:layout_width="170dp"
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/no_image_full" />
 
-                    <com.canhdinh.lib.roundview.RoundTextView
-                        android:id="@+id/tvChooseCategory"
-                        android:layout_marginHorizontal="@dimen/dp10"
-                        app:rv_strokeWidth="1sp"
-                        app:rv_strokeColor="@color/black"
-                        app:rv_radius="@dimen/dp5"
-                        android:hint="Chọn"
-                        android:drawableEnd="@drawable/ic_bottom_down"
-                        android:drawableTint="@color/gray"
-                        android:paddingHorizontal="@dimen/dp10"
-                        android:drawablePadding="@dimen/dp10"
-                        android:gravity="center|start"
-                        android:layout_gravity="center"
-                        android:textSize="15sp"
-                        android:textColor="@color/black"
-                        android:textStyle="normal"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"/>
-            </LinearLayout>
-            <!--end item-->
-
-            <LinearLayout
-                android:elevation="2dp"
-                android:background="@color/bg_layout"
-                android:paddingVertical="@dimen/dp15"
-                android:layout_marginTop="@dimen/dp20"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
                 <TextView
-                    android:text="Tên sản phẩm"
+                    android:id="@+id/tvQuantity"
+                    android:layout_width="170dp"
+                    android:layout_height="200dp"
+                    android:layout_centerInParent="true"
+                    android:alpha="1.0"
+                    android:elevation="1sp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    tools:text="+12" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:background="@color/bg_layout"
+                android:elevation="2dp"
+                android:orientation="vertical"
+                android:paddingVertical="@dimen/dp15">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/dp10"
                     android:paddingVertical="@dimen/dp10"
-                    android:textSize="15sp"
+                    android:text="Danh mục sản phẩm(*)"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/edtNameProduct"
-                    android:background="@drawable/back_ground_edittext"
-                    android:layout_marginHorizontal="@dimen/dp10"
-                    android:hint="Tên sản phẩm"
-                    android:paddingHorizontal="@dimen/dp10"
-                    android:gravity="center|start"
+                <com.canhdinh.lib.roundview.RoundTextView
+                    android:id="@+id/tvChooseCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
                     android:layout_gravity="center"
-                    android:textSize="15sp"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:drawableEnd="@drawable/ic_bottom_down"
+                    android:drawablePadding="@dimen/dp10"
+                    android:drawableTint="@color/gray"
+                    android:gravity="center|start"
+                    android:hint="Chọn"
+                    android:paddingHorizontal="@dimen/dp10"
                     android:textColor="@color/black"
+                    android:textSize="15sp"
                     android:textStyle="normal"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"/>
+                    app:rv_radius="@dimen/dp5"
+                    app:rv_strokeColor="@color/black"
+                    app:rv_strokeWidth="1sp" />
             </LinearLayout>
             <!--end item-->
 
             <LinearLayout
-                android:layout_marginTop="@dimen/dp20"
-                android:elevation="2dp"
-                android:background="@color/bg_layout"
-                android:paddingVertical="@dimen/dp15"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:background="@color/bg_layout"
+                android:elevation="2dp"
+                android:orientation="vertical"
+                android:paddingVertical="@dimen/dp15">
+
                 <TextView
-                    android:text="Tỉnh (Thành phố)"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/dp10"
                     android:paddingVertical="@dimen/dp10"
-                    android:textSize="15sp"
+                    android:text="Tỉnh (Thành phố)(*)"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <com.canhdinh.lib.roundview.RoundTextView
                     android:id="@+id/tvCity"
-                    android:layout_marginHorizontal="@dimen/dp10"
-                    app:rv_strokeWidth="1sp"
-                    app:rv_strokeColor="@color/black"
-                    app:rv_radius="@dimen/dp5"
-                    android:hint="Chọn"
-                    android:drawableEnd="@drawable/ic_bottom_down"
-                    android:drawableTint="@color/gray"
-                    android:paddingHorizontal="@dimen/dp10"
-                    android:drawablePadding="@dimen/dp10"
-                    android:gravity="center|start"
-                    android:layout_gravity="center"
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:textStyle="normal"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"/>
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:drawableEnd="@drawable/ic_bottom_down"
+                    android:drawablePadding="@dimen/dp10"
+                    android:drawableTint="@color/gray"
+                    android:gravity="center|start"
+                    android:hint="Chọn"
+                    android:paddingHorizontal="@dimen/dp10"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="normal"
+                    app:rv_radius="@dimen/dp5"
+                    app:rv_strokeColor="@color/black"
+                    app:rv_strokeWidth="1sp" />
             </LinearLayout>
             <!--end item-->
 
             <LinearLayout
-                android:layout_marginTop="@dimen/dp20"
-                android:elevation="2dp"
-                android:background="@color/bg_layout"
-                android:paddingVertical="@dimen/dp15"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:background="@color/bg_layout"
+                android:elevation="2dp"
+                android:orientation="vertical"
+                android:paddingVertical="@dimen/dp15">
+
                 <TextView
-                    android:text="Huyện (Quận)"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/dp10"
                     android:paddingVertical="@dimen/dp10"
-                    android:textSize="15sp"
+                    android:text="Huyện (Quận)(*)"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <com.canhdinh.lib.roundview.RoundTextView
                     android:id="@+id/tvDistrict"
-                    android:layout_marginHorizontal="@dimen/dp10"
-                    app:rv_strokeWidth="1sp"
-                    app:rv_strokeColor="@color/black"
-                    app:rv_radius="@dimen/dp5"
-                    android:hint="Chọn"
-                    android:drawableEnd="@drawable/ic_bottom_down"
-                    android:drawableTint="@color/gray"
-                    android:paddingHorizontal="@dimen/dp10"
-                    android:drawablePadding="@dimen/dp10"
-                    android:gravity="center|start"
-                    android:layout_gravity="center"
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:textStyle="normal"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"/>
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:drawableEnd="@drawable/ic_bottom_down"
+                    android:drawablePadding="@dimen/dp10"
+                    android:drawableTint="@color/gray"
+                    android:gravity="center|start"
+                    android:hint="Chọn"
+                    android:paddingHorizontal="@dimen/dp10"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="normal"
+                    app:rv_radius="@dimen/dp5"
+                    app:rv_strokeColor="@color/black"
+                    app:rv_strokeWidth="1sp" />
             </LinearLayout>
             <!--end item-->
 
             <LinearLayout
-                android:layout_marginTop="@dimen/dp20"
-                android:elevation="2dp"
-                android:background="@color/bg_layout"
-                android:paddingVertical="@dimen/dp15"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:background="@color/bg_layout"
+                android:elevation="2dp"
+                android:orientation="vertical"
+                android:paddingVertical="@dimen/dp15">
+
                 <TextView
-                    android:text="Xã (Phường/Thị trấn)"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/dp10"
                     android:paddingVertical="@dimen/dp10"
-                    android:textSize="15sp"
+                    android:text="Xã (Phường/Thị trấn)(*)"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <com.canhdinh.lib.roundview.RoundTextView
                     android:id="@+id/tvWard"
-                    android:layout_marginHorizontal="@dimen/dp10"
-                    app:rv_strokeWidth="1sp"
-                    app:rv_strokeColor="@color/black"
-                    app:rv_radius="@dimen/dp5"
-                    android:hint="Chọn"
-                    android:drawableEnd="@drawable/ic_bottom_down"
-                    android:drawableTint="@color/gray"
-                    android:paddingHorizontal="@dimen/dp10"
-                    android:drawablePadding="@dimen/dp10"
-                    android:gravity="center|start"
-                    android:layout_gravity="center"
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:textStyle="normal"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"/>
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:drawableEnd="@drawable/ic_bottom_down"
+                    android:drawablePadding="@dimen/dp10"
+                    android:drawableTint="@color/gray"
+                    android:gravity="center|start"
+                    android:hint="Chọn"
+                    android:paddingHorizontal="@dimen/dp10"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="normal"
+                    app:rv_radius="@dimen/dp5"
+                    app:rv_strokeColor="@color/black"
+                    app:rv_strokeWidth="1sp" />
             </LinearLayout>
             <!--end item-->
 
             <LinearLayout
-                android:elevation="2dp"
-                android:background="@color/bg_layout"
-                android:paddingVertical="@dimen/dp15"
-                android:layout_marginTop="@dimen/dp20"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:background="@color/bg_layout"
+                android:elevation="2dp"
+                android:orientation="vertical"
+                android:paddingVertical="@dimen/dp15">
+
                 <TextView
-                    android:text="Tên đường"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/dp10"
                     android:paddingVertical="@dimen/dp10"
-                    android:textSize="15sp"
+                    android:text="Tên đường"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/edtStreet"
-                    android:inputType="text"
-                    android:imeOptions="actionNext"
-                    android:background="@drawable/back_ground_edittext"
-                    android:layout_marginHorizontal="@dimen/dp10"
-                    android:hint="Tên đường"
-                    android:paddingHorizontal="@dimen/dp10"
-                    android:gravity="center|start"
-                    android:layout_gravity="center"
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:textStyle="normal"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"/>
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:background="@drawable/back_ground_edittext"
+                    android:gravity="center|start"
+                    android:hint="Tên đường"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:paddingHorizontal="@dimen/dp10"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
             </LinearLayout>
             <!--end item-->
 
             <LinearLayout
-                android:elevation="2dp"
-                android:background="@color/bg_layout"
-                android:paddingVertical="@dimen/dp15"
-                android:layout_marginTop="@dimen/dp20"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:background="@color/bg_layout"
+                android:elevation="2dp"
+                android:orientation="vertical"
+                android:paddingVertical="@dimen/dp15">
+
                 <TextView
-                    android:text="Giá bán"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/dp10"
                     android:paddingVertical="@dimen/dp10"
-                    android:textSize="15sp"
+                    android:text="Tên sản phẩm(*)"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/edtPrice"
-                    android:inputType="number"
-                    android:imeOptions="actionNext"
-                    android:background="@drawable/back_ground_edittext"
-                    android:layout_marginHorizontal="@dimen/dp10"
-                    android:hint="Giá bán sản phẩm"
-                    android:paddingHorizontal="@dimen/dp10"
-                    android:gravity="center|start"
-                    android:layout_gravity="center"
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:textStyle="normal"
+                    android:id="@+id/edtNameProduct"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"/>
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:background="@drawable/back_ground_edittext"
+                    android:gravity="center|start"
+                    android:hint="Tên sản phẩm"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:paddingHorizontal="@dimen/dp10"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
             </LinearLayout>
             <!--end item-->
 
             <LinearLayout
-                android:elevation="2dp"
-                android:background="@color/bg_layout"
-                android:paddingVertical="@dimen/dp15"
-                android:layout_marginTop="@dimen/dp20"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:background="@color/bg_layout"
+                android:elevation="2dp"
+                android:orientation="vertical"
+                android:paddingVertical="@dimen/dp15">
+
                 <TextView
-                    android:text="Mô tả"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/dp10"
                     android:paddingVertical="@dimen/dp10"
-                    android:textSize="15sp"
+                    android:text="Giá bán(*)"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <com.canhdinh.lib.roundview.CurrencyEditText
+                    android:id="@+id/edtPrice"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:background="@drawable/back_ground_edittext"
+                    android:gravity="center|start"
+                    android:hint="Giá bán sản phẩm"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:paddingHorizontal="@dimen/dp10"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+            <!--end item-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:background="@color/bg_layout"
+                android:elevation="2dp"
+                android:orientation="vertical"
+                android:paddingVertical="@dimen/dp15">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:paddingVertical="@dimen/dp10"
+                    android:text="Số lượng(*)"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtQuantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:background="@drawable/back_ground_edittext"
+                    android:gravity="center|start"
+                    android:hint="Số lượng sản phẩm"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:paddingHorizontal="@dimen/dp10"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+            <!--end item-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:background="@color/bg_layout"
+                android:elevation="2dp"
+                android:orientation="vertical"
+                android:paddingVertical="@dimen/dp15">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:paddingVertical="@dimen/dp10"
+                    android:text="Còn mới(%)"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtDiscount"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:background="@drawable/back_ground_edittext"
+                    android:gravity="center|start"
+                    android:hint="Còn mới bao nhiêu %"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:paddingHorizontal="@dimen/dp10"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+            <!--end item-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:background="@color/bg_layout"
+                android:elevation="2dp"
+                android:orientation="vertical"
+                android:paddingVertical="@dimen/dp15">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:paddingVertical="@dimen/dp10"
+                    android:text="Mô tả"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/edtDescription"
-                    android:imeOptions="actionNext"
-                    android:padding="@dimen/dp5"
-                    android:background="@drawable/back_ground_edittext"
-                    android:layout_marginHorizontal="@dimen/dp10"
-                    android:hint="Nội dung"
-                    android:paddingHorizontal="@dimen/dp10"
-                    android:gravity="top|left"
-                    android:layout_gravity="center"
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:textStyle="normal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:background="@drawable/back_ground_edittext"
+                    android:gravity="top|left"
+                    android:hint="Nội dung"
+                    android:imeOptions="actionNext"
                     android:inputType="textMultiLine"
                     android:lines="8"
                     android:maxLines="10"
                     android:minLines="5"
-                    android:scrollbars="vertical" />
+                    android:padding="@dimen/dp5"
+                    android:paddingHorizontal="@dimen/dp10"
+                    android:scrollbars="vertical"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
             </LinearLayout>
             <!--end item-->
 
             <com.canhdinh.lib.roundview.RoundTextView
                 android:id="@+id/btnSubmit"
-                android:layout_marginVertical="30dp"
-                android:text="Đăng bán"
-                app:rv_backgroundColor="@color/color_orange"
-                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
                 android:layout_marginHorizontal="30dp"
-                app:rv_radius="@dimen/dp20"
-                android:paddingHorizontal="@dimen/dp10"
+                android:layout_marginVertical="30dp"
+                android:layout_weight="2"
                 android:drawablePadding="@dimen/dp10"
                 android:gravity="center"
-                android:layout_gravity="center"
-                android:textSize="15sp"
+                android:paddingHorizontal="@dimen/dp10"
+                android:text="Đăng bán"
                 android:textColor="@color/white"
+                android:textSize="15sp"
                 android:textStyle="normal"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"/>
+                app:rv_backgroundColor="@color/color_orange"
+                app:rv_radius="@dimen/dp20" />
         </LinearLayout>
     </ScrollView>
-
-</LinearLayout>
+</RelativeLayout>

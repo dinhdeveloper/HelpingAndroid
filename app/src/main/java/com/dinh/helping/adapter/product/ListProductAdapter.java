@@ -66,10 +66,10 @@ public class ListProductAdapter extends RecyclerView.Adapter<ListProductAdapter.
             holder.tvName.setText(model.getProduct_name());
         }
         if (!TextUtils.isEmpty(model.getPrice_sale())) {
-            holder.tvPrice.setText(Consts.decimalFormat.format(Integer.valueOf(model.getPrice_sale())) + " VNĐ");
+            holder.tvPrice.setText(Consts.decimalFormat.format(Integer.valueOf(model.getPrice_sale())) + " VND");
         }
-        if (!TextUtils.isEmpty(model.getLocation())) {
-            holder.tvLocation.setText(model.getLocation());
+        if (!TextUtils.isEmpty(model.getCity_name())) {
+            holder.tvLocation.setText(model.getDistrict_name() + ", " + model.getCity_name());
         }
         if (!TextUtils.isEmpty(model.getProduct_image())) {
             Glide.with(context).load(Consts.HOST_API + model.getProduct_image()).error(R.drawable.no_image_full).into(holder.imvCategory);
