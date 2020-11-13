@@ -144,39 +144,43 @@ public class DashboardFragment extends Fragment {
 
         //giam gia nhieu nhat
         productViewModel.getListProduct().observe(this, productModels -> {
-            ArrayList<ProductModel> models = new ArrayList<>();
-            models.addAll(Arrays.asList(productModels.getData()));
-            discountAdapter = new ListProductDiscountAdapter(activity, models);
-            rcListProductDiscount.setHasFixedSize(true);
-            rcListProductDiscount.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
-            rcListProductDiscount.setAdapter(discountAdapter);
-            discountAdapter.notifyDataSetChanged();
-            discountAdapter.setListener(model -> {
-                productViewModel.setSelectedItem(model);
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.layoutRoot, new ProductDetailFragment());
-                transaction.addToBackStack(null);
-                transaction.commit();
-            });
+            if (productModels.getData()!=null){
+                ArrayList<ProductModel> models = new ArrayList<>();
+                models.addAll(Arrays.asList(productModels.getData()));
+                discountAdapter = new ListProductDiscountAdapter(activity, models);
+                rcListProductDiscount.setHasFixedSize(true);
+                rcListProductDiscount.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
+                rcListProductDiscount.setAdapter(discountAdapter);
+                discountAdapter.notifyDataSetChanged();
+                discountAdapter.setListener(model -> {
+                    productViewModel.setSelectedItem(model);
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.layoutRoot, new ProductDetailFragment());
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                });
+            }
         });
 
         //tin mới đăng
         productViewModel.getListProductByDate().observe(this, productModels -> {
-            ArrayList<ProductModel> models = new ArrayList<>();
-            models.addAll(Arrays.asList(productModels.getData()));
-            productAdapter = new ListProductAdapter(activity, models);
-            rcListProduct.setHasFixedSize(true);
-            rcListProduct.setLayoutManager(new GridLayoutManager(activity, 2));
-            rcListProduct.setAdapter(productAdapter);
-            productAdapter.notifyDataSetChanged();
+            if (productModels.getData() != null) {
+                ArrayList<ProductModel> models = new ArrayList<>();
+                models.addAll(Arrays.asList(productModels.getData()));
+                productAdapter = new ListProductAdapter(activity, models);
+                rcListProduct.setHasFixedSize(true);
+                rcListProduct.setLayoutManager(new GridLayoutManager(activity, 2));
+                rcListProduct.setAdapter(productAdapter);
+                productAdapter.notifyDataSetChanged();
 
-            productAdapter.setListener(model -> {
-                productViewModel.setSelectedItem(model);
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.layoutRoot, new ProductDetailFragment());
-                transaction.addToBackStack(null);
-                transaction.commit();
-            });
+                productAdapter.setListener(model -> {
+                    productViewModel.setSelectedItem(model);
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.layoutRoot, new ProductDetailFragment());
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                });
+            }
         });
     }
 

@@ -33,7 +33,7 @@ public class CategoryRepository {
         apiService.getAllCategory(params).enqueue(new Callback<BaseResponseModel<CategoryModel>>() {
             @Override
             public void onResponse(Call<BaseResponseModel<CategoryModel>> call, Response<BaseResponseModel<CategoryModel>> response) {
-                data.setValue(response.body());
+                data.postValue(response.body());
             }
 
             @Override
@@ -53,7 +53,7 @@ public class CategoryRepository {
         apiService.getAllProduct(params).enqueue(new Callback<BaseResponseModel<ProductModel>>() {
             @Override
             public void onResponse(Call<BaseResponseModel<ProductModel>> call, Response<BaseResponseModel<ProductModel>> response) {
-                data.setValue(response.body());
+                data.postValue(response.body());
             }
 
             @Override

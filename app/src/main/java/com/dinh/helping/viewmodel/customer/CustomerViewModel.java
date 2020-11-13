@@ -12,6 +12,7 @@ import com.dinh.helping.R;
 import com.dinh.helping.activity.HomeActivity;
 import com.dinh.helping.fragment.dashboard.DashboardFragment;
 import com.dinh.helping.fragment.login_nomal.LoginFragment;
+import com.dinh.helping.fragment.my_product.MyProductFragment;
 import com.dinh.helping.fragment.profile.info.ProfileFragment;
 import com.dinh.helping.fragment.profile.verify.VeryCodeFragment;
 import com.dinh.helping.fragment.register.RegisterFragment;
@@ -95,5 +96,10 @@ public class CustomerViewModel extends ViewModel {
 
     public MutableLiveData<BaseResponseModel> getCheckPhone() {
         return phoneNumber;
+    }
+
+    public void changToFragmentMyProduct(HomeActivity activity) {
+        activity.hideBottomBar();
+        activity.replaceFragment(new MyProductFragment(), true);
     }
 }

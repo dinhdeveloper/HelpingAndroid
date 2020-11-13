@@ -19,7 +19,6 @@ import com.dinh.helping.activity.HomeActivity;
 import com.dinh.helping.helper.SharePrefs;
 import com.dinh.helping.model.UserResponseModel;
 import com.dinh.helping.viewmodel.customer.CustomerViewModel;
-import com.facebook.login.LoginManager;
 
 
 public class ProfileFragment extends Fragment {
@@ -28,6 +27,7 @@ public class ProfileFragment extends Fragment {
     private LinearLayout btnLogout;
     private TextView tvFullName, tvPhoneNumber, tvAddress;
     private ImageView imvProfile;
+    private LinearLayout layoutMyProduct;
 
     HomeActivity activity;
     CustomerViewModel customerViewModel;
@@ -110,6 +110,11 @@ public class ProfileFragment extends Fragment {
     }
 
     private void onClickActive() {
+
+        layoutMyProduct.setOnClickListener(view -> {
+            customerViewModel.changToFragmentMyProduct(activity);
+        });
+
         btnLogout.setOnClickListener(view -> {
             new CustomAlertDialog(activity, CustomAlertDialog.WARNING_TYPE)
                     .setTitleText("Xác nhận")
@@ -212,5 +217,6 @@ public class ProfileFragment extends Fragment {
         imvProfile = view.findViewById(R.id.imvProfile);
 
         btnLogout = view.findViewById(R.id.btnLogout);
+        layoutMyProduct = view.findViewById(R.id.layoutMyProduct);
     }
 }

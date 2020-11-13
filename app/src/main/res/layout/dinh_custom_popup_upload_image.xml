@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rv="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:layout_height="500dp"
+    android:visibility="visible"
+    android:orientation="vertical">
+    <com.canhdinh.lib.roundview.RoundLinearLayout
+        android:id="@+id/layoutRootViewPasswordManager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        rv:rv_backgroundColor="@color/color_bg_admin"
+        rv:rv_radius="20dp"
+        rv:rv_isRippleEnable="false">
+
+        <ImageView
+            android:id="@+id/imvClose"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right"
+            android:layout_margin="10dp"
+            android:src="@drawable/close" />
+
+        <TextView
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/dp15"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thêm hình ảnh minh họa"
+            android:textColor="@color/color_text_admin"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/dp20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp5"
+                android:text="Hình ảnh:"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <com.canhdinh.lib.roundview.RoundTextView
+                android:id="@+id/btnUpdateResult"
+                android:layout_width="140dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/dp20"
+                android:gravity="center"
+                android:text="Cập nhật hình ảnh"
+                android:textColor="@color/color_orange"
+                android:textStyle="bold"
+                rv:rv_backgroundPressColor="#383838"
+                rv:rv_radius="5dp"
+                rv:rv_strokeColor="@color/color_orange"
+                rv:rv_strokeWidth="1dp"
+                rv:rv_textPressColor="#ffffff"
+                tools:ignore="MissingPrefix" />
+
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/imvImageResult"
+            android:layout_marginVertical="@dimen/dp15"
+            android:layout_width="200dp"
+            android:src="@drawable/no_image_full"
+            android:layout_height="250dp">
+
+        </ImageView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <com.canhdinh.lib.roundview.RoundTextView
+                android:id="@+id/btnSubmit"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="@dimen/dp20"
+                android:gravity="center"
+                android:text="Hoàn tất"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                rv:rv_backgroundColor="@color/color_orange"
+                rv:rv_backgroundPressColor="#383838"
+                rv:rv_radius="30dp"
+                rv:rv_strokeWidth="1dp"
+                rv:rv_textPressColor="#ffffff"
+                tools:ignore="MissingPrefix" />
+        </LinearLayout>
+
+    </com.canhdinh.lib.roundview.RoundLinearLayout>
+
+
+</LinearLayout>

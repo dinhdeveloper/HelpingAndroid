@@ -1,5 +1,6 @@
 package com.dinh.helping.fragment.seller;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -40,9 +41,11 @@ import com.canhdinh.lib.roundview.RoundTextView;
 import com.canhdinh.lib.searchdialog.SimpleSearchDialogCompat;
 import com.canhdinh.lib.searchdialog.core.SearchResultListener;
 import com.canhdinh.lib.selectimage.BSImagePicker;
+import com.canhdinh.lib.snackalert.SnackAlert;
 import com.dinh.helping.R;
 import com.dinh.helping.activity.HomeActivity;
 import com.dinh.helping.adapter.product.ListImageViewAdapter;
+import com.dinh.helping.api.FileUploader;
 import com.dinh.helping.helper.SharePrefs;
 import com.dinh.helping.model.BaseResponseModel;
 import com.dinh.helping.model.CategoryModel;
@@ -63,6 +66,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 import static com.dinh.helping.activity.HomeActivity.hideSoftKeyboard;
@@ -230,6 +235,8 @@ public class SellerFragment extends Fragment implements BSImagePicker.OnSingleIm
                                     @Override
                                     public void onClick(CustomAlertDialog sDialog) {
                                         sDialog.dismissWithAnimation();
+                                        //TODO chon file upload image
+                                        showPopupChooseImage(model1.getData()[0]);
                                     }
                                 })
                                 .setCancelButton("Không", new CustomAlertDialog.OnSweetClickListener() {
@@ -249,6 +256,66 @@ public class SellerFragment extends Fragment implements BSImagePicker.OnSingleIm
                     }
                 });
             }
+        });
+    }
+
+    AlertDialog dialogChooseImage;
+    ImageView imvImageUpdate;
+
+    private void showPopupChooseImage(ProductModel model1) {
+        LayoutInflater layoutInflater = activity.getLayoutInflater();
+        View popupView = layoutInflater.inflate(R.layout.dinh_custom_popup_upload_image, null);
+        ImageView imvClose = popupView.findViewById(R.id.imvClose);
+        RoundTextView btnUpdateResult = popupView.findViewById(R.id.btnUpdateResult);
+        imvImageUpdate = popupView.findViewById(R.id.imvImageResult);
+        RoundTextView btnSubmit = popupView.findViewById(R.id.btnSubmit);
+
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(activity);
+        alert.setView(popupView);
+        dialogChooseImage = alert.create();
+        dialogChooseImage.setCanceledOnTouchOutside(false);
+        dialogChooseImage.show();
+
+        imvClose.setOnClickListener(v -> {
+            dialogChooseImage.dismiss();
+        });
+        btnUpdateResult.setOnClickListener(v -> {
+            //todo chon munti hinh anh.
+            BSImagePicker pickerDialogs = new BSImagePicker.Builder("com.dinh.helping.fileprovider")
+                    .setMaximumDisplayingImages(Integer.MAX_VALUE)
+                    .isMultiSelect()
+                    .setMinimumMultiSelectCount(1)
+                    .setMaximumMultiSelectCount(5)
+                    .build();
+            pickerDialogs.show(getChildFragmentManager(), "picker");
+        });
+
+        btnSubmit.setOnClickListener(v -> {
+            CustomAlertDialog pDialog = new CustomAlertDialog(activity, CustomAlertDialog.PROGRESS_TYPE);
+            pDialog.setTitleText("Đang tải lên");
+            pDialog.setCancelable(false);
+            pDialog.show();
+
+            productViewModel.uploadPhotoProduct(uriL, model1, activity).observe(this, model -> {
+                if (!TextUtils.isEmpty(model.getSuccess()) && model.getSuccess().equalsIgnoreCase("true")) {
+
+                    new SnackAlert(activity)
+                            .setTitle("Thành công")
+                            .setMessage("Tải hình ảnh thành công")
+                            .setType(SnackAlert.SUCCESS)
+                            .setDurationAnimationShow(500).show();
+                    dialogChooseImage.dismiss();
+                    clearDataInput();
+                    pDialog.dismissWithAnimation();
+                } else {
+                    new SnackAlert(activity)
+                            .setTitle("Thất bại")
+                            .setMessage("Tải hình ảnh không thành công")
+                            .setType(SnackAlert.ERROR)
+                            .setDurationAnimationShow(500).show();
+                }
+            });
         });
     }
 
@@ -423,27 +490,29 @@ public class SellerFragment extends Fragment implements BSImagePicker.OnSingleIm
     }
 
     List<PhotoModel> arr = new ArrayList<>();
-    List<String> uriL = new ArrayList<>();
+    List<Uri> uriL = new ArrayList<>();
 
     @Override
     public void onMultiImageSelected(List<Uri> uriList, String tag) {
-        Glide.with(activity).load(uriList.get(0)).into(imvProduct);
-        for (int i = 0; i < uriList.size(); i++) {
-            uriL.add(uriList.get(i).getPath());
-            PhotoModel model = new PhotoModel();
-            model.setImage_id(String.valueOf(i));
-            model.setProduct_photo(String.valueOf(uriList.get(i)));
-            arr.add(model);
-        }
-        if (uriList != null) {
-            if (uriList.size() == 1) {
-                tvQuantity.setVisibility(View.GONE);
-            } else {
-                tvQuantity.setVisibility(View.VISIBLE);
-                tvQuantity.setText("+" + uriList.size());
-                tvQuantity.setBackgroundColor(Color.parseColor("#40000000"));
-            }
-        }
+        Glide.with(activity).load(uriList.get(0)).into(imvImageUpdate);
+//        for (int i = 0; i < uriList.size(); i++) {
+//            uriL.add(uriList.get(i).getPath());
+//            PhotoModel model = new PhotoModel();
+//            model.setImage_id(String.valueOf(i));
+//            model.setProduct_photo(String.valueOf(uriList.get(i)));
+//            arr.add(model);
+//        }
+//        if (uriList != null) {
+//            if (uriList.size() == 1) {
+//                tvQuantity.setVisibility(View.GONE);
+//            } else {
+//                tvQuantity.setVisibility(View.VISIBLE);
+//                tvQuantity.setText("+" + uriList.size());
+//                tvQuantity.setBackgroundColor(Color.parseColor("#40000000"));
+//            }
+//        }
+
+        uriL = uriList;
     }
 
     @Override

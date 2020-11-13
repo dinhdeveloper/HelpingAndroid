@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import com.dinh.helping.helper.Consts;
 import com.dinh.helping.model.BaseResponseModel;
 import com.dinh.helping.model.PhotoModel;
+import com.dinh.helping.model.ProductModel;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,7 +31,7 @@ public class FileUploader {
     private long totalFileUploaded = 0;
     private UploadInterface uploadInterface;
     private BaseResponseModel responses;
-    private PhotoModel itemBookingModel;
+    private ProductModel itemBookingModel;
 
     private interface UploadInterface {
 //        @Headers(Consts.HEADES)
@@ -94,7 +95,7 @@ public class FileUploader {
         uploadInterface = ApiClient.getClient().create(UploadInterface.class);
     }
 
-    public void uploadFiles(PhotoModel itemBookingModel, File[] files, FileUploaderCallback fileUploaderCallback) {
+    public void uploadFiles(ProductModel itemBookingModel, File[] files, FileUploaderCallback fileUploaderCallback) {
         this.fileUploaderCallback = fileUploaderCallback;
         this.itemBookingModel = itemBookingModel;
         this.files = files;

@@ -50,6 +50,11 @@ public interface APIService {
     Call<BaseResponseModel<CityModel>> getListCity(@Body ApiParams params);
 
     @POST(Consts.REST_ENDPOINT)
+    Call<BaseResponseModel<CityModel>> getProductByCustomer(@Body ApiParams params);
+
+
+
+    @POST(Consts.REST_ENDPOINT)
     Call<BaseResponseModel<DistrictModel>> getListDistrictByCity(@Body ApiParams params);
 
     @POST(Consts.REST_ENDPOINT)

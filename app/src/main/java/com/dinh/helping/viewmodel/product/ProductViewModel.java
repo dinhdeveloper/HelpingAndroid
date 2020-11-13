@@ -1,6 +1,7 @@
 package com.dinh.helping.viewmodel.product;
 
 import android.content.Intent;
+import android.net.Uri;
 
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LiveData;
@@ -13,13 +14,17 @@ import com.dinh.helping.fragment.login_nomal.LoginFragment;
 import com.dinh.helping.fragment.product_detail.ProductDetailFragment;
 import com.dinh.helping.fragment.profile.info.ProfileFragment;
 import com.dinh.helping.model.BaseResponseModel;
+import com.dinh.helping.model.PhotoModel;
 import com.dinh.helping.model.ProductModel;
 import com.dinh.helping.repository.product.ProductReprository;
+
+import java.util.List;
 
 public class ProductViewModel extends ViewModel {
     private MutableLiveData<BaseResponseModel<ProductModel>> data;
     private MutableLiveData<BaseResponseModel<ProductModel>> data_by_date;
     private MutableLiveData<BaseResponseModel<ProductModel>> data_create;
+    private MutableLiveData<BaseResponseModel<PhotoModel>> uploadImage;
     private MutableLiveData<ProductModel> mSelectedItem = new MutableLiveData<>();
     private ProductReprository repository;
 
@@ -58,5 +63,10 @@ public class ProductViewModel extends ViewModel {
         transaction.replace(R.id.layoutRoot, new LoginFragment());
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    public MutableLiveData<BaseResponseModel<PhotoModel>> uploadPhotoProduct(List<Uri> uriL, ProductModel model1,HomeActivity activity) {
+        uploadImage = repository.uploadImageProduct(uriL,model1,activity);
+        return uploadImage;
     }
 }
